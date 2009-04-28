@@ -38,9 +38,9 @@ Here are some common variables the status line can display:
       <i>dos</i>.</td></tr>
 </table>  
 
-Variable names are prefixed with a percentage sign (<i>\%</i>).  Spaces,
-bars (<i>|</i>), and other special characters <span class="todo">What special characters?</span> need to be
-backslash escaped.
+Variable names are prefixed with a percentage sign (<i>\%</i>).  Spaces, bars
+(<i>|</i>), and other special characters <span class="todo">What special
+characters?</span> need to be backslash escaped.
 
 Here's a longer example: <kbd>:set statusline=\%t\ \%y\ format:\
   \%{\&ff};\ [\%c,\%l]</kbd>. Sample output: <samp>.vimrc [vim] format: unix
@@ -56,8 +56,8 @@ different from the other variables. The <i>\%{}</i> syntax evaluates the express
 contained within the braces and displays the result.
 
 For example, to display the name of the current colour scheme:
-<kbd>\%{g:colors_name}</kbd> (example output: <i>morning</i>). Or the current
-language: <kbd>\%{v:lang}</kbd> (example output: <samp>>en_GB.UTF-8</samp>). Here we
+<kbd>\%{g:colors\_name}</kbd> (example output: <i>morning</i>). Or the current
+language: <kbd>\%{v:lang}</kbd> (example output: <samp>en\_GB.UTF-8</samp>). Here we
 are simply displaying the value of Vim internal variables. (See <kbd>:let</kbd>
 for a list).
 
@@ -65,6 +65,6 @@ The reason <kbd>\%{\&amp;ff}</kbd> works is because <i>ff</i> is the Vim option 
 getting/setting the file format, and the <i>\&amp;</i> prefix is used for referring to
 options. The value of any option can be displayed in this way.
 
-You can even call a function <span class="todo">link recipe</span> in this way.  For example, to
-show the last modification time of the current file:
+You can even call a function <span class="todo">link recipe</span> in this
+way.  For example, to show the last modification time of the current file:
 <kbd>\%\{strftime(\"\%c\",getftime(expand(\"\%\%\")))\}</kbd>.
