@@ -16,7 +16,8 @@ To open a file from the command line invoke Vim with the filename as an
 argument. For example: <code>vim docs/novel.txt</code> (on Windows:
 <code>vim.exe docs\novel.txt</code>).
 
-To open a file from inside Vim you can use <code>:e <var>file</var></code> (mnemonic: *e*dit).
+To open a file from inside Vim you can use <code>:e <var>file</var></code>
+(mnemonic: <b>e</b>dit).
 This closes the current file and opens a new buffer containing the given file. 
 
 <h4>Discussion</h4>
@@ -31,12 +32,18 @@ Similarly, prefixing the filename with <code>+/<var>pattern</var></code>
 positions the cursor at the first occurrence of the pattern <var>pattern</var>
 <span class="todo">Link to pattern recipe</span>. For example, <code>vim
 +/^References btrees.textile</code> instructs Vim to open
-<code>btrees.textile</code>, find the first line that starts with *References*,
-then position the cursor there.  
+<code>btrees.textile</code>, find the first line that starts with
+_References_, then position the cursor there.  
 
-<blockquote class="tip">
-The <code>:cd <var>directory</var></code> command lets you change the directory Vim resolves relative paths to. So if you're working with multiple files in the same directory tree you can use this command to set your 'working directory' so it's easier to open files. For example, instead of opening `/home/julie/recipes/pasta/cabonara.txt` then `/home/julie/recipes/pasta/peperonata.txt` you can `:cd /home/julie/recipes/pasta` then `:e carbonara.txt`. If you forget which directory you're in `:pwd` (*p*rint *w*orking *d*irectory) will tell you.
-</blockquote>
+<blockquote class="tip"> The <code>:cd <var>directory</var></code> command
+lets you change the directory Vim resolves relative paths to. So if you're
+working with multiple files in the same directory tree you can use this
+command to set your 'working directory' so it's easier to open files. For
+example, instead of opening `/home/julie/recipes/pasta/cabonara.txt` then
+`/home/julie/recipes/pasta/peperonata.txt` you can `:cd
+/home/julie/recipes/pasta` then `:e carbonara.txt`. If you forget which
+directory you're in `:pwd` (<b>p</b>rint <b>w</b>orking <b>d</b>irectory) will
+tell you.  </blockquote>
 
 If you supply multiple filenames, Vim opens them all, one in each buffer. <span
 class="todo">link to recipe on buffers</span>. The first file named is opened in
