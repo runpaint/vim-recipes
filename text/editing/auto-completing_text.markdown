@@ -41,7 +41,7 @@ Omni-Completion functions which are enabled automatically. <span
 class="todo">How would they enable this if needed?</span> These typically
 allow context-sensitive completion of method names, objects, and reserved
 words. For example, using Ruby I can type an integer, a period, then invoke
-Omni-Completion to find that integer objects support methods such as '\%',
+Omni-Completion to find that _Fixnum_ objects support methods such as '%',
 '*', and '+'. <span class="todo">screenshot</span>
 
 To use Omni-Completion hit <kbd><kbd>Ctrl</kbd>+<kbd>o></kbd></kbd> to be
@@ -57,20 +57,18 @@ Script</samp>.
 When an Omni-Completion plugin doesn't exist for a language, but syntax
 highlighting does (and it nearly always does), you can approximate
 Omni-Completion support with <code>:setlocal
-  omnifunc=syntaxcomplete#Complete</code>. The
-Vim documentation suggests automating this process by adding the following
-stanza to your <code>vimrc</code> <span
-  class="fn">Recipe~\ref{sec:configuring} explains
-  how</span> <q>after any <code>:filetype</code> command</q>:
+omnifunc=syntaxcomplete#Complete</code>. The Vim documentation suggests
+automating this process by adding the following stanza to your
+<code>vimrc</code> <span class="fn">Recipe~\ref{sec:configuring} explains
+how</span> <q>after any <code>:filetype</code> command</q>:
 
-<pre><code>
-if has("autocmd") && exists("+omnifunc")
-    autocmd Filetype *
-               \	if &omnifunc == "" |
-               \		setlocal omnifunc=syntaxcomplete#Complete |
-               \	endif
-endif
-</code></pre>
+
+    if has("autocmd") && exists("+omnifunc")
+        autocmd Filetype *
+                   \	if &omnifunc == "" |
+                   \		setlocal omnifunc=syntaxcomplete#Complete |
+                   \	endif
+    endif
 
 <span class="todo">TODO: Mention
-http://www.vim.org/scripts/script.php?script\_id=1643</span>
+http://www.vim.org/scripts/script.php?script_id=1643</span>
