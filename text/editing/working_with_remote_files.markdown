@@ -1,7 +1,5 @@
 ### Working with Remote Files
 
-<span class="label">sec:remote-file</span>
-
 <h4>Problem</h4>
 
 You want to edit/view a file that is stored on another computer.
@@ -45,21 +43,18 @@ logins". <span class="todo">Explain this. Sidebar explanation?  Ref:
 netrw-ssh-hack</span>
 
 If you're using FTP on Linux, you can store your credentials in
-<tt>~/.netrc'</tt>.  <span class="todo">sidebar on dangers of FTP?</span> <span class="todo">Sidebar this
-explanation</span> The file is formatted as follows:
+<tt>~/.netrc'</tt>.  <span class="todo">sidebar on dangers of FTP?</span>
+<span class="todo">Sidebar this explanation</span> The file is formatted as
+follows:
 
-\begin{verbatim}
- machine {host name 1}
-         login {username}
-         password {password}
+     machine {host name 1}
+             login {username}
+             password {password}
 
- machine {host name 2}
-\ldots
-\end{verbatim}
+     machine {host name 2}
+    ...
 
 It should be made read-only for your user: <tt>chmod 600 ~/.netrc</tt>
 <span class="todo">Windows explanation?</span>.  Now you can use URLs like
 <i>ftp://example.org/README</i>, and it will find your username and password
 automatically.
-
-%

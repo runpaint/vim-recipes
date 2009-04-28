@@ -21,8 +21,8 @@ unindent.
 
 If you're in Insert or Overtype mode you can use
 <kbd><kbd>Ctl</kbd>-<kbd>Shift</kbd>-<kbd>t</kbd></kbd> to indent (mnemonic:
-*t*ab), and <kbd><kbd>Ctl</kbd>-<kbd>Shift</kbd>-<kbd>d</kbd></kbd> to unident
-(mnemonic: *d*e-tab/indent).
+<b>t</b>ab), and <kbd><kbd>Ctl</kbd>-<kbd>Shift</kbd>-<kbd>d</kbd></kbd> to
+unident (mnemonic: <b>d</b>e-tab/indent).
 
 More powerful are motions <span class="todo">Link to Motions recipe</span>
 combined with indent/unident commands. The syntax is
@@ -75,5 +75,4 @@ indentation preferences use the <code>:retab!</code> command.
 <h4>See Also</h4>
 
 * http://www.jwz.org/doc/tabs-vs-spaces.html
-* http://www.tedlogan.com/techblog3.html <span class="todo">pilfer; don't
-reference</span>
+* http://www.tedlogan.com/techblog3.html 

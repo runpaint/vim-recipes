@@ -1,7 +1,3 @@
-%
-
-<span class="label">sec:basic-nav</span>
-
 <h4>Problem</h4>
 
 You want to move around inside a file.
@@ -12,18 +8,16 @@ The traditional approach is to use the arrow keys to move up, down, left, and
 right. Vim supports that style of navigation but also offers a more efficient
 alternative: <span class="todo">Does Vim support arrow keys by default?</span>
 
-\begin{center}
-\begin{tabular}{l | l}
-\multicolumn{1}{c|}{\textbf{Key}} & \multicolumn{1}{c}{\textbf{Movement}} \\\hline
-<tt>h</tt>  & Left                    \\
-<tt>l</tt>  & Right                   \\
-<tt>k</tt>  & Up a line               \\
-<tt>j</tt>  & Down a line             \\
-<tt>0</tt>  & Start of line           \\
-<tt>^</tt> & First character of line \\
-<tt>\$</tt>  & End of line             \\
-\end{tabular}
-\end{center}
+<table>
+  <tr><th>Key</th>        <th>Movement</th></tr>
+  <tr><td><tt>h</tt></td> <td>Left</td></tr>
+  <tr><td><tt>l</tt></td> <td>Right</td></tr>
+  <tr><td><tt>k</tt></td> <td>Up a line</td></tr>
+  <tr><td><tt>j</tt></td> <td>Down a line</td></tr>
+  <tr><td><tt>0</tt></td> <td>Start of line</td></tr>
+  <tr><td><tt>^</tt></td> <td>First character of line</td><tr>
+  <tr><td><tt>$</tt></td> <td>End of line</td></tr>
+</table>
 
 <h4>Discussion</h4>
 
@@ -33,10 +27,8 @@ more efficient. One reason for this is that these keys are all located on the
 main keyboard, so you don't need to stretch to the arrow keys, hence breaking
 your flow.
 
-Another benefit is that you can prefix these shortcuts with <i>counts</i> (as you
-can with many Vim commands) which specify how many times they should be
+Another benefit is that you can prefix these shortcuts with <i>counts</i> (as
+you can with many Vim commands) which specify how many times they should be
 executed. For instance, <tt>2k</tt> moves up two lines. 
 
 <span class="todo">Mention Selecting Text with Motions</span>
-
-%

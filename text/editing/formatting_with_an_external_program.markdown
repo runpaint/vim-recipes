@@ -4,7 +4,7 @@
 
 You want to reformat text with a program other than Vim. For example, you
 want to use the <abbr title="World Wide Web Consortium">W3C</abbr>'s 'tidy'
-utility to format <abbr="HyperText Markup Language">HTML</abbr>.
+utility to format <abbr title="HyperText Markup Language">HTML</abbr>.
 
 <h4>Solution</h4>
 

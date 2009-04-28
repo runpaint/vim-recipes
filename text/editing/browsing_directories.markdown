@@ -26,7 +26,7 @@ browse in a new tab.
 
 <h4>Discussion</h4>
 
-<span class="todo">Explain how to view recursive directory listings</span></p>
+<span class="todo">Explain how to view recursive directory listings</span>
 
 By default Vim lists every file contained in a directory. To get a more
 <code>ls</code>-style listing you can specify a hiding list with <code>:let
@@ -42,12 +42,12 @@ If you hit <kbd>a</kbd> again you'll remove the hiding list, showing
 everything.
 
 To change how directory entries are sorted you can modify the
-<code>g:netrw_sort_sequence</code> variable. By default its value is
-<code>[\/]\$,\.h\$,\.c\$,\.cpp\$,\.[a-np-z]\$,*,\.info\$,\.swp\$,\.o\$,\.obj\$,\.bak\$</code>.
+<code>g:netrw\_sort\_sequence</code> variable. By default its value is
+<code>[\/]\$,\.h\$,\.c\$,\.cpp\$,\.[a-np-z]\$,\*,\.info\$,\.swp\$,\.o\$,\.obj\$,\.bak\$</code>.
 The order of the patterns is the order of the sort. For instance, the first
 pattern matches directories, so they're shown first. The next pattern matches
-file names ending with '*.h' (C header files), so they're shown next. And so
-on. The '*' pattern matches everything not matched by the other patterns. You
+file names ending with '\*.h' (C header files), so they're shown next. And so
+on. The '\*' pattern matches everything not matched by the other patterns. You
 can change this pattern on-the-fly by hitting <kbd>S</kbd> while viewing a
 directory listing.
 
