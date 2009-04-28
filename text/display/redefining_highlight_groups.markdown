@@ -89,15 +89,13 @@ You can do this with <kbd>:highlight <var>group</var></kbd>. To view all current
 
 <div class="callout">
 
-  <h5>Defining a Highlight Group</h5>
+<h5>Defining a Highlight Group</h5>
 
-  You can define your own highlight group by using the <kbd>highlight</kbd> command as described above with a group name of your choice. To select what is highlighted you use <kbd>:match <var>group</var> /<var>pattern</var>/</kbd>. 
+You can define your own highlight group by using the <kbd>highlight</kbd> command as described above with a group name of your choice. To select what is highlighted you use <kbd>:match <var>group</var> /<var>pattern</var>/</kbd>. 
 
-  For example: <kbd>:highlight Elephant ctermbg=grey ctermfg=white</kbd>, <kbd>:match
-    Elephant</tt> \verb"/\celephant/"</kbd>. This renders all occurrences of the
-word <i>elephant</i>, regardless of case due to the <kbd>\c</kbd> escape, in
-white on grey.
+For example: <kbd>:highlight Elephant ctermbg=grey ctermfg=white</kbd>,
+<kbd>:match Elephant /\celephant/</kbd>. This renders all occurrences of the word <i>elephant</i>, regardless of case due to the <kbd>\c</kbd> escape, in white on grey.
+
 </div>
 
-<span class="todo">We have been inconsistent in italicising colour names;
-  what's right?</span>
+<span class="todo">We have been inconsistent in italicising colour names; what's right?</span>
