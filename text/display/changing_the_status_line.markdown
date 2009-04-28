@@ -34,7 +34,7 @@ Here are some common variables the status line can display:
   <tr><td><i>t</i></td><td>File name (as opposed to file path)</td></tr>
   <tr><td><i>y</i></td><td>File content type, e.g. <i>[ruby]</i> or
       <i>[latex]</i>.</td></tr>
-  <tr><td><i>\&ff</i></td><td>File format, e.g. <i>unix</i>, <i>mac</i>,
+  <tr><td><i>\&amp;ff</i></td><td>File format, e.g. <i>unix</i>, <i>mac</i>,
       <i>dos</i>.</td></tr>
 </table>  
 
@@ -56,13 +56,13 @@ different from the other variables. The <i>\%{}</i> syntax evaluates the express
 contained within the braces and displays the result.
 
 For example, to display the name of the current colour scheme:
-<kbd>\%{g:colors\_name}</kbd> (example output: <i>morning</i>). Or the current
-language: <kbd>\%{v:lang}</kbd> (example output: <samp>>en\_GB.UTF-8</samp>). Here we
+<kbd>\%{g:colors_name}</kbd> (example output: <i>morning</i>). Or the current
+language: <kbd>\%{v:lang}</kbd> (example output: <samp>>en_GB.UTF-8</samp>). Here we
 are simply displaying the value of Vim internal variables. (See <kbd>:let</kbd>
 for a list).
 
-The reason <kbd>\%{\&ff}</kbd> works is because <i>ff</i> is the Vim option for
-getting/setting the file format, and the <i>\&</i> prefix is used for referring to
+The reason <kbd>\%{\&amp;ff}</kbd> works is because <i>ff</i> is the Vim option for
+getting/setting the file format, and the <i>\&amp;</i> prefix is used for referring to
 options. The value of any option can be displayed in this way.
 
 You can even call a function <span class="todo">link recipe</span> in this way.  For example, to
