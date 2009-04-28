@@ -44,5 +44,5 @@ enter the regex.  If you use this regularly, consider installing the
 <a href="http://www.vim.org/scripts/script.php?script_id=439">titlecase</a>
 script. <span class="todo">Link to recipe about installing scripts</span>
 
-span class="todo">look at 'tildeop'</span>
+<span class="todo">look at 'tildeop'</span>
 <span class="todo">Expand this</span>.
