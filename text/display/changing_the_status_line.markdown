@@ -1,7 +1,5 @@
 ### Changing the Status Line
 
-<span class="label">sec:status-line</span>
-
 <h4>Problem</h4>
 
 You don't like the way the status line looks or would prefer if it displayed
@@ -40,18 +38,16 @@ Here are some common variables the status line can display:
       <i>dos</i>.</td></tr>
 </table>  
 
-<span class="todo">Ampersand in last row looks odd</span>
- 
 Variable names are prefixed with a percentage sign (<i>\%</i>).  Spaces,
 bars (<i>|</i>), and other special characters <span class="todo">What special characters?</span> need to be
 backslash escaped.
 
 Here's a longer example: <kbd>:set statusline=\%t\ \%y\ format:\
   \%{\&ff};\ [\%c,\%l]</kbd>. Sample output: <samp>.vimrc [vim] format: unix
-[2,3]</samp>.</p.
+[2,3]</samp>.
 
 By default Vim hides the status line. To show it: <kbd>:set
-  laststatus=2</kbd>.</p.
+  laststatus=2</kbd>..
 
 <h4>Discussion</h4>
 
