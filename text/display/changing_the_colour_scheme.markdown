@@ -13,8 +13,8 @@ read so want to find a better one.
 To change to a new colour scheme execute <kbd>:colorscheme <var>name</var></kbd>.
 
 To browse existing colour schemes enter <kbd>:colourscheme</kbd>, then hit
-<kbd><Tab></kbd> to cycle through the installed schemes. If you find one that you like hit
-<kbd><Enter></kbd> to apply it.
+<kbd>&lt;Tab&gt;</kbd> to cycle through the installed schemes. If you find one that you like hit
+<kbd>&lt;Enter&gt;</kbd> to apply it.
 
 <h4>Discussion</h4>
 
