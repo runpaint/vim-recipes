@@ -21,13 +21,13 @@ Visual mode; otherwise <kbd>U</kbd> will undo the changes made on the
 current line).</dd>
 </dl>
 
-<span class="todo">Link this to choosing right mode recipe</span></p>
+<span class="todo">Link this to choosing right mode recipe</span>
 
 <h4>Discussion</h4>
 
-As normal, these commands accept 'motions'. For example:</p>
+As normal, these commands accept 'motions'. For example:
 
-<span class="todo">Is this where dls should be used?</span></p>
+<span class="todo">Is this where dls should be used?</span>
 
 <dl>
   <dt><kbd>VU</kbd></dt>
