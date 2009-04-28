@@ -1,7 +1,5 @@
 ### Chaging the Colour Scheme
 
-<span class="label">sec:colour-scheme</span>
-
 <h4>Problem</h4>
 
 You don't like the colours Vim uses; you want to change them.
@@ -34,4 +32,3 @@ using at the moment. You can find the name of the current scheme with <kbd>:echo
 
 To change a specific aspect of a colour scheme you can redefine a highlight
 group <span class="footnote">Recipe: sec:re-highlight</span>.
-
