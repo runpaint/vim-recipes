@@ -40,7 +40,7 @@ contents twice.
 
 To paste text from the system clipboard use
 <kbd><kbd>Shift</kbd>+<kbd>Ins</kbd></kbd> in Insert mode or <kbd>"*p</kbd> in
-Normal mode. <span class="todo">explain <tt>"p</span></tt>.
+Normal mode. <span class="todo">explain <tt>"p</tt></span>.
 
 <h4>Discussion</h4>
 
