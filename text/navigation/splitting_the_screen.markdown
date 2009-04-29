@@ -1,7 +1,3 @@
-%
-
-<span class="label">sec:split-screen</span>
-
 <h4>Problem</h4>
 
 You want to view multiple files at one time. Or, you want to view different
@@ -17,29 +13,30 @@ view the source and target file together.
 Use Vim's <i>split screen</i> feature to divide the screen into multiple panes,
 each of which can contain a file.
 
-\begin{center}
-\begin{tabular}{l|l}
-\multicolumn{1}{c|}{\textbf{Command}} & \multicolumn{1}{c}{\textbf{Action}} \\ \hline
-<tt>:split [file]</tt>  & Splits the window horizontally. \\ 
-<tt>:vsplit [file]</tt> & Splits the window vertically.   \\
-\end{tabular}
-\end{center}
+<table>
+  <tr><th>Command</th> <th>Action</th> </tr>
+  <tr><td><tt>:split [file]</tt></td> <td>Splits the window horizontally.</td> </tr>
+  <tr><td><tt>:vsplit [file]</tt></td> <td>Splits the window vertically.</td>
+</tr>
+</table>
 
-<span class="todo">Terminology: is 'pane' correct?</span>
 (If <i>file</i> is specified, that file is shown in the upper/left, as appropriate,
 pane; if not, both panes show the current file).
 
-To move between windows you use <tt><Ctrl>-w</tt> (menmonic: <i>control</i> <i>w</i>indow).
+<span class="todo">Terminology: is 'pane' correct?</span>
+
+
+To move between windows you use <tt>&lt;Ctrl&gt;-w</tt> (menmonic: <i>control</i> <i>w</i>indow).
 To move in a specific direction, add the relevant movement key. <span class="todo">link
-recipe</span> So, to move upwards: <tt><Ctrl>-w k</tt>.
+recipe</span> So, to move upwards: <tt>&lt;Ctrl&gt;-w k</tt>.
 
 To close the active window use <tt>:q</tt>, just as you would to close a window
 normally.
 
-You can reduce/increase the size of the current window with <tt><Ctrl>-w -</tt> and
-<tt><Ctrl>-w+</tt>, respectively. To specify the size of a window when you open it,
+You can reduce/increase the size of the current window with <tt>&lt;Ctrl&gt;-w -</tt> and
+<tt>&lt;Ctrl&gt;-w+</tt>, respectively. To specify the size of a window when you open it,
 prefix the <tt>:split</tt> command with the desired height/width in lines. For
-example, to show \path{README} in a window of 5 lines high: <tt>5 :split README</tt>.
+example, to show <tt>README</tt> in a window of 5 lines high: <tt>5 :split README</tt>.
 
 <h4>Discussion</h4>
 
@@ -48,8 +45,8 @@ file twice. This is more useful than it may first sound.
 
 When working with long documents it means that you can view the top and bottom
 of the file simulteneously. If you use
-<i>folding</i>\footnote{Recipe~\ref{sec:man-fold} explains how to manually create
-folds.} <span class="todo">Link other folding recipes when they're written?</span> you can
+<i>folding</i><span class="fn">Recipe~\ref{sec:man-fold} explains how to manually create
+folds.</span> <span class="todo">Link other folding recipes when they're written?</span> you can
 use one window to display an outline of a document while editing a specific
 section in another. For example, when I'm working on reports I use <tt>:30
 :vsplit</tt> to view the first and second level headings along the left of the
@@ -57,5 +54,3 @@ screen, while editing the report in the main window.
 
 If you <tt>:set scrollbind</tt> before you split the screen the windows scroll
 together. <span class="todo">explain better</span>
-
-%

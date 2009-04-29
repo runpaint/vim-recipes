@@ -1,7 +1,3 @@
-%
-
-<span class="label">sec:nav-text</span>
-
 <h4>Problem</h4>
 
 You're editing a text file such an essay or e-mail, and want to exploit its
@@ -11,19 +7,40 @@ structure to navigate it efficiently.
 
 In normal mode you can use the following shorcuts:
 
-\begin{center}
-\begin{tabular}{l|l}
-\multicolumn{1}{c|}{\textbf{Key}} & \multicolumn{1}{c}{\textbf{Move To}} \\
-\hline
-\texttt{\{} & Beginning of current paragraph \\
-<tt>\}</tt> & End of current paragraph       \\
-<tt>(</tt> & Beginning of current sentence  \\
-<tt>)</tt> & End of current sentence        \\
-<tt>w</tt> & Beginning of next word         \\
-<tt>b</tt> & Beginning of the previous word \\
-<tt>e</tt> & End of the word                \\
-\end{tabular}
-\end{center}
+<table>
+  <tr>
+    <th>Key</th> 
+    <th>Move To</th>
+  </tr>
+  <tr>
+    <td><tt>{</tt></td> 
+    <td>Beginning of current paragraph</td>
+  </tr>
+  <tr>
+    <td><tt>}</tt></td>
+    <td>End of current paragraph</td>
+  </tr>
+  <tr>
+    <td><tt>(</tt></td>
+    <td>Beginning of current sentence</td>
+  </tr>
+  <tr>
+    <td><tt>)</tt></td>
+    <td>End of current sentence</td>
+  </tr>
+  <tr>
+    <td><tt>w</tt></td>
+    <td>Beginning of next word</td>
+  </tr>
+  <tr>
+    <td><tt>b</tt></td>
+    <td>Beginning of the previous word</td>
+  </tr>
+  <tr>
+    <td><tt>e</tt></td>
+    <td>End of the word</td>
+  </tr>
+</table>
 
 <h4>Discussion</h4>
 
@@ -37,14 +54,12 @@ After using one of these shortcuts you may want to return to where you were
 previously. This is particularly useful if you're writing one thing and are
 then reminded that you now have to change another: you use a shortcut to jump
 to the location of the change, then want to resume where you left of. You can
-use the <tt>g,</tt> (mnemonic: <i>g</i>o back to where I paused (commas can be used to
-represent pauses...)) command. Each time you execute it you'll be taken back
-another step. To move in the other direction (towards more recent changes),
-use <tt>g;</tt>.
+use the <tt>g,</tt> (mnemonic: <i>g</i>o back to where I paused (commas can be
+used to represent pauses...)) command. Each time you execute it you'll be
+taken back another step. To move in the other direction (towards more recent
+changes), use <tt>g;</tt>.
 
 All of these shortcuts can be combined. So, to move to the end of the previous
-word you type <tt>be</tt>. You can also prefix them with numbers to indicate how many
-times they should be executed.  <tt>3b</tt> moves to the beginning of the 3rd
-previous word.
-
-%
+word you type <tt>be</tt>. You can also prefix them with numbers to indicate
+how many times they should be executed.  <tt>3b</tt> moves to the beginning of
+the 3rd previous word.

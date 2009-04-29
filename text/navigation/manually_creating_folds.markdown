@@ -15,7 +15,7 @@ You want to <i>fold</i> a file, then navigate it in <i>outline</i> mode.
 
 </div>
 
-Use Vim's <i>folding</i> feature to treat a file hierarchially,
+Use Vim's <i>folding</i> feature to treat a file hierarchically,
 expanding and collapsing its sections as necessary. <span class="todo">Add
 screenshots</span>
 
@@ -46,7 +46,7 @@ to recipe</span>, then <tt>zf</tt> will fold the selection.
 
 How you use folds will depend very much on the type of file you are editing.
 They are particularly useful for long papers or essays, for instance, where
-you fold each section so as to navigate the document hierarchially. When
+you fold each section so as to navigate the document hierarchically. When
 editing program source code they can be used with function/method/class
 declarations.
 
