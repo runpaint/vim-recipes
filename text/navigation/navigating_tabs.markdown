@@ -83,5 +83,6 @@ The power of tabs comes from executing commands on the windows they contain as
 a logical group. Continuing the above example, this would let you perform a
 search and replace<span class="fn">Recipe~\ref{sec:search-replace explains how
 to search and replace</span> on all HTML files. For example, if you were in
-the HTML tab, you could say <tt>:windo s/<foo>/<bar>/g</tt>, and all of your
-HTML files would have their &lt;foo&gt;s replaced with &lt;bar&gt;s.
+the HTML tab, you could say <tt>:windo s/&lt;foo&gt;/&lt;bar&gt;/g</tt>, and
+all of your HTML files would have their &lt;foo&gt;s replaced with
+&lt;bar&gt;s.

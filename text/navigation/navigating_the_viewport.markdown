@@ -1,3 +1,5 @@
+<h3>Navigating the Viewport</h3>
+
 <h4>Problem</h4>
 
 You want to scroll through a document in "screenfulls"; not line by line.
@@ -57,8 +59,8 @@ involved.
  <tt>G</tt>rass  <tt>G</tt>rass   <tt>G</tt>rass <tt>G</tt>rass   <tt>G</tt>rass        
 <tt>G</tt>rass <tt>G</tt>rass <tt>G</tt>rass <tt>G</tt>rass <tt>G</tt>rass <tt>G</tt>rass <tt>G</tt>rass   
 -------------------------------------------------------------
-</table>
+</pre>
 
 <span class="todo">Mention horizontal scrolling, or leave that for Long
 Lines tip?</span>
-<span class="todo">Look at <tt>:h scroll</span>.</tt>
+<span class="todo">Look at <tt>:h scroll</tt>.</span>

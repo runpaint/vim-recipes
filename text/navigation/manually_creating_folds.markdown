@@ -1,3 +1,5 @@
+<h3>Manually Creating Folds</h3>
+
 <h4>Problem</h4>
 
 You want to <i>fold</i> a file, then navigate it in <i>outline</i> mode.
@@ -30,10 +32,13 @@ paper.
   lines.</td></tr>
   <tr><td><tt>zf/string</tt></td> <td>Create a fold from the cursor to
   <i>string</i>.</td></tr>
-  <tr><td><tt>zfaB</tt></td><td>Fold the current block delimited by bracket 
-  <var>B</var><span class="fn"><var>B</var> can be any of <tt>()[]{}<></tt>. This feature 
-  understands nested blocks, too, so will usually do 
-  the right thing.</span></td></tr>
+  <tr>
+    <td><tt>zfaB</tt></td>
+    <td>Fold the current block delimited by bracket <var>B</var><span
+    class="fn"><var>B</var> can be any of <tt>()[]{}&lt;&gt;</tt>. This feature 
+    understands nested blocks, too, so will usually do 
+    the right thing.</span></td>
+  </tr>
 </table>
 
 <span class="todo">Associate zfaB with the text-object recipe</span>

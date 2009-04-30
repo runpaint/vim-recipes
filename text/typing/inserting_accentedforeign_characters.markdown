@@ -13,14 +13,14 @@ If you haven't already, set up Vim to use UTF-8 <span class="todo">link
 recipe</span>. It makes this process far easier.
 
 To insert an accented character you press
-<kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>K</kbd>, the unadorned character, then
+<kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>K</kbd></kbd>, the unadorned character, then
 another character indicating the accent type.  This method can also be used to
 produce translations of characters in a given script. <span
 class="todo">Explain better; check terminology</span>
 
 For example, to insert an e acute (the last letter in <i>café</i>) you hold
-down <kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>K</kbd>, type <i>e</i>, then type an
-apostrophe (<i>'</i>). 
+down <kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>K</kbd></kbd>, type <i>e</i>, then type
+an apostrophe (<i>'</i>). 
 
 The following table shows the different types of characters you can produce:
 
@@ -72,6 +72,7 @@ put the example column back in.</span>
     <td>_</td>
     <td>Underline</td>
   </tr>
+  <tr>  
     <td>/</td>
     <td>Stroke</td>
   </tr>
@@ -147,7 +148,7 @@ literal character, and the character code in decimal.
 You can also insert characters using their character code. If you're one of
 the slackers who haven't memorised the Unicode specification yet, you can use
 the <tt>:digraphs</tt> command, or any other reference, to lookup the code.
-Hit <kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>V</kbd></tt>, then type the code in
+Hit <kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>V</kbd></kbd>, then type the code in
 either hexadecimal or decimal.  Continuing the above example of producing
 <i>é</i>, you could enter either <kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>V</kbd>
   <kbd>xe9</kbd></kbd> or <kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>V</kbd>

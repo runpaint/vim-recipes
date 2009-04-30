@@ -1,84 +1,93 @@
-%
-
-<span class="label">sec:script-plugin</span>
+<h3>Extending Vim with Scripts and Plugins</h3>
 
 <h4>Problem</h4>
 
 You want to add functionality to Vim, preferably without having to write it
 yourself.
 
-<span class="todo">Pick a script to use as an example. It should be
-mature, generally useful, and easy to install...</span>
+<span class="todo">Pick a script to use as an example. It should be mature,
+generally useful, and easy to install...</span>
 
 <h4>Solution</h4>
 
-Browse \url{http://www.vim.org/scripts/} to find a script that meets your
-needs. Its 'type' should be 'utility' or 'ftplugin'. Download the latest
-version to your computer. If the plugin comes with its own installation
-instructions, use those; otherwise, read on.
+Browse <a href="http://www.vim.org/scripts/">Vim Scripts</a> to find a script
+that meets your needs. Its 'type' should be <i>utility</i> or <i>ftplugin</i>.
+Download the latest version to your computer. If the plugin comes with its own
+installation instructions, use those; otherwise, read on.
 
-If the file you've downloaded has a name ending with '.vim' you usually just
-need to save it in the right directory and then its ready to use. For scripts
-labelled 'utility', also known as 'global plugins, this directory is
-'\$VIMHOME/plugin'; for those labeled 'ftplugin', also known as 'filetype
-plugins',  the last portion of this path is 'ftplugin' instead. If this
-directory does not already exist you need to create it. The sidebar lists the
-locations of the plugin directories on various operating systems.
+If the file you've downloaded has a name ending with <i>.vim</i> you usually
+just need to save it in the right directory and then its ready to use. For
+scripts labelled <i>utility</i>, also known as <i>global plugins</i>, this
+directory is <tt>$VIMHOME/plugin</tt>; for those labeled <i>ftplugin</i>, also
+known as <i>filetype plugins</i>,  the last component of this path is
+<i>ftplugin</i> instead. If this directory does not already exist you need to
+create it. The sidebar lists the locations of the plugin directories on
+various operating systems.
 
 If the file is compressed (ending with <i>.zip</i> or <i>.tar.gz</i>), try
 uncompressing it in the parent directory of the applicable plugin directory.
-For example, on Linux this is <i>~/.vim/</i>.
+For example, on Linux this is <tt>~/.vim/</tt>.
 
 Now you should just be able to start Vim and have the plugin work.
 
-\subsubsection{Plugin Directory Location}
+<div class="callout">
+
+<h5>Plugin Directory Location</h5>
 
 <span class="todo">Make this clearer. For instance, how do
 Windows users find \$HOME?</span>
-\textbf{Note}: For filetype plugins, the last portion of
-these paths is 'ftplugin'; not 'plugin'.
-\begin{itemize}
-\item <i>Unix</i> -	<i>~/.vim/plugin</i>
-\item <i>PC and OS/2</i> - <i>\$HOME/vimfiles/plugin</i> or
-<i>\$VIM/vimfiles/plugin</i>
-\item <i>Amiga</i> - <i>s:vimfiles/plugin</i>
-\item <i>Macintosh</i> - <i>\$VIM:vimfiles:plugin</i>
-\item <i>Mac OS X</i> - <i>~/.vim/plugin</i>
-\item <i>RISC-OS</i> - <i>Choices:vimfiles.plugin</i>
-\end{itemize}
 
-\subsubsection{Plugin Types}
+<b>Note</b>: For filetype plugins, the last portion of
+these paths is <i>ftplugin</i>; not <i>plugin</i>.
 
-Plugins can be either 'global' or filetype-specific.  Global plugins are
+<dl>
+  <dt><i>Unix</i></dt>
+  <dd><tt>~/.vim/plugin</tt></dd>
+  <dt><i>PC and OS/2</i></dt>
+  <dd><tt>$HOME/vimfiles/plugin</tt> or <tt>$VIM/vimfiles/plugin</tt></dd>
+  <dt><i>Amiga</i></dt>
+  <dd><tt>s:vimfiles/plugin</tt></dd>
+  <dt><i>Macintosh</i></dt>
+  <dd><tt>$VIM:vimfiles:plugin</tt></dd>
+  <dt><i>Mac OS X</i></dt>
+  <dd><tt>~/.vim/plugin</tt></dd>
+  <dt><i>RISC-OS</i></dt>
+  <dd><tt>Choices:vimfiles.plugin</tt></dd>
+</dl>
+
+</div>
+
+<h5>Plugin Types</h5>
+
+Plugins can be either <i>global</i> or filetype-specific. Global plugins are
 loaded for every file you open; filetype-specific plugins are only loaded for
 certain filetypes.
 
 <h4>Discussion</h4>
 
-As complicated as the above instructions may sound, it's
-generally trivial to install a plugin. For example, on Linux
-to install the <i>potwiki</i> plugin
-(\url{http://www.vim.org/scripts/script.php?script_id=1018}):
+As complicated as the above instructions may sound, it's generally trivial to
+install a plugin. For example, on Linux to install the <a
+href="http://www.vim.org/scripts/script.php?script_id=1018"><i>potwiki</i>
+plugin</a>:
 
-\begin{verbatim}
-\$ mkdir -p ~/.vim/plugin 
-\$ wget http://www.vim.org/scripts/download<i>script.php?src</i>id=6200
--O ~/.vim/plugin/potwiki.vim
-\end{verbatim}
+<pre>
+<samp>$ </samp><kbd>mkdir -p ~/.vim/plugin</kbd> 
+<samp>$ </samp><kbd>wget
+http://www.vim.org/scripts/download_script.php?src_id=9316 -O
+~/.vim/plugin/potwiki.vim</kbd>
+</pre>
 
-If your plugin directory already exists, the first command is superflous.
+(If your plugin directory already exists, the first command is superflous.)
 
-Vim 7 added support for a new plugin installation method called 'vimball'.
-Vimballs make plugin installation and configuration easier, and are a definite
-improvement over the previous methods. They're not in wide use yet, but if you
-find a plugin distributed in this way (they have a '*.vba' extension), try
-following the steps below:
+Vim 7 added support for a new plugin installation method called
+<i>vimball</i>.  Vimballs make plugin installation and configuration easier,
+and are a definite improvement over the previous methods. They're not in wide
+use yet, but if you find a plugin distributed in this way (they have a
+<i>*.vba</i> extension), try following the steps below:
 
-\begin{itemize}
-\item Download the <i>*.vba</i> file.
-\item Open it with Vim, e.g. <tt>vim something.vba</tt>.
-\item Use the <tt>:VimballList</tt> to verify its contents.
-\item Install it by sourcing: <tt>:source \%</tt>.
-\end{itemize}
-
-%
+<ol>
+  <li>Download the <i>*.vba</i> file.</li>
+  <li>Open it with Vim, e.g. <tt>vim something.vba</tt>.</li>
+  <li>Use <tt>:VimballList</tt> to verify its contents.</li>
+  <li>Install it by sourcing: <tt>:source %</tt>.</li>
+</ol>

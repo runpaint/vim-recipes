@@ -46,5 +46,5 @@ iabbrev myEmail user@example.com
 </code></pre>
 
 Then in <tt>vimrc</tt><span class="fn">Recipe~\ref{sec:configuring} introduces
-the <tt>vimrc</tt> file for configuration</i> just write <tt>source
+the <tt>vimrc</tt> file for configuration</span> just write <tt>source
 $VIM/abbreviations</tt>. 

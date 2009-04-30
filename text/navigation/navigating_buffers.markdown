@@ -16,6 +16,7 @@ You have multiple files open and want to navigate between them.
     <td><tt>:buffers</tt></td>
     <td rowspan="3">View the list of buffers along with their numbers.</td>
   </tr>
+  <tr>
     <td><tt>:ls</tt></td>
   </tr>
   <tr>

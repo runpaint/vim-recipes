@@ -25,9 +25,10 @@ Vim doesn't care if the word under the cursor looks like a filename,
 so if your cursor was over the word <i>your</i>, instead, it would try to open a
 file named <tt>your</tt> in your path.
 
-Your <i>path</i> is a list of directories in which Vim searches for the named file.
-To see what it's currently set to execute <tt>:echo &path</tt>. The path is a
-comma-separated list of directories, some of which have special significance:
+Your <i>path</i> is a list of directories in which Vim searches for the named
+file.  To see what it's currently set to execute <tt>:echo &amp;path</tt>. The
+path is a comma-separated list of directories, some of which have special
+significance:
 
 <span class="todo">Should this be typeset as a table?</span>
 
@@ -45,8 +46,8 @@ comma-separated list of directories, some of which have special significance:
   search all of user <i>kate</i>'s home directory.</dd>
 </dl>
 
-I like <tt>gf</tt> to search recursively downwards from the current directory so I
-append <tt>./*</tt> to my path like so: <tt>:set path+=./*</tt>.
+I like <tt>gf</tt> to search recursively downwards from the current directory
+so I append <tt>./\*</tt> to my path like so: <tt>:set path+=./\*</tt>.
 
 <h4>Discussion</h4>
 
@@ -58,10 +59,10 @@ basic. I use it when:
   <li>To open files referenced in my version control system's commit e-mails. 
   <span class="todo">TODO: link recipe: Vim with VCS, Vim for
   Email</span></li>
-  <li>When outlining<span class="fn">The <i>Indentation Folding</i>
-  sidebar in recipe~\ref{sec:man-fold} describes one approach to
-  outlining in Vim</span> a project that consists of multiple files.  Each level of
-  outline links to the relevant file.</li>
+  <li>When outlining<span class="fn">The <i>Indentation Folding</i> sidebar in
+  recipe~\ref{sec:man-fold} describes one approach to outlining in Vim</span> a
+  project that consists of multiple files. Each level of outline links to the
+  relevant file.</li>
   <li>To view source code for external modules when writing
   source code.</li>
 </ul>

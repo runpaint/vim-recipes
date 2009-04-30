@@ -32,7 +32,7 @@ highlight group for the sign itself.
 <span class="todo">link highlight groups recipe</span>
 
 Now the sign is defined, presumably in <i>vimrc</i><span
-class="fn">Recipe~\ref{sec:configuring} explains how <tt>vimrc</tt></span>
+class="fn">Recipe~\ref{sec:configuring} explains how <tt>vimrc</tt>
 works</span>, you can use it in any file. To attach the sign to a specific
 line you use:
 
@@ -82,7 +82,7 @@ have your todo list items flaged in the margin.
 function! SignLines() range
   let n = a:firstline
   execute(":sign define fixme text=!! texthl=Todo")
-  while n <= a:lastline
+  while n &lt;= a:lastline
     if getline(n) =~ '\(TODO\|FIXME\)'
       execute(":sign place ".n." line=".n." name=fixme file=".expand("%:p"))
     endif
