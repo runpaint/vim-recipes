@@ -1,0 +1,26 @@
+CONVENTIONS
+  * :w[rite] style
+  * Meaning of ! suffix 
+RECOVERING FROM A CRASH
+  * Write it.
+SAVING A FILE
+  * Save All (http://vim.wikia.com/wiki/VimTip652)
+  * 'backup' options:
+http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
+RANGES
+  * Write?
+SEARCHING AND REPLACING
+  * Tip: alternate delimiters for replace command.
+VISUALLY SELECTING TEXT
+  * Unselect a selection.
+  * Reselect previous selection.
+FORMATTING
+  * Write recipe for `gq`?
+REGISTERS
+  * Write
+COPYING, CUTTING, and PASTING
+  * Screenshot of pasting text without executing `:set paste`.
+AUTO COMPLETING TEXT
+  * The instructions for getting dictionaries are awful. Find out whether the
+automatic download feature works in general, and find alternative source for
+downloading thesauri.
