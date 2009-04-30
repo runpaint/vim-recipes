@@ -1,0 +1,95 @@
+<h3>Opening the File Name Beneath the Cursor</h3>
+
+<h4>Problem</h4>
+
+<p>You have a file name under your cursor and would like Vim to open it.</p>
+
+<p>For example, program source code often references other files from which it
+includes functionality. You want to quickly open such a file.</p>
+
+<h4>Solution</h4>
+
+<p>Position your cursor over a file name then hit <kbd>gf</kbd> (mnemonic:
+<i>g</i>o to <i>f</i>ile or <i>g</i>et <i>f</i>ile) in Normal mode.  For
+example, consider a file like the following:</p>
+
+<pre>
+Edit your <tt>~/.vimrc</tt> by opening it with Vim, then...
+</pre>
+
+<p>If your cursor was anywhere over <tt>~/.vimrc</tt>, <kbd>gf</kbd> would try to
+open your Vim configuration file. (This assumes that you're using Linux where
+<tt>~</tt> is shorthand for the user's home directory).</p>
+
+<p>Vim doesn't care if the word under the cursor looks like a filename,
+so if your cursor was over the word <i>your</i>, instead, it would try to open a
+file named <tt>your</tt> in your path.</p>
+
+<p>Your <i>path</i> is a list of directories in which Vim searches for the named
+file.  To see what it's currently set to execute <tt>:echo &amp;path</tt>. The
+path is a comma-separated list of directories, some of which have special
+significance:</p>
+
+<p><span class="todo">Should this be typeset as a table?</span></p>
+
+<dl>
+  <dt><i>.</i></dt>
+  <dd>The directory containing the current file.</dd>
+  <dt><i>;</i></dt>
+  <dd>A path that ends with a semicolon is searched recursively,
+  up the directory hierarchy. For example <tt>/usr/share/doc;</tt> means
+  to first search in <tt>/usr/share/doc</tt>, then <tt>/usr/share/</tt>, then
+  <tt>/usr/</tt>, then <tt>/</tt>.</dd>
+  <dt><i>*</i></dt>
+  <dd>A path that ends in an asterisk is searched
+  recursively downwards. For example, <tt>/home/kate/*</tt> would
+  search all of user <i>kate</i>'s home directory.</dd>
+</dl>
+
+<p>I like <tt>gf</tt> to search recursively downwards from the current directory
+so I append <tt>./*</tt> to my path like so: <tt>:set path+=./*</tt>.</p>
+
+<h4>Discussion</h4>
+
+<p>This feature has a surprising amount of uses for something so
+basic. I use it when:</p>
+
+<ul>
+  <li>Log files are referenced in e-mail alerts.</li>
+  <li>To open files referenced in my version control system's commit e-mails. 
+  <span class="todo">TODO: link recipe: Vim with VCS, Vim for
+  Email</span></li>
+  <li>When outlining<span class="fn">The <i>Indentation Folding</i> sidebar in
+  recipe~\ref{sec:man-fold} describes one approach to outlining in Vim</span> a
+  project that consists of multiple files. Each level of outline links to the
+  relevant file.</li>
+  <li>To view source code for external modules when writing
+  source code.</li>
+</ul>
+
+<p>Vim also lets you follow URLs in this way<span
+class="fn">Recipe~\ref{sec:remote-file} explains how to use Vim with remote
+files</span>, so you can <tt>gf</tt> on <tt>http://example.com/</tt>, to open
+the HTML in Vim, or <tt>sftp://example.com/README</tt> to connect to
+<i>example.com</i> via SFTP, fetch <tt>README</tt>, then open it for editing
+in Vim.   </p>
+
+<p><span class="todo">Figure out why this doesn't work...: Of course, you don't
+often see SFTP URLs in your average text file, but you can combine this
+functionality with the ability to add URLs to your path.</span></p>
+
+<p>By default <tt>gf</tt> opens the file in the same window. To open it in a new
+window (by splitting the screen <span class="todo">link recipe</span> use
+<kbd><kbd>&lt;Ctrl&gt;</kbd>+<kbd>wf</kbd></kbd>. To make this behaviour the
+default consider a key remap<span class="fn">Recipe~\ref{sec:key-map} explains
+how to create key mappings</span>: <tt>:nnoremap gf &lt;C-W&gt;gf</tt>.</p>
+
+<p>If your filename is followed by a line number, e.g.  <i>foo.txt:10</i> you can jump
+to the given line with <kbd>gF</kbd>.</p>
+
+<p>If the filename you use <kbd>gf</kbd> on doesn't exist, Vim complains. I don't
+use <kbd>gF</kbd> so I have remapped it to create the given file:
+<tt>:nnoremap gF :view &lt;cfile&gt;&lt;cr&gt;</tt>. You're obviously free to
+map any other key combination to this command, instead.</p>
+
+<p><span class="todo">TODO: Mention use of autowrite</span></p>

@@ -1,0 +1,61 @@
+<h3>Working with Remote Files</h3>
+
+<h4>Problem</h4>
+
+<p>You want to edit/view a file that is stored on another computer.</p>
+
+<p>For example, you might want to change a file on your website
+from your home computer. Or, you want to change the 'message of
+the day' file on a server you administer.</p>
+
+<h4>Solution</h4>
+
+<p>To invoke Vim with a remote file use its URL as the argument to <tt>vim</tt>.
+For example: <tt>vim sftp://guest@example.com/file.txt</tt>.</p>
+
+<p>To work with remote files from within Vim, just use their URLs in place of a
+filename with normal editing commands.</p>
+
+<p>So, to to open a remote file for editing use \texttt{:e {URL}}. For example:
+<tt>:e ftp://user@example.com/README</tt>.</p>
+
+<p>To save to a remote file use \texttt{:w {URL}}. For example: <tt>:w
+scp://kci@jojo.example.com/etc/motd</tt>.</p>
+
+<h4>Discussion</h4>
+
+<p>If you need to make a quick change to a remote file Vim's native support for
+editing URLs is invaluable. <span class="todo">Is this just fluff?</span></p>
+
+<p>Vim supports the following protocols: 'SCP', 'SFTP', 'RCP', 'HTTP'
+(read-only), 'DAV', 'rsync' (read-only), and 'fetch' (read-only). However, it
+relies on external programs to do so.  On Linux, most of these programs are
+available by default; on Windows, for example, only 'FTP' is normally
+available. <span class="todo">Is this still true? Macs?</span> See <tt>:help
+netrw-externapp</tt> for more information.</p>
+
+<p>If the protocol requires authentication, you can supply the username as part
+of the URL, and then be prompted for the password interactively. This gets
+boring fast, however. </p>
+
+<p>If you're editing files via SSH or SCP consider setting up "passwordless
+logins". <span class="todo">Explain this. Sidebar explanation?  Ref:
+netrw-ssh-hack</span></p>
+
+<p>If you're using FTP on Linux, you can store your credentials in
+<tt>~/.netrc'</tt>.  <span class="todo">sidebar on dangers of FTP?</span>
+<span class="todo">Sidebar this explanation</span> The file is formatted as
+follows:</p>
+
+<pre><code> machine {host name 1}
+         login {username}
+         password {password}
+
+ machine {host name 2}
+...
+</code></pre>
+
+<p>It should be made read-only for your user: <tt>chmod 600 ~/.netrc</tt>
+<span class="todo">Windows explanation?</span>.  Now you can use URLs like
+<i>ftp://example.org/README</i>, and it will find your username and password
+automatically.</p>

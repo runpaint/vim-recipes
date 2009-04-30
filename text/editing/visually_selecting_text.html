@@ -1,0 +1,49 @@
+<h3>Visually Selecting Text</h3>
+
+<h4>Problem</h4>
+
+<p>You want to interactively select some text by drawing a box around it, thus
+enabling you to perform a command that affects it. IOW, you want to select a
+text like you would in a GUI wordprocessor using only the keyboard.</p>
+
+<h4>Solution</h4>
+
+<p>To select text character by character change to Visual mode with
+<tt>&lt;Esc&gt;-v</tt>, then move the cursor as normal using the
+<tt>h</tt>,<tt>j</tt>,<tt>k</tt>,<tt>l</tt> keys. For example, to select the
+current character and the 3 that follow hit <tt>&lt;Esc&gt;-v</tt>, then
+<tt>3l</tt>.  To select the current paragraph: <tt>&lt;Esc&gt;-v</tt>, then
+<tt>ap</tt>.</p>
+
+<p>To select text in lines switch to Visual Line mode with
+<tt>&lt;Esc&gt;-V</tt>, then move upwards and downwards with <tt>k</tt> and
+<tt>j</tt> as normal. For example, to select the current line and the 2
+following it hit <tt>&lt;ESC&gt;-V</tt>, then <tt>2j</tt>.</p>
+
+<p>To select text in vertical blocks, or 'columns' to the rest of us, you use
+Visual Block mode with <tt>&lt;Esc&gt;-&lt;Ctrl&gt;-v</tt>. For example, if
+you wanted to select the first two characters of the current line and the 20
+following, you'd position your cursor on the first character of the first line
+you're interested in, hit <tt>&lt;Esc&gt;-&lt;Ctrl&gt;-v</tt>, move one
+character to the right (<tt>l</tt>), then move down 20 lines with
+<tt>20j</tt>.</p>
+
+<h4>Discussion</h4>
+
+<p>As you get used to Vim's movement command, you'll have less of a need for the
+various visual modes. Regardless, they can still be convenient when you're
+making complex selections or aren't really sure what you're doing. ;-)</p>
+
+<p>The point of selecting text is to operate on it. Here are some common actions:</p>
+
+<ul>
+  <li> Copy/cut it - See Copying, Cutting, and Pasting. <span
+  class="todo">link</span></li>
+  <li>Format it - See Formatting Paragraphs,\ldots <span class="todo">link
+  to relevant recipes</span></li> 
+  <li>Indent it using <tt>&gt;&gt;</tt> - See Indenting Lines <span class="todo">link to actual section, check
+  recipe name</span></li>
+</ul>
+
+<p><span class="todo">Mention how to unselect a selection, and how to reselect the last
+selection</span></p>

@@ -1,0 +1,84 @@
+<h3>Indenting Lines</h3>
+
+<h4>Problem</h4>
+
+<p>You want to use whitespace (spaces or tabs) to indent lines from the left
+margin.</p>
+
+<p>For example, you may want to start your paragraphs with an indented first
+line. Or, if you're writing program source code, you may want to visually
+represent the structure of your program by using indentation to show nesting.</p>
+
+<h4>Solution</h4>
+
+<p>To start a line indented, just press the tab key once for each level of
+indentation. </p>
+
+<p>To indent existing lines, highlight them visually<span
+class="fn">Recipe~\ref{sec:visual-select}</span> and press
+<kbd><kbd>&gt;</kbd></kbd> to indent or <kbd><kbd>&lt;</kbd></kbd> to
+unindent. </p>
+
+<p>If you're in Insert or Overtype mode you can use
+<kbd><kbd>Ctl</kbd>-<kbd>Shift</kbd>-<kbd>t</kbd></kbd> to indent (mnemonic:
+<b>t</b>ab), and <kbd><kbd>Ctl</kbd>-<kbd>Shift</kbd>-<kbd>d</kbd></kbd> to
+unident (mnemonic: <b>d</b>e-tab/indent).</p>
+
+<p>More powerful are motions <span class="todo">Link to Motions recipe</span>
+combined with indent/unident commands. The syntax is
+<kbd><kbd>&gt;<var>motion</var></kbd></kbd> to indent the text described by
+<var>motion</var>, and <kbd><kbd>&lt;<var>motion</var></kbd></kbd> to unident
+it. For example, <kbd><kbd>&gt;ap</kbd></kbd> indents the current paragraph. </p>
+
+<h4>Description</h4>
+
+<p>For many users, this solution will be sufficient. However, programmers
+regularly need more control over indentation because it's so important to
+their work.</p>
+
+<p>A contentious issue among programmers involves how the tab key should work.
+There are two main schools of thought:</p>
+
+<ul>
+<li>Literal tabs - Each press of the tab key should insert a literal tab
+character (padding with spaces if neccessary). To achieve this: <code>:set
+tabstop=8</code> (the default), <code>:set softtabstop=8</code>, <code>:set
+shiftwidth=8</code>, and <code>:set noexpandtab</code>. Tabs are now eight
+columns wide; each indentation level is a single tab. <br />
+<ul>
+<li>Convert tabs to spaces - Each press of the tab key should insert a certain
+number of spaces.  The settings you need are <code>:set tabstop=4</code>,
+<code>:set shiftwidth=4</code>, and <code>:set expandtab</code>. Tabs are now
+replaced with 4 spaces.</li>
+</ul></li>
+</ul>
+
+<p><code>shiftwidth</code> controls how many spaces are inserted when using the
+the <kbd><kbd>&gt;&gt;</kbd></kbd>/<kbd><kbd>&lt;&lt;</kbd</kbd> technique
+described above, or the automatic indenting used with source code.  <span
+class="todo">link to explanation of autoindent (cindent?)</span></p>
+
+<p><code>softtabstop</code> specifies how many columns Vim uses when
+<kbd><kbd>Tab</kbd></kbd> is hit in Insert mode. If it's less than
+<code>tabstop</code>, and Vim's not expanding tabs (<code>:set
+noexpandtab</code>), Vim indents with tabs, padding with spaces where
+necessary.</p>
+
+<p>(It can be seen, then, that you'll typically want to make
+<code>softtabstop</code> and <code>shiftwidth</code> equal, for reasons of
+consistency and sanity.)</p>
+
+<p>The boolean <code>expandtab</code> option replaces tabs with spaces if true;
+leaves them alone if false.</p>
+
+<p>These settings are not retroactive. To make an existing file honour your
+indentation preferences use the <code>:retab!</code> command.</p>
+
+<p><span class="todo">Mention autoindent? smartindent? smarttab?</span>    </p>
+
+<h4>See Also</h4>
+
+<ul>
+<li>http://www.jwz.org/doc/tabs-vs-spaces.html</li>
+<li>http://www.tedlogan.com/techblog3.html </li>
+</ul>

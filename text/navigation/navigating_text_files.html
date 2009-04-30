@@ -1,0 +1,65 @@
+<h4>Problem</h4>
+
+<p>You're editing a text file such an essay or e-mail, and want to exploit its
+structure to navigate it efficiently.</p>
+
+<h4>Solution</h4>
+
+<p>In normal mode you can use the following shorcuts:</p>
+
+<table>
+  <tr>
+    <th>Key</th> 
+    <th>Move To</th>
+  </tr>
+  <tr>
+    <td><tt>{</tt></td> 
+    <td>Beginning of current paragraph</td>
+  </tr>
+  <tr>
+    <td><tt>}</tt></td>
+    <td>End of current paragraph</td>
+  </tr>
+  <tr>
+    <td><tt>(</tt></td>
+    <td>Beginning of current sentence</td>
+  </tr>
+  <tr>
+    <td><tt>)</tt></td>
+    <td>End of current sentence</td>
+  </tr>
+  <tr>
+    <td><tt>w</tt></td>
+    <td>Beginning of next word</td>
+  </tr>
+  <tr>
+    <td><tt>b</tt></td>
+    <td>Beginning of the previous word</td>
+  </tr>
+  <tr>
+    <td><tt>e</tt></td>
+    <td>End of the word</td>
+  </tr>
+</table>
+
+<h4>Discussion</h4>
+
+<p>The shortcuts above all rely on the fact that plain text is often very
+structured. A document consists of paragraphs seperated by newlines.
+Paragraphs contain one or more sentences which begin with capital letters and
+end with periods. Sentences are collections of words which are seperated by
+spaces.</p>
+
+<p>After using one of these shortcuts you may want to return to where you were
+previously. This is particularly useful if you're writing one thing and are
+then reminded that you now have to change another: you use a shortcut to jump
+to the location of the change, then want to resume where you left of. You can
+use the <tt>g,</tt> (mnemonic: <i>g</i>o back to where I paused (commas can be
+used to represent pauses...)) command. Each time you execute it you'll be
+taken back another step. To move in the other direction (towards more recent
+changes), use <tt>g;</tt>.</p>
+
+<p>All of these shortcuts can be combined. So, to move to the end of the previous
+word you type <tt>be</tt>. You can also prefix them with numbers to indicate
+how many times they should be executed.  <tt>3b</tt> moves to the beginning of
+the 3rd previous word.</p>
