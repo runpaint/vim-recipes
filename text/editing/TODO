@@ -1,0 +1,16 @@
+CONVENTIONS
+  * :w[rite] style
+  * Meaning of ! suffix 
+RECOVERING FROM A CRASH
+  * Write it.
+SAVING A FILE
+  * Save All (http://vim.wikia.com/wiki/VimTip652)
+  * 'backup' options:
+http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
+RANGES
+  * Write?
+SEARCHING AND REPLACING
+  * Tip: alternate delimiters for replace command.
+VISUALLY SELECTING TEXT
+  * Unselect a selection.
+  * Reselect previous selection.
