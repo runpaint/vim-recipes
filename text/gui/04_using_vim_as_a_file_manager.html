@@ -1,0 +1,114 @@
+<h3 id="using-vim-as-file-manager">Using Vim as a File Manager</h3>
+
+<h4>Problem</h4>
+
+<p>You want to use Vim to manage your file system in a similar way to
+<i>Nautilus</i>, <i>Midnight Commander</i>, or <i>Windows Explorer</i>.</p>
+
+<p>For example, you want to rename files matching a certain pattern. Or you
+want to compress the contents of a directory.</p>
+
+<h4>Solution</h4>
+
+<p><a href="#browsing-directories">Browsing Directories</a> explains the
+basics of working with directories in Vim, so read it first.</p>
+
+<blockquote class="callout">
+
+  <h5>Marking Files</h5>
+
+  <p>To operate on files you must first <i>mark</i> them (this does not have
+  any relation to the <a href="#navigating-marks"><i>marks</i>
+    feature</a>).</p>
+
+  <ul>
+    <li><b>Mark</b> the file under the cursor: <kbd>mf</kbd> (mnemonic:
+    <i>m</i>ark <i>f</i>ile).</li>
+    <li><b>Unmark</b> the marked file under the cursor: <kbd>mf</kbd>.</li>
+    <li>Mark files <b>matching a Vim regular expression</b>: <kbd>mr</kbd>
+    (mnemonic: <i>m</i>ark with <i>r</i>egular expression). You're then
+    prompted for a <a href="#creating-regular-expressions">pattern</a>.</li>
+    <li><b>Unmark all</b> files: <kbd>mu</kbd> (mnemonic: <i>m</i>arks
+    <i>u</i>ndo).</li>
+    <li><b>Visually</b> mark files:
+    <kbd><kbd>&lt;Shift&gt;</kbd>-<kbd>v</kbd></kbd>, then <kbd>j</kbd> and
+    <kbd>k</kbd> to change the selection area.</li>
+  </ul>
+
+</blockquote>
+
+<p>You can operate on a single file or a group of them. In the latter case,
+you need to select files by marking them, as explained in the sidebar. You can
+now perform various operations on these files such as:</p>
+
+<ul>
+  <li><b>Deletion</b>: hit <kbd>D</kbd>. You're prompted for each file you've
+  selected. Answering <kbd>a</kbd> deletes them all without asking you any
+  more.</li>
+  <li><b>Renaming</b>: hit <kbd>R</kbd>. For each file you're prompted for its
+  new name.</li>
+  <li><b>Copying/Moving</b>: Hit <kbd>mt</kbd> (mnemonic: <i>m</i>ark
+  <i>t</i>arget) in the target directory. Change to the directory containing
+  the source files, select them, then hit <kbd>mc</kbd> (mnemonic: <i>m</i>arked
+  <i>c</i>opy) to copy or <kbd>mm</kbd> (mnemonic: <i>m</i>arked
+  <i>m</i>ove) to move.</li>
+  <li><b>Diff</b>: To <a href="#viewing-differences-between-files">diff</a> up
+  to three marked files, use <kbd>md</kbd> (mnemonic: <i>m</i>arked
+  <i>d</i>iff).</li>
+  <li><b>Printing</b>: hit <kbd>mp</kbd> to print marked files (mnemonic:
+  <i>m</i>ark <i>p</i>rint).</li>
+  <li><b>Execute shell command</b>: hit <kbd>mx</kbd> (mnemonic:
+  <i>m</i>arked e<i>x</i>ecute). (See the discussion for examples).</li>
+  <li><b>Compress/Decompress</b>: hit <kbd>mz</kbd> (mnemonic: <i>m</i>arked
+  g<i>z</i>ip). (Other compression utilities can be used instead of
+  <tt>gzip</tt>, but the Vim command remains the same).</li>
+  <li><b>Open</b> in horizontal split: hit <kbd>o</kbd> (mnemonic:
+  <i>o</i>pen).</li>
+</ul>
+
+
+<h4>Discussion</h4>
+
+<p>Vim can be used as a pretty well-featured file manager. In fact, given that
+it can be scripted, key mapped, and configured in concert with Vim, as well as
+seamlessly operate on remote directories, it is arguably better.</p>
+
+<p>Perhaps the most interesting command is <kbd>mx</kbd>. This allows you to
+pass the list of marked files to an external command. You're prompted for a
+command line, in which you can use the <tt>%</tt> wildcard. Vim then loops
+through the selected files and calls the command for each one, substituting
+<tt>%</tt> for the filename. </p>
+
+<p>For example, using a POSIX-compatiable system, select three files
+(<tt>foo.txt</tt>, <tt>bar.txt</tt>, and <tt>glark</tt>) with <kbd>mf</kbd>.
+Hit <kbd>mx</kbd> and enter <tt>cat %&gt;&gt;foo-bar-glark</tt>. Vim will now
+execute:</p>
+
+<pre><code>
+cat foo.txt &gt;&gt;foo-bar-glark
+cat bar.txt &gt;&gt;foo-bar-glark
+cat glark &gt;&gt;foo-bar-glark
+</code></pre>
+
+<p><tt>foo-bar-glark</tt> will now contain the contents of each file in turn.</p>
+
+<p>The <kbd>mz</kbd> command also bears further discussion. It toggles the
+state of the selected files between compressed and decompressed. </p>
+
+<p>If a file is uncompressed, Vim attempts to compress it. By default it uses
+<tt>gzip</tt>, but you can change this by modifying the
+<tt>g:netrw_compress</tt> variable. For example, to use Bzip2: <tt>:let
+  g:netrw_compress=bzip2</tt>.</p>
+
+<p>For decompression Vim uses an extension-to-program mapping:</p>
+
+<ul>
+  <li><tt>.tar</tt> - <tt>tar -xf</tt></li>
+  <li><tt>.gz</tt> - <tt>gunzip</tt></li>
+  <li><tt>.bz2</tt> - <tt>bunzip2</tt></li>
+  <li><tt>.zip</tt> - <tt>unzip</tt></li>
+</ul>
+
+<p>For example, if a filename ends with <tt>.zip</tt> Vim decompresses it by
+calling <tt>unzip <var>zip-file</var></tt>. To add support for another format
+use <tt>:let g:netrw_decompress[<var>ext</var>] = <var>prog</var></tt>.</p>

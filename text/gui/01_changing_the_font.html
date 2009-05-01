@@ -1,0 +1,65 @@
+<h3 id="changing-the-font">Changing the Font</h3>
+
+<h4>Problem</h4>
+
+<p>You want to display the text in a different font.</p>
+
+<p>For example, the current font isn't particularly readable, or is too large.</p>
+
+<h4>Solution</h4>
+
+<p>Standard Vim uses the font from the terminal it is run under. Gvim,
+however, gives you full control over the font face and size.</p>
+
+<p>The command <tt>:set guifont <var>font-name</var></tt> changes the current
+font to <var>font-name</var>. The font name can be followed by a size. There
+are, unfortunately, some platform-specific differences at this
+point&hellip;</p>
+
+<blockquote class="callout">
+
+  <h5>Specifying <tt>guifont</tt> in an Operating-System-Specific Manner</h5>
+
+  <h6>Linux</h6>
+
+  <ul>
+    <li>The font name and size are space separated.</li>
+    <li>Spaces and commas need to be backslash escaped.</li>
+  </ul>
+
+  <p>For example: <tt>:set guifont=Andale\ Mono\ 11</tt>.</p>
+
+  <h6>Mac</h6>
+
+  <ul>
+    <li>The font name and size are colon separated.</li>
+    <li>The size is prefixed with a <tt>h</tt>.</li>
+    <li>Spaces and commas need to be backslash escaped.</li>
+  </ul>
+
+  <p>For example: <tt>:set guifont=Monaco:h11</tt>.
+
+  <h6>Windows</h6>
+
+  <ul>
+    <li>The font name and size are colon separated.</li>
+    <li>Spaces in font names can be replaced with underscores (<tt>_</tt>).</li>
+  </ul>
+
+  <p>For example: <tt>:set guifont=Andale_Mono:11</tt>.</p>
+
+</blockquote>
+
+<h4>Discussion</h4>
+
+<p>To change the font you need to know its name. On most operating systems you
+can request a GUI font chooser with the command <tt>:set guifont=*</tt>. Linux
+users can also use the <tt>xlsfonts</tt> utility to see a list of available
+fonts.</p>
+
+<p>If the font you've specified can not be found, Vim complains. To avoid this
+you can specify multiple fonts in order of preference with a comma separated
+list. The first valid font is loaded. For example: <tt>:set
+  guifont=Screen15,\ 7x13</tt>. This approach is particularly useful if you
+use your Vim configuration on multiple computers, or if you simply want it to
+be portable. </p>
