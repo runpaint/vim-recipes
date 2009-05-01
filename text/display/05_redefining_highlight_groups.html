@@ -1,0 +1,98 @@
+<h3 id="redefining-highlight-groups">Redefining Highlight Groups</h3>
+
+<h4>Problem</h4>
+
+<p>You want to change the colours of specific elements of the display. For
+example, you want text to be white on a black background.</p>
+
+<h4>Solution</h4>
+
+<p>Use the <tt>:highight <var>group</var> <var>definition</var></tt> command.</p>
+
+<p>A <i>highlight group</i> (<var>group</var>) is an element of the display
+whose colours can be customised. Some of the default highlight groups are:</p>
+
+<p><span class="todo">Is a list the right way to present this?</span></p>
+
+<dl>
+  <dt><i>Cursor</i></dt>
+  <dd>Character under the cursor.</dd>  
+  <dt><i>ErrorMsg</i></dt>
+  <dd>Command line error messages.</dd>  
+  <dt><i>Normal</i></dt>
+  <dd>Normal text.</dd>
+  <dt><i>Visual</i></dt>
+  <dd>Text selected under Visual mode.</dd>
+</dl>
+
+<p>The <var>definition</var> is a list of key-value pairs. For example, the
+following sets the terminal foreground colour to black and
+the terminal background colour to yellow: </p>
+
+<pre><code>
+:highlight Normal ctermfg=black ctermbg=yellow
+</code></pre>
+
+<p>These are some common arguments:</p>
+
+<dl>
+  <dt><i>ctermfg</i></dt>
+  <dd>Terminal foreground colour.</dd>
+  <dt><i>ctermbg</i></dt>
+  <dd>Terminal background colour.</dd>
+  <dt><i>term</i></dt>
+  <dd>Terminal font style, e.g. <i>bold</i>, <i>italic</i>,
+  <i>underline</i>.</dd>
+  <dt><i>guifg</i></dt>
+  <dd>GUI foreground colour.</dd>
+  <dt><i>guibg</i></dt>
+  <dd>GUI background colour.</dd>
+</dl>  
+
+<p>Apart from <i>term</i>, these arguments take a colour name or number as a
+value. Recognised colour names include <i>black</i>, <i>brown</i>,
+<i>grey</i>, <i>blue</i>, <i>green</i>, <i>cyan</i>, <i>magenta</i>,
+<i>yellow</i>, and <i>white</i>.</p>
+
+<p>The arguments that are not supplied retain their previous values. For
+example, <tt>:highlight Normal\ ctermbg=white</tt> changes the background
+colour to <i>white</i>, but keeps the previous foreground colour.</p>
+
+<p>Let's look at some examples:</p>
+
+<ul>
+  <li><tt>:highlight Visual term=bold</tt> - Text that has been selected using
+  <i>Visual</i> mode is rendered in bold.</li>  
+  <li><tt>:highlight Comment ctermfg=grey ctermbg=white term=bold</tt> -
+  Comments are rendered in bold, grey text.</li>
+</ul>
+
+<h4>Discussion</h4>
+
+<p>Normally you'll select a <a href="#changing-colour-scheme">colour
+  scheme</a>, and not define highlighting groups at all. Occasionally, though,
+you want more control over colours or need to edit a syntax file.  That's
+where the <tt>:highlight</tt> command comes in.</p>
+
+<p>Before you change highlight groups you may like to check their current
+values.  You can do this with <tt>:highlight <var>group</var></tt>. To view
+all current settings use <tt>:highlight</tt>.</p>
+
+<blockquote class="callout">
+
+  <h5 id="defining-highlight-group">Defining a Highlight Group</h5>
+
+  <p>You can define your own highlight group by using the <tt>:highlight</tt>
+  command as described above with a group name of your choice. To select what is
+  highlighted you use <tt>:match <var>group</var>
+    /<var>pattern</var>/</tt>. For example:</p>
+
+  <pre><code>
+  :highlight Elephant ctermbg=grey ctermfg=white
+  :match Elephant /\celephant/
+  </code></pre>
+
+  <p>This renders all occurrences of the word <i>elephant</i>, regardless of
+  case due to the <tt>\c</tt> escape, in white on grey.
+
+</blockquote>

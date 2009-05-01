@@ -1,0 +1,34 @@
+<h3 id="displaying-line-numbers">Displaying Line Numbers</h3>
+
+<h4>Problem</h4>
+
+<p>You want to see each line's number alongside it. For example, if you’re
+writing a program, error messages frequently reference line numbers.</p>
+
+<h4>Solution</h4>
+
+<p>Use <tt>:set number</tt> to enable line numbering. If you're using a small
+monitor, you may want to disable them: <tt>:set nonumber</tt>.</p>
+
+<h4>Discussion</h4>
+
+<p>Even if you're not programming, line numbers can still be useful. For
+example, if you’re collaborating on a file with other people, they may mention
+specific lines, which you can then jump to with <tt>:<var>number</var></tt>.
+If you’re <a href="#working-with-long-lines">wrapping long lines</a>, the line
+number can be used to differentiate the beginning of the line from the point
+at which it has been wrapped.</p>
+
+<p>By default the number column is at least 4 characters wide, regardless of
+how many lines the file has. To change this minimum width use <tt>:set
+  numberwidth=<var>width</var></tt>.</p>
+
+<p>The line numbers are only displayed when you’re viewing the file with Vim;
+the actual file isn't modified. If you'd like it to be, and you have the
+<tt>cat</tt> command on your system, you can execute <tt>:%!cat -n %</tt>.
+This filters the entire file through <tt>cat</tt> and prepends the number to
+each line.</p>
+
+<p>Lastly, if you'd like to see the line numbers when you print the file
+without permanently changing its contents: <tt>:set
+  printoptions=number:y</tt>.</p>

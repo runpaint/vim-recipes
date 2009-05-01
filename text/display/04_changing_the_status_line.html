@@ -1,0 +1,78 @@
+<h3 id="changing-status-line">Changing the Status Line</h3>
+
+<h4>Problem</h4>
+
+<p>You don't like the way the status line looks or would prefer if it displayed
+different types of information.</p>
+
+<p>For example, you work with files created on different operating systems, so
+you'd like the file format (e.g. <i>unix</i>, <i>MS-Windows</i>, or
+<i>mac</i>) to be displayed along the bottom of the screen.</p>
+
+<h4>Solution</h4>
+
+<p>Use the <tt>:set statusline</tt> command along with a format string.  The format
+string is the text you want displayed interspersed with variable names
+corresponding to the types of information you want included.</p>
+
+<blockquote class="tip">
+  <p>By default Vim hides the status line. To show it: <tt>:set
+  laststatus=2</tt>.</p>
+</blockquote>
+
+<p>For example, to display the file format you could use <tt>:set
+  statusline=%{&amp;ff}</tt>. You can surround this with arbitrary text, for example:
+<tt>:set statusline=format:\ %{&amp;ff}</tt>.</p>
+
+<p>Here are some common variables the status line can display:</p>
+
+<table>
+  <tr><th>Name</th>    <th>Description</th></tr> 
+  <tr><td><tt>b</tt></td><td>Value of byte under cursor.</td></tr>
+  <tr><td><tt>c</tt></td><td>Column number.</td></tr>
+  <tr><td><tt>l</tt></td><td>Line number.</td></tr>
+  <tr><td><tt>r</tt></td><td>Displays <tt>[RO]</tt> if file is read only.</td></tr>
+  <tr><td><tt>t</tt></td><td>File name (as opposed to file path)</td></tr>
+  <tr><td><tt>y</tt></td><td>File content type, e.g. <tt>[ruby]</tt> or
+      <tt>[latex]</tt>.</td></tr>
+  <tr><td><tt>\&amp;ff</tt></td><td>File format, e.g. <tt>unix</tt>, <tt>mac</tt>,
+      <tt>dos</tt>.</td></tr>
+</table>  
+
+<p>Variable names are prefixed with a percentage sign (<tt>%</tt>).  Spaces,
+bars (<tt>|</tt>), and other special characters need to be backslash
+escaped.</p>
+
+<p>Here's a longer example:</p>
+
+<pre><code>
+:set statusline=%t\ %y\ format:\ %{&amp;ff};\ [%c,%l]
+</code></pre>
+
+<p>Sample output: <samp>.vimrc [vim] format: unix [2,3]</samp>.</p>
+
+<h4>Discussion</h4>
+
+<p>You may have noted that the syntax for displaying the file format was
+different from the other variables. The <i>%{}</i> syntax evaluates the
+expression contained within the braces and displays the result.</p>
+
+<p>For example, to display the name of the current colour scheme:
+<tt>%{g:colors_name}</tt> (example output: <samp>morning</samp>). Or the
+current language: <tt>%{v:lang}</tt> (example output:
+<samp>en_GB.UTF-8</samp>). Here we are simply displaying the value of Vim
+internal variables. (See <tt>:let</tt> for a list).</p>
+
+<p>The reason <tt>%{&amp;ff}</tt> works is because <tt>ff</tt> is the Vim
+option for getting/setting the file format, and the <tt>&amp;</tt> prefix is
+used for referring to options. The value of any option can be displayed in
+this way.</p>
+
+<p>You can even call a function in this way. For example, to show the last
+modification time of the current file:</p>
+
+<pre><code>
+\%{strftime(\"\%c\",getftime(expand(\"\%\%\")))}
+</code></pre>
+
+<p>Sample output: <samp>Fri 01 May 2009 19:26:07 BST</samp></p>
