@@ -1,33 +1,29 @@
-<h3>Changing the Case of Text</h3>
+<h3 id="changing-case-of-text">Changing the Case of Text</h3>
 
 <h4>Problem</h4>
 
 <p>You want to change the case of a character or block of text. For example,
-you may want to change 'bob' to 'Bob'.</p>
+you may want to change <i>bob</i> to <i>Bob</i>.</p>
 
 <h4>Solution</h4>
 
 <dl>
   <dt><kbd>~</kbd>
-  <dd>Toggles the case of the current character in Normal
-  mode, or the selection in Visual mode <span class="fn">Recipe~\ref{sec:visual-select}
-    explains how to visually select text.</span>.</dd>
+  <dd>Toggles the case of the current character in Normal mode, or the
+  selection in <a href="#visually-selecting-text"><i>Visual</i></a> mode.</dd>
   <dt><kbd>u</kbd></dt>
-  <dd>Lowercases highlighted text. (Note: This only works in
-  Visual mode; otherwise <kbd>u</kbd> will undo your last change).</dd>
+  <dd>Lowercases highlighted text. (Note: This only works in <i>Visual</i>
+  mode; otherwise <kbd>u</kbd> will undo your last change).</dd>
   <dt><kbd>U</kbd>
-  <dd>Uppercases highlighted text. (Note: This only works in
-Visual mode; otherwise <kbd>U</kbd> will undo the changes made on the
-current line).</dd>
+  <dd>Uppercases highlighted text. (Note: This only works in <i>Visual</i>
+  mode; otherwise <kbd>U</kbd> will undo the changes made on the current
+  line).</dd>
 </dl>
-
-<p><span class="todo">Link this to choosing right mode recipe</span></p>
 
 <h4>Discussion</h4>
 
-<p>As normal, these commands accept 'motions'. For example:</p>
-
-<p><span class="todo">Is this where dls should be used?</span></p>
+<p>As normal, these commands accept <a
+  href="#selecting-text-with-motions"><i>motions</i></a>. For example:</p>
 
 <dl>
   <dt><kbd>VU</kbd></dt>
@@ -36,13 +32,11 @@ current line).</dd>
   <dd>Lowercases current word.</dd>
 </dl>   
 
-<p>To convert a string to 'title case', i.e. initial capitals, you can use the
-following regular expression: <code>s/\&lt;(\w)(\w*)>/\u\1\L\2/g</code>.
-Select the text you want to convert <span class="todo">link recipe; does this
-  work with ranges/motions?</span>, hit <kbd>:</kbd>, then
-enter the regex.  If you use this regularly, consider installing the
-<a href="http://www.vim.org/scripts/script.php?script_id=439">titlecase</a>
-script. <span class="todo">Link to recipe about installing scripts</span></p>
-
-<p><span class="todo">look at 'tildeop'</span>
-<span class="todo">Expand this</span>.</p>
+<p>To convert a string to <i>title case</i>, i.e. initial capitals, you can
+use the following <a href="#creating-regular-expressions">regular
+  expression</a>: <code>s/\&lt;\(\w\)\(\w*\)\&gt;/\u\1\L\2/g</code>. <a
+  href="#visually-selecting-text">Select the text</a> you want to convert, hit
+<kbd>:</kbd>, then enter the regex.  If you use this regularly, consider
+installing the <a
+  href="http://www.vim.org/scripts/script.php?script_id=439">titlecase</a>
+script.</p>

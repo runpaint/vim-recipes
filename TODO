@@ -1,3 +1,5 @@
+  * Note that arguments to :set should have spaces backslash escaped.
+  * Note on bias toward POSIX systems...
 CONVENTIONS
   * :w[rite] style
   * Meaning of ! suffix 
@@ -25,3 +27,10 @@ AUTO COMPLETING TEXT
 automatic download feature works in general, and find alternative source for
 downloading thesauri.
   * Add screenshot of Omni-Complete in action.
+INDENTING LINES
+  * autoindent
+  * cindent
+  * smartindent
+  * smarttab
+DIFF
+  * Screenshots

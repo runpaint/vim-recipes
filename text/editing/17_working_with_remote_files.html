@@ -1,50 +1,54 @@
-<h3>Working with Remote Files</h3>
+<h3 id="working-with-remote-files">Working with Remote Files</h3>
 
 <h4>Problem</h4>
 
 <p>You want to edit/view a file that is stored on another computer.</p>
 
-<p>For example, you might want to change a file on your website
-from your home computer. Or, you want to change the 'message of
-the day' file on a server you administer.</p>
+<p>For example, you might want to change a file on your website from your home
+computer. Or, you want to change the <i>message of the day</i> file on a
+server you administer.</p>
 
 <h4>Solution</h4>
 
-<p>To invoke Vim with a remote file use its URL as the argument to <tt>vim</tt>.
-For example: <tt>vim sftp://guest@example.com/file.txt</tt>.</p>
+<p>To invoke Vim with a remote file use its URL as the argument to
+<tt>vim</tt>.  For example: <tt>vim
+  sftp://guest@example.com/file.txt</tt>.</p>
 
-<p>To work with remote files from within Vim, just use their URLs in place of a
-filename with normal editing commands.</p>
+<p>To work with remote files from within Vim, just use their URLs in place of
+a filename with normal editing commands.</p>
 
-<p>So, to to open a remote file for editing use \texttt{:e {URL}}. For example:
-<tt>:e ftp://user@example.com/README</tt>.</p>
+<p>So, to to open a remote file for editing use <tt>:e <var>URL</var></tt>.
+For example: <tt>:e ftp://user@example.com/README</tt>.</p>
 
-<p>To save to a remote file use \texttt{:w {URL}}. For example: <tt>:w
-scp://kci@jojo.example.com/etc/motd</tt>.</p>
+<p>To save to a remote file use <tt>:w <var>URL</var></tt>. For example:
+<tt>:w scp://kci@jojo.example.com/etc/motd</tt>.</p>
 
 <h4>Discussion</h4>
 
-<p>If you need to make a quick change to a remote file Vim's native support for
-editing URLs is invaluable. <span class="todo">Is this just fluff?</span></p>
+<p>Vim supports the following protocols: <abbr title="Secure Copy
+  Protocol">SCP</abbr>, <abbr title="Secure File Transfer
+  Protocol">SFTP</abbr>, <abbr title="Remote Copy Protocol">RCP</abbr>, <abbr
+  title="Hyper Text Transfer Protocol">HTTP</abbr> (read-only), <abbr
+  title="Web-based Distributed Authoring and Versioning">WebDAV</abbr>,
+<i>rsync</i> (read-only), and <i>fetch</i> (read-only). However, it relies on
+external programs to do so.  On Linux, most of these programs are available by
+default; on Windows, for example, only <abbr title="File Transfer
+  Protocol">FTP</abbr> is normally
+available. See <tt>:help netrw-externapp</tt> for more information.</p>
 
-<p>Vim supports the following protocols: 'SCP', 'SFTP', 'RCP', 'HTTP'
-(read-only), 'DAV', 'rsync' (read-only), and 'fetch' (read-only). However, it
-relies on external programs to do so.  On Linux, most of these programs are
-available by default; on Windows, for example, only 'FTP' is normally
-available. <span class="todo">Is this still true? Macs?</span> See <tt>:help
-netrw-externapp</tt> for more information.</p>
+<p>If the protocol requires authentication, you can supply the username as
+part of the URL, and then be prompted for the password interactively. This
+gets boring fast, however. </p>
 
-<p>If the protocol requires authentication, you can supply the username as part
-of the URL, and then be prompted for the password interactively. This gets
-boring fast, however. </p>
-
-<p>If you're editing files via SSH or SCP consider setting up "passwordless
-logins". <span class="todo">Explain this. Sidebar explanation?  Ref:
-netrw-ssh-hack</span></p>
+<p>If you're editing files via <abbr title="Secure Shell">SSH</abbr> or <abbr
+  title="Secure Copy Protocol">SCP</abbr> consider setting up <i>passwordless
+  logins</i>. The principle is explained in <a
+  href="http://www.debian-administration.org/articles/152">Password-less
+  logins with OpenSSH</a> for <i>Debian Linux</i>, but it is much for the same
+for other operating systems.</p>
 
 <p>If you're using FTP on Linux, you can store your credentials in
-<tt>~/.netrc'</tt>.  <span class="todo">sidebar on dangers of FTP?</span>
-<span class="todo">Sidebar this explanation</span> The file is formatted as
+<tt>~/.netrc'</tt>. The file is formatted as
 follows:</p>
 
 <pre><code> machine {host name 1}
@@ -59,3 +63,8 @@ follows:</p>
 <span class="todo">Windows explanation?</span>.  Now you can use URLs like
 <i>ftp://example.org/README</i>, and it will find your username and password
 automatically.</p>
+
+<blockquote class="warning">
+  <p>&#x26A0; FTP is an insecure protocol, so please don't use it unless you must.
+  SSH/SFTP/SCP are all superior alternatives.</p>
+</blockquote>  

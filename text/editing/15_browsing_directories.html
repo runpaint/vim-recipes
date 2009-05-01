@@ -1,4 +1,4 @@
-<h3>Browsing Directories</h3>
+<h3 id="browsing-directories">Browsing Directories</h3>
 
 <h4>Problem</h4>
 
@@ -8,53 +8,51 @@ want to see a list of the files in a seperate window.</p>
 
 <h4>Solution</h4>
 
-<p><span class="todo">Explain that this also works with SSH/FTP; link Opening
-Remote Files</span></p>
-
-<p>Invoke Vim with a directory name as an argument, e.g. <code>vim
-~/projects/flying-pigs/</code>. From within Vim use the <code>:Ex</code>
+<p>Invoke Vim with a directory name as an argument, e.g. <tt>vim
+~/projects/flying-pigs/</tt>. From within Vim use the <tt>:Ex</tt>
 (mnemonic: <i>Ex</i>plore) command. By default it shows the contents of the
 current file's directory, but you can provide a directory name if you wish.
-For example: <code>:Ex ~/projects/flying-pigs</code>. The directory is shown
+For example: <tt>:Ex ~/projects/flying-pigs</tt>. The directory is shown
 in a split screen if the current file has been modified.</p>
 
 <p>To force a directory listing in a split pane, so you can view a file and
-its directory listing at once, use <code>:Sex</code><span class="fn">No,
+its directory listing at once, use <tt>:Sex</tt><span class="fn">No,
 that's not a joke; the concept is synonmous with Vim</span>. Similarly,
-<code>:Vex</code> to browse in a vertical split, and <code>:Tex</code> to
+<tt>:Vex</tt> to browse in a vertical split, and <tt>:Tex</tt> to
 browse in a new tab.</p>
 
 <h4>Discussion</h4>
 
-<p><span class="todo">Explain how to view recursive directory listings</span></p>
-
 <p>By default Vim lists every file contained in a directory. To get a more
-<code>ls</code>-style listing you can specify a hiding list with <code>:let
-g:netrw_listhide='\^\..*'</code><span class="todo">Typeset that regex
-correctly. Is this only on Linux?</span>. (This is a comma-seperated list of
-regular expressions).  When you're browsing a directory files starting with a
-period will now be hidden. <span class="fn">By Unix/Linux convention filenames
-which begin with a period are designated hidden. By default file browsers and
-other utilities ignore these files unless explicitly commanded not to. <span
-class="todo">How does this work on Windows?</span></span> If you hit
-<kbd>a</kbd> once you'll invert the hiding list (showing only hidden files).
-If you hit <kbd>a</kbd> again you'll remove the hiding list, showing
-everything.</p>
+<tt>ls</tt>-style listing you can specify a hiding list with <tt>:let
+  g:netrw_listhide='\^\..*'</tt>. (This is a comma-seperated list of regular
+expressions).  When you're browsing a directory files starting with a period
+will now be hidden. <span class="fn">By Unix/Linux convention filenames which
+  begin with a period are designated hidden. By default file browsers and
+  other utilities ignore these files unless explicitly commanded not
+  to.</span> If you hit <kbd>a</kbd> once you'll invert the hiding list
+(showing only hidden files).  If you hit <kbd>a</kbd> again you'll remove the
+hiding list, showing everything.</p>
 
 <p>To change how directory entries are sorted you can modify the
-<code>g:netrw_sort_sequence</code> variable. By default its value is
-<code>[\/]\$,.h\$,.c\$,.cpp\$,.[a-np-z]\$,*,.info\$,.swp\$,.o\$,.obj\$,.bak\$</code>.
-The order of the patterns is the order of the sort. For instance, the first
+<tt>g:netrw_sort_sequence</tt> variable. By default its value is, deep
+breath:</p>
+
+<pre><code>
+[\/]$,\.h$,\.c$,\.cpp$,*,\.o$,\.obj$,\.info$,\.swp$,\.bak$,\~$
+</code></pre>
+
+<p>The order of the patterns is the order of the sort. For instance, the first
 pattern matches directories, so they're shown first. The next pattern matches
-file names ending with '*.h' (C header files), so they're shown next. And so
-on. The '*' pattern matches everything not matched by the other patterns. You
-can change this pattern on-the-fly by hitting <kbd>S</kbd> while viewing a
-directory listing.</p>
+file names ending with <tt>*.h</tt> (C header files), so they're shown next.
+And so on. The <tt>*</tt> pattern matches everything not matched by the other
+patterns. You can change this pattern on-the-fly by hitting <kbd>S</kbd> while
+viewing a directory listing.</p>
 
 <p>You can change into a directory by selecting it and hitting
 <kbd>Enter</kbd>. The same thing works for files. If you'd rather open a file
 in a new buffer use <kbd>p</kbd>. <kbd>P</kbd> will open the file in a split
 screen.</p>
 
-<p>If you want to operate on the files you see read Using Vim as a File
-Manager. <span class="todo">link recipe</span></p>
+<p>If you want to operate on the files you see read <a
+  href="#using-vim-as-a-file-manager">Using Vim as a File Manager</a>.</p>
