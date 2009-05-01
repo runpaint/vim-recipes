@@ -1,5 +1,6 @@
   * Note that arguments to :set should have spaces backslash escaped.
   * Note on bias toward POSIX systems...
+  * Note <tt>vim</tt> is synonymous with <tt>gvim</tt> unless otherwise stated.
 CONVENTIONS
   * :w[rite] style
   * Meaning of ! suffix 
