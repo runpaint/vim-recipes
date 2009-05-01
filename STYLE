@@ -1,0 +1,3 @@
+* Use blockquote for tips/warnings/callouts
+* Use hyphens to spearate words in IDs.
+* Specifying command-mode commands in the <tt>:w[rite]</tt> form.
