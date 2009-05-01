@@ -1,39 +1,28 @@
-<h3>Selecting Text</h3>
+<h3 id="selecting-text-with-motions">Selecting Text with Motions</h3>
 
 <h4>Problem</h4>
 
-<p>You want to define an area of text for a command to operate on in the most
-efficient way. <span class="todo">Better wording?</span></p>
+<p>You want to define an area of text for a command to operate on without
+leaving <i>Normal</i> mode.</p>
 
 <p>For example, you want to delete next two words, or reformat the current
-paragraph. <span class="todo">example sucks</span></p>
+paragraph.</p>
 
 <h4>Solution</h4>
 
-<p>Operators can be followed by 'motions' which describe what text they should
-operate on. They can be thought of as a set of directions the operator should
-use to select text.</p>
+<p>In <i>Normal</i> and <i>Visual</i> mode operator commands can be followed
+by <i>motions</i> which describe what text they should operate on. They can be
+thought of as a set of directions the operator should use to select text.</p>
 
-<p><span class="todo">Note that all of this applies to Normal and Visual mode</span></p>
-
-<p><span class="todo">Do we assume that they have already read Navigating Text Files/Source
-Code/ Just mention them but require no prior knowledge?</span></p>
-
-<p><span class="todo">Terminology check: operator, command, etc.</span></p>
-
-<p><span class="note">[NOTE: Trying to explain both motions, text objects, their
-operators, and give examples is too complicated. Thus, here we just look at
-basic motions; we introduce text objects in the Discussion</span></p>
-
-<p>For example, you can delete the character under the cursor with <kbd>d</kbd>.
-If you wanted to delete the word 'fandangle' you'd need to press <kbd>d</kbd>
-nine times: once for each character. You could simply the process by prefixing
-<kbd>d</kbd> with a 'count': <span class="todo">Link to repetition
-recipe</span> <kbd>9d</kbd>. However, that requires you to know how many
-characters are in the word, and would be totally impractical if you wanted to
-delete multiple words at once. The motion for a word is <code>w</code>, so you
-can delete the word far easier with <kbd>dw</kbd>. <span class="todo">Remove
-mention of text objects from this example.</span></p>
+<p>For example, you can delete the character under the cursor with
+<kbd>d</kbd>.  If you wanted to delete the word <i>fandangle</i> you'd need to
+press <kbd>d</kbd> nine times: once for each character. You could simply the
+process by prefixing <kbd>d</kbd> with a <a
+  href="#repeating-commands"><i>count</i></a>: <kbd>9d</kbd>. However, that
+requires you to know how many characters are in the word, and would be totally
+impractical if you wanted to delete multiple words at once. The motion for a
+word is <tt>w</tt>, so you can delete the word more easily with
+<kbd>dw</kbd>.</p>
 
 <p>The following table shows some common operators which understand motions.</p>
 
@@ -51,30 +40,27 @@ mention of text objects from this example.</span></p>
   <tr>
     <td><kbd>d</kbd></td>
     <td>delete</td>
-    <td>Deletes<span class="fn">See recipe~\ref{sec:delete-text for more on
-      deleting text</span></td>
+    <td><a href="#deleting-text">Deletes</a>.</td>
   </tr>
   <tr>
     <td><kbd>y</kbd></td>
     <td>yank</td>
-    <td>Copies to a register. <span class="todo">link recipe</span></td>
+    <td><a href="#copying-cutting-pasting">Copies</a> to a register.</td>
   </tr>
   <tr>
     <td><kbd>gq</kbd></td>
     <td>format</td>
-    <td>Formats. <span class="todo">link recipe, expand desc.</span></td>
+    <td>Reformats.</td>
   </tr>
   <tr>
     <td><kbd>&gt;</kbd></td>
     <td>indent</td>
-    <td>Shifts text left <span class="fn">Recipe~\ref{sec:indenting} explains
-      indentation of text</span></td>
+    <td><a href="#indenting-text">Shifts text left</a>.</td>
   </tr>
   <tr>
     <td><kbd>&lt;</kbd></td>
     <td>unindent</td>
-    <td>Shifts text right. <span class="fn">Recipe~\ref{sec:indenting} explains
-      indentation of text</span></td>
+    <td><a href="#indenting-text">Shifts text right</a>.</td>
   </tr>
 </table>
 
@@ -103,15 +89,15 @@ mention of text objects from this example.</span></p>
   </tr>
   <tr>
     <td><kbd><var>count</var>$</kbd></td>
-    <td>To end of the line <var>count</var>-1 lines downward. <span class="todo">Fix explanation</span></td>
+    <td>To end of the line <var>count</var>-1 lines downward.</td>
   </tr>
   <tr>
     <td><kbd>0</kbd></td>
-    <td>To start of line <var>count</var>-1 lines downward. <span class="todo">Fix explanation</span></td>
+    <td>To start of line <var>count</var>-1 lines downward.</td>
   </tr>
   <tr>
     <td><kbd><var>count</var>f<var>char</var></kbd></td>
-    <td>To the <var>count</var>'th occurrence of <var>char</var> to the right.</td>
+    <td>To the <var>count</var><sup>th</sup> occurrence of <var>char</var> to the right.</td>
   </tr>
 </table>
 
@@ -129,19 +115,21 @@ Let's look at some examples:</p>
 
 <h4>Discussion</h4>
 
-<p>Motions aren't very intelligent. Say you wanted to delete the word 'This' with
-<kbd>dw</kbd>. That works as long as your cursor is over 'T'; if you were on the 'h',
-you'd only delete that.</p>
+<p>Motions aren't very intelligent. Say you wanted to delete the word
+<i>This</i> with <kbd>dw</kbd>. That works as long as your cursor is over
+<i>T</i>; if you were on the <i>h</i>, you'd only delete that.</p>
 
-<p>Vim supports aditional motions for operating on text objects.  One of these is
-<kbd>aw</kbd> (mnemonic: <em>a</em> <em>w</em>ord) which would do the right thing in both examples
-above because it considers what <em>object</em>, not character, the cursor over.</p>
+<p>Vim supports additional motions for operating on text objects.  One of
+these is <kbd>aw</kbd> (mnemonic: <em>a</em> <em>w</em>ord) which would do the
+right thing in both examples above because it considers what <em>object</em>,
+not character, the cursor over.</p>
 
-<p>'Text object' commands are very similar to motions, and can be used with the
-same operators. They're frequently just a motion command prefixed with either
-'a' or 'i'. The 'a' prefix indicates that the whole object will be selected,
-including white space; the 'i' prefix selects the 'inner' object without white
-space, or just the white space. A few of the available commands follow:</p>
+<p><i>Text object</i> commands are very similar to motions, and can be used
+with the same operators. They're frequently just a motion command prefixed
+with either <i>a</i> or <i>i</i>. The <i>a</i> prefix indicates that the whole
+object will be selected, including white space; the <i>i</i> prefix selects
+the <i>inner</i> object without white space, or just the white space. A few of
+the available commands follow:</p>
 
 <table>
   <tr>
@@ -180,4 +168,4 @@ space, or just the white space. A few of the available commands follow:</p>
 
 <p>So, to delete a paragraph, position your cursor anywhere inside it then hit
 <kbd>dap</kbd>. <em>D</em>elete <em>a</em> <em>p</em>aragraph - it even sounds
-sensible<span class="footnote">No, this is not a bug.</span>.</p>
+sensible<span class="fn">No, this is not a bug.</span>.</p>

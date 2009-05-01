@@ -1,50 +1,48 @@
-<h3>Searching and Replacing</h3>
+<h3 id="searching-and-replacing">Searching and Replacing</h3>
 
 <h4>Problem</h4>
 
 <p>You want to replace all occurrences of one string with another.</p>
 
-<p>For example, imagine you were using Vim to write a novel wherein there was a
-protaganist named 'Curtis'. You decide to change his name to 'Excalibur' to
-give him more panache. You want Vim to make these changes with the least
-possible effort.</p>
+<p>For example, imagine you were using Vim to write a novel wherein there was
+a protaganist named <i>Curtis</i>. You decide to change his name to
+<i>Excalibur</i> to give him more panache. You want Vim to make these changes
+with the least possible effort.</p>
 
 <h4>Solution</h4>
 
-<p>Execute <code>:%s/<var>target</var>/<var>replacement</var>/g</code> to replace
-all occurrences of <var>target</var> with <var>replacement</var>. For
-example: <code>:%s/Curtis/Excalibur/g</code>. </p>
+<p>Execute <tt>:%s/<var>target</var>/<var>replacement</var>/g</tt> to replace
+all occurrences of <var>target</var> with <var>replacement</var>. For example:
+<tt>:%s/Curtis/Excalibur/g</tt>. </p>
 
 <h4>Description</h4>
 
-<p><span class="todo">[Sidebar:
-http://vim.wikia.com/wiki/Alternate<i>delimiters</i>for<i>the</i>replace_command
-]</span></p>
+<p>The solution above replaces <i>Curtis</i> with <i>Excalibur</i>. The
+<tt>g</tt> flag at the end causes this operation to be performed
+<i>g</i>lobally, i.e. multiple times on each line, if necessary.</p>
 
-<p><span class="todo">Clarify that the '%' indicates that s/ works over the whole file; if
-you want to work on a section you use something else</span></p>
+<p>The <tt>%</i> prefix indicates that the replacement should occur over the
+entire file. Had you previously visually selected text to which you want to
+constrain the search/replace operation omit the <tt>%</tt>, e.g.
+<tt>:s/Curtis/Excalibur/g</tt>. Or, prefix the command with a range to
+contstrain it that way, e.g. <tt>2,20s/Curtis/Excalibur/g</tt> performs the
+operation over lines two to twenty.</p>
 
-<p>The solution above replaces 'Curtis' with 'Excalibur'. The 'g' flag at the end
-causes this operation to be performed <i>g</i>lobally, i.e. multiple times on
-each line, if necessary.</p>
-
-<p>The search string ('Curtis' in this example) doesn't have to be a literal
-string; it can be any Vim regular expression. The details of Vim's regular
-expressions are explained in the Using Regular Expressions recipe <span
-class="todo">link regex recipe</span>, so I won't go into them here. Two tips,
-though: </p>
-
-<p><span class="todo">Optimal way of typesetting \<?</span></p>
+<p>The search string (<i>Curtis</i> in this example) doesn't have to be a
+literal string; it can be any Vim regular expression. The details of Vim's
+regular expressions are explained in the <a
+  href="#creating-regular-expressions"><i>Creating Regular Expressions</i></a>
+recipe, so I won't go into them here. Two tips, though: </p>
 
 <ul>
-<li>Search for words - If you provide a literal string to replace, as above, Vim
-even replaces occurrences that form parts of other words. For example
-<code>:%s/and/or/g</code> would change 'supply and demand' into 'supply or
-demor'. To avoid this, surround the string with 'word boundary anchors'
-(<code>\&lt;</code>, <code>\&gt;</code>). Thus, the above command would be
-rewritten as <code>:%s/\&lt;and\&gt;/or/g</code>.  </li>
-<li>Search case insensitively - If you want 'linux' to match 'Linux', 'linux',
-and 'LiNuX' you need to either add the 'i' flag to the end of the replacement
-command, or, use <code>:set ignorecase</code> to toggle this setting for all
-searches.</li>
+  <li>Search for words - If you provide a literal string to replace, as above,
+  Vim even replaces occurrences that form parts of other words. For example
+  <tt>:%s/and/or/g</tt> would change <i>supply and demand</i> into <i>supply
+    or demor</i>. To avoid this, surround the string with <i>word boundary
+    anchors</i> (<tt>\&lt;</tt>, <tt>\&gt;</tt>). Thus, the above command
+  could be rewritten as <tt>:%s/\&lt;and\&gt;/or/g</tt>.</li>
+  <li>Search case insensitively - If you want <i>linux</i> to match
+  <i>Linux</i>, <i>linux</i>, and <i>LiNuX</i> you need to either add the
+  <tt>i</tt> flag to the end of the replacement command, or, use <tt>:set
+    ignorecase</tt> to enable this behaviour for all searches.</li>
 </ul>

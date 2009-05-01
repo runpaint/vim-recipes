@@ -1,96 +1,102 @@
-<h3>Opening Files</h3>
-
-<p><span class="todo">Put this nearer the start? It's kinda' essential</span></p>
+<h3 id="opening-files">Opening Files</h3>
 
 <h4>Problem</h4>
 
 <p>You want to open a file in Vim.</p>
 
 <p>If you want to edit or view an existing file you need to open it first. For
-example, if your world-changing novel is saved as <code>novel.txt</code>, you want to
-open <code>novel.txt</code> in Vim.</p>
+example, if your world-changing novel is saved as <tt>novel.txt</tt>, you want to
+open <tt>novel.txt</tt> in Vim.</p>
 
 <h4>Solution</h4>
 
 <p>To open a file from the command line invoke Vim with the filename as an
-argument. For example: <code>vim docs/novel.txt</code> (on Windows:
-<code>vim.exe docs\novel.txt</code>).</p>
+argument. For example: <tt>vim docs/novel.txt</tt> (on Windows:
+<tt>vim.exe docs\novel.txt</tt>).</p>
 
 <p>To open a file from inside Vim you can use <code>:e <var>file</var></code>
-(mnemonic: <b>e</b>dit).
-This closes the current file and opens a new buffer containing the given file. </p>
+(mnemonic: <b>e</b>dit).  This closes the current file and opens a new buffer
+containing the given file. </p>
 
 <h4>Discussion</h4>
 
-<p>You may prefix the filename with <code>+<var>linenumber</var> </code> to
-instruct Vim to jump to the given line after opening. For example, <code>vim
-+7 todo.list</code> or <code>:e +100 treatise.txt</code>. If you omit
-<var>linenumber</var>, i.e. you prefix the filename with <code>+</code>, Vim will jump
-to the end of the file.</p>
+<p>You may prefix the filename with <tt>+<var>linenumber</var> </tt> to
+instruct Vim to jump to the given line after opening. For example, <tt>vim +7
+  todo.list</tt> or <tt>:e +100 treatise.txt</tt>. If you omit
+<var>linenumber</var>, i.e. you prefix the filename with <tt>+</tt>, Vim will
+jump to the end of the file.</p>
 
-<p>Similarly, prefixing the filename with <code>+/<var>pattern</var></code>
-positions the cursor at the first occurrence of the pattern <var>pattern</var>
-<span class="todo">Link to pattern recipe</span>. For example, <code>vim
-+/^References btrees.textile</code> instructs Vim to open
-<code>btrees.textile</code>, find the first line that starts with
+<p>Similarly, prefixing the filename with <tt>+/<var>pattern</var></tt>
+positions the cursor at the first occurrence of the <a
+  href="#creating-regular-expressions">pattern</a> <var>pattern</var>. For
+example, <tt>vim +/^References btrees.textile</tt> instructs Vim to open
+<tt>btrees.textile</tt>, find the first line that starts with
 <em>References</em>, then position the cursor there.  </p>
 
-<blockquote class="tip"> The <code>:cd <var>directory</var></code> command
-lets you change the directory Vim resolves relative paths to. So if you're
-working with multiple files in the same directory tree you can use this
-command to set your 'working directory' so it's easier to open files. For
-example, instead of opening `/home/julie/recipes/pasta/cabonara.txt` then
-`/home/julie/recipes/pasta/peperonata.txt` you can `:cd
-/home/julie/recipes/pasta` then `:e carbonara.txt`. If you forget which
-directory you're in `:pwd` (<b>p</b>rint <b>w</b>orking <b>d</b>irectory) will
-tell you.  </blockquote>
+<blockquote class="tip"> 
+  The <tt>:cd <var>directory</var></tt> command lets
+  you change the directory Vim resolves relative paths to. So if you're
+  working with multiple files in the same directory tree you can use this
+  command to set your working directory so it's easier to open files. For
+  example, instead of opening <tt>/home/julie/recipes/pasta/cabonara.txt</tt>
+  then <tt>/home/julie/recipes/pasta/peperonata.txt</tt> you can <tt>:cd
+    /home/julie/recipes/pasta</tt> then <tt>:e carbonara.txt</tt>. If you
+  forget which directory you're in <tt>:pwd</tt> (<b>p</b>rint <b>w</b>orking
+  <b>d</b>irectory) will tell you.  
+</blockquote>
 
-<p>If you supply multiple filenames, Vim opens them all, one in each buffer. <span
-class="todo">link to recipe on buffers</span>. The first file named is opened in
-the current buffer. If you provide a line number or pattern to jump to, this
-only affects the first named file. Typing <code>:next</code> advances you to the
-next file in the list.</p>
+<p>If you supply multiple filenames, Vim opens them all, one in each <a
+  href="#navigating-buffers">buffer</a>. The first file named is opened in the
+current buffer. If you provide a line number or pattern to jump to, this only
+affects the first named file. Typing <tt>:next</tt> advances you to the next
+file in the list.</p>
 
-<p>When working with multiple files you may prefer to view them in tabs or split
-windows, instead of buffers. </p>
+<p>When working with multiple files you may prefer to view them in tabs or
+split windows, instead of buffers. </p>
 
-<p>Tabs display a single file at a time, but, by default, provide a list of opened
-tabs across the top of the screen. You can switch to an open tab by clicking on
-its name in the GUI or referring to its number. From within Vim <code>:tabedit
-<var>file</var></code> opens the named file in a new tab. Or, from the command
-line <code>vim -p <var>files</var></code> opens each named file in its own tab.
-See recipe~\ref{sec:navigating-tabs}. <span class="todo">link recipe</span> </p>
+<p><a href="#navigating-tabs">Tabs</a> display a single file at a time, but,
+by default, provide a list of opened tabs across the top of the screen. You
+can switch to an open tab by clicking on its name in the GUI or referring to
+its number. From within Vim <tt>:tabedit <var>file</var></tt> opens the named
+file in a new tab. Or, from the command line <tt>vim -p
+  <var>files</var></tt> opens each named file in its own tab.</p>
 
-<p>Split windows display multiple files on screen simultenously. By default the
-screen is divided horizontally, putting each file beneath the previous, but you
-may also split it vertically so that each file is displayed next to each other.
-From Vim <code>:split <var>file</var></code> splits the screen horizontally
-between the current file and the named file. <code>:vsplit
-<var>file</var></code> effects a vertical division. These operations can be
-conducted from the command line with <code>vim -o <var>files</var></code> and <code>vim -O
-<var>files</var></code>, respectively.</p>
+<p><a href="#splitting-the-screen">Split windows</a> display multiple files on
+screen simultenously. By default the screen is divided horizontally, putting
+each file beneath the previous, but you may also split it vertically so that
+each file is displayed next to each other.  From Vim <tt>:split
+  <var>file</var></tt> splits the screen horizontally between the current file
+and the named file. <tt>:vsplit <var>file</var></tt> effects a vertical
+division. These operations can be conducted from the command line with <tt>vim
+  -o <var>files</var></tt> and <tt>vim -O <var>files</var></tt>,
+respectively.</p>
 
 <p>So far we have specified filenames literally by naming each file to open.
 However, at other times this is impractical. For example, suppose you want to
-edit all files whose names end with <em>.txt</em>, or a file that you can only
-remember has the word <em>lethargy</em> in it. In cases such as these we would
-rather describe a group of files by using wildcards. <span class="todo">Should
-.txt and lethargy be italic or mono?</span></p>
+edit all files whose names end with <tt>.txt</tt>, or a file that you can only
+remember has the word <tt>lethargy</tt> in it. In cases such as these we would
+rather describe a group of files by using wildcards.</p>
 
-<p>If you're opening a file from the command line (i.e. <code>vim
-resume.tex</code>), your shell expands any wildcards. Windows is notoriously
+<p>If you're opening a file from the command line (i.e. <tt>vim
+  resume.tex</tt>), your shell expands any wildcards. Windows is notoriously
 weak at command-line work, but other operating systems will probably do the
 right thing here. For example, using the <em>bash</em> shell I can open
-<em><em>.txt</em> files whose names start with <em>1</em>, <em>2</em>, or
-<em>3</em> with <code>vim [123]</em>.txt</code>.</p>
+<tt>.txt</tt> files whose names start with <tt>1</tt>, <tt>2</tt>, or
+<tt>3</tt> with <tt>vim [123]*.txt</tt>.</p>
 
-<p>Vim supports a similar set of wildcards, so in any <span class="todo">'any'?
-;-)</span> command that takes a file name as an argument, you can use
-wildcards. <span class="todo">Check this. :e is a bit odd in that it complains
-about too many filenames</span>.  <span class="todo">Note that these wildcards
-differ from your shell's</span></p>
+<p>Vim commands that accept filenames support a <i>similar</i> set of
+wildcards with one caveat: some commands only accept a single filename, while
+others accept a list. The implication is that if you use wildcards with a
+command like <tt>:edit</tt>, which only takes a single filename, they cannot
+expand to multiple files. So if your current directory contained only one
+<tt>.html</tt> file, <tt>:edit *.html</tt> would save you typing and work how
+you expect. However, if the directory contained multiple <tt>.html</tt> files,
+that same wildcard would imply a list of files, and <tt>:edit *.html</tt>
+would complain: <samp>E77: Too many file names</samp>.</p>
 
-<p>To open a collection of files from within Vim use <code>:args
-<var>file1</var>&hellip;<var>fileN</var></code>, e.g. <code>:args *.latex
-resume.latex</code>. This is conceptually identical to invoking Vim with a
-list of filenames.</p>
+<p>Instead of using <tt>:edit</tt>, you can use <tt>:next
+  <var>files</var></tt> which happily accepts a list of files, and opens each
+one in a new buffer. The <tt>:args <var>files</var></tt> command is similar,
+but instead of appending the list of files to the current list of open files,
+it uses them to replace the current list.</p> 
+
