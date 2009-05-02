@@ -1,0 +1,125 @@
+<h3 id="configuring-vim">Configuring Vim</h3>
+
+<h4>Problem</h4>
+
+<p>You want your Vim preferences to persist over sessions.</p>
+
+<p>For example, you want Vim to show line numbers all the time. <a
+  href="#displaying-line-numbers">Displaying Line Numbers</a> explains how,
+but when you restart Vim you find that your preferences have been
+forgotten.</p>
+
+<h4>Solution</h4>
+
+<p>Throughout this book I will discuss how to configure Vim
+options using the <tt>:set <var>option</var></tt> or <tt>:set
+<var>option</var>=<var>value</var></tt> syntax. This works, but only for the
+current instance of Vim. If you specify these options in your <tt>vimrc</tt>
+file they'll be set permanently.</p>
+
+<blockquote class="callout">
+  <h5>Location of <tt>vimrc</tt></h5>
+  
+  <p>The default location of the <tt>vimrc</tt> file depends on your operating
+  system. Identify your operating system, then note the corresponding path.
+  All references in this book to <tt>vimrc</tt> refer to this path.</p>
+  
+  <p>Gvim reads <tt>vimrc</tt> then a <tt>gvimrc</tt> file located in the same
+  place as <tt>vimrc</tt>. In this book <tt>vimrc</tt> and <tt>gvimrc</tt> are
+  treated as synonyms.</p>
+  
+  <dl>
+    <dt>Unix/Linux<dt>
+    <dd><tt>$HOME/.vimrc</tt></dd>
+    <dt>OS/2</dt>
+    <dd><tt>$HOME/.vimrc</tt> or <tt>$VIM/.vimrc</tt> (or
+    <tt>_vimrc</tt>)</dd>
+    <dt>MS-DOS and Windows</dt>
+    <dd><tt>$HOME/_vimrc</tt> or <tt>$VIM/_vimrc</tt></dd>
+    <dt>Amiga</dt>
+    <dd><tt>s:.vimrc</tt> or <tt>$VIM/.vimrc</tt></dd>
+  </dl>  
+
+</blockquote>  
+
+<p>The <tt>vimrc</tt> is a simple plain text file. Open the filename specified
+in the sidebar and add one option per line using the
+<tt><var>option</var>=<var>value</var></tt> syntax (the ':' prefix is
+unnecessary). Indeed, this is the general principle for adding any
+<i>Command-Line</i> command in this book to your <tt>vimrc</tt>. For
+example:</p>
+
+<pre><code>
+" Set the boolean <tt>number</tt> option to true
+set number
+" Set the <tt>textwidth</tt> option to '78'
+set textwidth=78
+" Set the <tt>expandtab</tt> option to false
+set noexpandtab
+</code></pre>
+
+<p> A single quotation mark (<tt>"</tt>) introduces comments. They are ignored
+by Vim, but particularly useful for remembering what all of your preferences
+mean.</p>
+
+<blockquote class="tip">
+  <p>Even if you don't want to specify any options in <tt>vimrc</tt> you
+  should still create it. On some systems Vim will act like the Vi editor in
+  the absence of this file, which is unlikely to be what you want.</p>
+</blockquote>
+
+<h4>Discussion</h4>
+
+<p>The <tt>vimrc</tt> locations given in the sidebar are used for user
+preferences; there are also system wide <tt>vimrc</tt> files. User preferences
+take precedence over system preferences. This means that if you change an
+option set in the system <tt>vimrc</tt>, your preferences will be respected.
+However, if the system <tt>vimrc</tt> sets an option differently from the Vim
+defaults, and you don't include it in your <tt>vimrc</tt>, the system
+preference will be used.</p>
+
+<p>The example <tt>vimrc</tt> above is very basic. They can also include
+functions, conditionals, and anything else Vim's scripting engine supports.
+For a simple example look at the usage of <tt>:autocmd</tt> in the <a
+  href="#using-templates">Using Templates</a> recipe. </p>
+
+<p>If your configuration becomes complex you may want to split it over
+multiple files. You can instruct Vim to include these files in your
+configuration by adding a <tt>source <var>file</var></tt> line to
+<tt>vimrc</tt> for each config file. See <a
+  href="#abbreviating-common-strings">Abbreviating Common
+  Strings</a> for an example. </p>
+
+<p>If you want a different configuration for a specific project you can <tt>:set
+exrc</tt> then include a <tt>.vimrc</tt> (or <tt>vimrc</tt> on DOS and MS
+Windows) in the project's directory. This takes precedence over your
+<tt>vimrc</tt>, and will be used when you edit files in that directory. </p>
+
+<div class="warning">
+  <em>Warning</em>: There's the potential for security problems when using
+  <tt>exrc</tt>. If a <i>vimrc</i> was placed in your project directory
+  without you knowing -- as a result of unpacking an archive, for example -- it
+  could be used to execute arbitrary commands under your user account. For this
+  reason it's strongly recommended that you use <tt>:set secure</tt> in
+  conjunction with <tt>exrc</tt>. This prevents the directory-specific
+  <tt>vimrc</tt> files from executing potentially dangerous commands. The Vim
+  documentation suggests adding <tt>set secure</tt> as the last line in your
+  <tt>vimrc</tt>.
+</div>
+
+<blockquote class="callout">
+
+  <h5>Debugging Configuration</h5>
+
+  <ul>
+    <li>Start Vim without loading your <tt>vimrc</tt>: <tt>vim -u NORC</tt>.
+  (Use <tt>-U</tt> for Gvim).</li>
+    <li>Start Vim with a different <tt>vimrc</tt>: <tt>vim -u
+    <var>file</var></tt>.</li>  
+    <li>Start Vim in verbose mode: <tt>vim -V</tt>. (Describes each file being
+    sourced).</li>  
+    <li>Check the system wide <tt>vimrc</tt> to see whether its interacting
+    badly with yours.</li>
+  </ul>
+
+</blockquote>
