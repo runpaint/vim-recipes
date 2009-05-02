@@ -1,11 +1,17 @@
-<h3>Navigating Buffers</h3>
+<h3 id="navigating-buffers">Navigating Buffers</h3>
 
 <h4>Problem</h4>
 
-<p>You have multiple files open and want to navigate between them.
-<span class="todo">Write recipe for using buffers?</span></p>
+<p>You have multiple files open and want to navigate between them.</p>
 
 <h4>Solution</h4>
+
+<p>Buffers allow you to have a collection of files open with only one
+displayed at a time. They are particularly useful for processing a set of
+files sequentially, whereby you operate on one file, then switch to the buffer
+containing the next. If you'd rather have the open files listed along the top
+of the screen, consider using <a href="#navigating-tabs"><i>tabs</i></a>
+instead.</p>
 
 <table>
   <tr>
@@ -57,7 +63,4 @@
 
 <p>To quickly navigate between buffers its common to map <tt>:bnext</tt> and/or
 <tt>:bprev</tt> to a key. For example <tt>map &lt;F6&gt; :bn&lt;CR&gt;</tt> lets you hit
-<kbd>F6</kbd> to cycle through the open buffers.</p>
-
-<p><span class="todo">If Vim opens a filelist one in each buffer, as I believe,
-mention that here. Use of :next, etc.</span></p>
+<kbd>&lt;F6&gt;</kbd> to cycle through the open buffers.</p>

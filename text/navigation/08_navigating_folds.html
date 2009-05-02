@@ -1,0 +1,80 @@
+<h3 id="navigating-folds">Navigating Folds</h3>
+
+<h4>Problem</h4>
+
+<p>Your document contains <i>folds</i> and you want to use them for
+navigation. (To create folds see <a
+  href="#manually-creating-folds"><i>Manually Creating
+    Folds</i></a>). </p>
+
+<h4>Solution</h4>
+
+<table>
+  <tr>
+    <th>Command</th>
+    <th>Action</th>
+    <th>Mnemonic</th>
+  </tr>
+  <tr>
+    <td><kbd>zc</kbd></td>
+    <td>Close the current fold.</td>
+    <td><i>c</i>lose fold</td>
+  </tr>
+  <tr>
+    <td><kbd>zo</kbd></td>
+    <td>Open the current fold.</td>
+    <td><i>o</i>pen fold</td>
+  </tr>
+  <tr>
+    <td><kbd>zM</kbd></td>
+    <td>Close all folds.</td>
+    <td>fold <i>M</i>ore</td>
+  </tr>
+  <tr>
+    <td><kbd>zR</kbd></td>
+    <td>Open all folds.</td>
+    <td><i>R</i>educe folding</td>
+  </tr>
+  <tr>
+    <td><kbd>zj</kbd></td>
+    <td>Move to the next fold.</td>
+    <td><kbd>j</kbd> moves to the <i>next</i> line</td>
+  </tr>
+  <tr>
+    <td><kbd>zk</kbd></td>
+    <td>Move to the previous fold.</td>
+    <td><kbd>k</kbd> moves to the <i>previous</i> line</td>
+  </tr>
+  <tr>
+    <td><kbd>zn</kbd></td>
+    <td>Disable folding.</td>
+    <td><i>n</i>o folds</td>
+  </tr>
+  <tr>
+    <td><kbd>zN</kbd></td>
+    <td>Re-enable folding.</td>
+    <td><i>N</i> is <i>n</i> toggled</td>
+  </tr>
+</table>
+
+<h4>Discussion</h4>
+
+<p>You can use <kbd>zM</kbd> to achieve a birds-eye view of the file, which
+can be useful when you're writing a long book and forget how the recipe you're
+currently writing relates to&hellip;</p>
+
+<p>Vim treats folds like individual lines, so <kbd>j</kbd> and <kbd>k</kbd>
+move over one fold at a time. Further, you can yank/delete<span
+  class="fn"><i>yank</i> is Vim terminology for copying text to the clipboard;
+  see <a
+  href="#copying-cutting-pasting"><i>Copying, Cutting, and
+    Pasting</i></a>.</span> a fold as if it was a single line.</p>
+
+<p>By default, folds are forgotten when you edit another file. To save them
+use <tt>:mkview</tt>. Then, to restore them, use <kbd>:loadview</kbd>.</p>
+
+<p>The <tt>:set foldcolumn=<var>W</var></tt> command, where <var>W</var> is a
+integer width less than 13, displays a column along the left-hand side of the
+screen with information about the folds in the current file. It indicates
+whether the corresponding line is an open or closed fold (with <i>-</i> or
+<i>+</i>, respectively).</p>

@@ -1,0 +1,33 @@
+<h3 id="searching-vim-documentation">Searching the Vim Documentation</h3>
+
+<h4>Problem</h4>
+
+<p>You want help with Vim but don't know where to look.</p>
+
+<h4>Solution</h4>
+
+<p>Use the <tt>:helpgrep pattern</tt> command.</p>
+
+<h4>Discussion</h4>
+
+<p>To look up documentation for a specific Vim feature you can use <tt>:help
+feature-name</tt>. But this is only useful if you know the name of the feature.</p>
+
+<p><tt>helpgrep</tt> takes a pattern and matches it against the locally
+installed documentation in much the same way as <tt>vimgrep</tt> did in <a
+  href="#searching-over-multiple-files">Searching Over Multiple Files</a>. If
+it finds any matches, it adds them to the <i>quick fix list</i><span
+  class="fn">See the <i>Quick Fix List</i> sidebar in <a
+    href="#searching-over-multiple-files">Searching Over Multiple Files</a>
+  for more information</span>, and jumps to the first one.</p>
+
+<blockquote class="tip">
+  <p>Phrases in the help files in a different font face to the rest of the
+  text are hyperlinks to related documentation. To follow these links use
+  <kbd><kbd>&lt;Ctrl&gt;</kbd>+<kbd>]</kbd></kbd> when your cursor is over
+  one.</p>
+</blockquote>  
+
+<p>If you've installed a Vim addon, you'll need to run <tt>:helptags
+  <var>docs-path</var></tt> before <tt>helpgrep</tt> will see its
+documentation.</p>

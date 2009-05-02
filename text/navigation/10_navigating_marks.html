@@ -1,0 +1,49 @@
+<h3 id="navigating-marks">Navigating Marks</h3>
+
+<h4>Problem</h4>
+
+<p>You want to <i>bookmark</i> specific points in a file so you can easily
+jump to them from elsewhere.</p>
+
+<h4>Solution</h4>
+
+<p>Use Vim's <i>marks</i> feature. A mark is a character in the range
+<i>a-zA-Z0-9</i>. It's represented in the examples below as <var>M</var>.</p>
+
+<table>
+  <tr>
+    <th>Command</th>
+    <th>Action</th>
+  </tr>
+  <tr>
+    <td><kbd>m<var>M</var></kbd></td>
+    <td>Mark the current position as <var>M</var>.</td>
+  </tr>
+  <tr>
+    <td><kbd>'<var>M</var></kbd></td>
+    <td>Jump to the first character of the line containing <var>M</var>.</td>
+  </tr>
+  <tr>
+    <td><kbd>&#96;<var>M</var></kbd></td>
+    <td>Jump to the position of mark <var>M</var>.</td>
+  </tr>
+</table>
+
+<h4>Discussion</h4>
+
+<p>Marks <i>0-9</i> are mainly for Vim's internal use, so ignore them.  Marks
+<i>a-z</i> are only available in the current file, and are deleted when it is
+closed. Marks <i>A-Z</i> are available across multiple files. If your
+<tt>.viminfo</tt> file is available, as it usually will be, they persist
+across sessions.</p>
+
+<p>Marks have a multitude of uses. I use them often when I have a section of a
+file that I need to keep referring to: I mark that section with <kbd>ma</kbd>,
+jump to it with <kbd>'a</kbd>, then return to where I was previously with
+<kbd>&#96;&#96;</kbd>. I use them almost implicitly when formatting and
+filtering text to define the text that I want to edit.</p>
+
+<p>The <tt>:marks</tt> command shows a list of marks you have set, which is
+useful for the kind of person who fully embraced the idea of marking anything
+and everything but was unable to remember the significance of all 52 marks he
+used.</p>
