@@ -1,10 +1,9 @@
-<h3>Using Templates</h3> 
+<h3 id="using-templates">Using Templates</h3> 
 
 <h4>Problem</h4>
 
-<p>You create documents containing boiler-plate <span class="todo">check this is
-hyphenated</span> text and would like to avoid typing it.  <span
-class="todo">Better phrasing?</span></p>
+<p>You create documents containing boilerplate text and would like to avoid
+typing it.</p>
 
 <p>For instance, you write HTML documents and don't want to type the standard
 preamble every time.</p>
@@ -16,8 +15,6 @@ created with an extension for which a template is available, the template
 contents will be inserted.</p>
 
 <p>You must first create a skeleton document, e.g.:</p>
-
-<p><span class="todo">Find out \$VIMHOME is used; replace ~/.vim with it</span></p>
 
 <pre><code>
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
@@ -35,8 +32,8 @@ xml:lang="en"&gt;
 </code></pre>
 
 <p>Save this document in your Vim directory with the corresponding file
-extension, e.g. <tt>~/.vim/skel/tmpl.html</tt>. <span class="todo">Suggest it's
-chmod'd 600 or 644?</span></p>
+extension, e.g. <tt>~/.vim/skel/tmpl.html</tt>. (You may also want to make
+this file read only so you don't modify it by mistake).</p>
 
 <p>Add the following to your <tt>.vimrc</tt>:</p>
 
@@ -44,17 +41,14 @@ chmod'd 600 or 644?</span></p>
 :autocmd BufNewFile * silent! 0r ~/.vim/skel/tmpl.%:e
 </code></pre>
 
-<p><span class="todo">Shouldn't we add this to a filetype-specific config which
-is sourced from .vimrc via a ftplugin?</span></p>
-
 <p>Now, every time you open a new file Vim checks <tt>~/.vim/skel/</tt> for a
 file whose name starts with <tt>tmpl.</tt> and ends with the extension of the
 file you're creating. It then reads the template file into your new file's
 buffer.</p>
 
 <p>For example, if you added the template above then invoked Vim with <tt>vim
-/tmp/page.html</tt>, the XHTML above would be inserted into the
-<tt>/tmp/page.html</tt> file automatically.</p>
+page.html</tt>, the XHTML above would be inserted into the
+<tt>page.html</tt> file automatically.</p>
 
 <h4>Discussion</h4>
 

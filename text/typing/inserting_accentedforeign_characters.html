@@ -1,32 +1,47 @@
-<h3>Inserting Accented or "Foreign" Characters</h3>
+<h3 id="inserting-accented-characters">Inserting Accented or "Foreign" Characters</h3>
 
 <h4>Problem</h4>
 
 <p>You want to type characters which don't exist on your keyboard.</p>
 
 <p>For example, you want to type some words in another language, so need to
-insert accented characters. Or you want to type a symbol such as &plusmn;. </p>
+insert accented characters. Or you want to type a symbol such as &plusmn;.
+</p>
 
 <h4>Solution</h4>
 
-<p>If you haven't already, set up Vim to use UTF-8 <span class="todo">link
-recipe</span>. It makes this process far easier.</p>
+<p>If you haven't already, set up Vim to use UTF-8 by following the sidebar.
+It makes this process far easier.</p>
+
+<blockquote class="callout">
+  
+  <h5>Enabling UTF-8 Support</h5>
+
+  <p>Vim uses the encoding specified by the user's environment. On Linux this
+  is set with the <tt>$LANG</tt> variable. To override this use <tt>:set
+    encoding=utf-8</tt>.</p>
+
+  <p>If you're using Vim from a terminal your terminal software must also be
+  configured to use UTF-8. Instructions for that are outside the scope of this
+  recipe.</p>
+
+  <p>When editing files their current encoding is maintained, so if you opened
+  a file in <i>ISO-8859-2</i>, your changes would be written in that encoding.
+  To force UTF-8 for all files use <tt>:set encoding=utf-8
+    fileencodings=</tt>.</p>
+
+</blockquote>  
 
 <p>To insert an accented character you press
 <kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>K</kbd></kbd>, the unadorned character, then
 another character indicating the accent type.  This method can also be used to
-produce translations of characters in a given script. <span
-class="todo">Explain better; check terminology</span></p>
+produce translations of characters in a given script.</p>
 
 <p>For example, to insert an e acute (the last letter in <i>café</i>) you hold
 down <kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>K</kbd></kbd>, type <i>e</i>, then type
 an apostrophe (<i>'</i>). </p>
 
 <p>The following table shows the different types of characters you can produce:</p>
-
-<p><span class="todo">Explain the table better</span>
-<span class="todo">If Prince has reasonable support for character entities,
-put the example column back in.</span></p>
 
 <table>
   <tr>
@@ -136,13 +151,13 @@ put the example column back in.</span></p>
 <h4>Discussion</h4>
 
 <p>This method of input is most suitable for occasionally typing unusual
-characters. <span class="todo">Link to recipe more suitable for writing in different
-languages, or simply expand.</span></p>
+characters. For regular use, Vim supports most input methods. See <tt>:help
+  keymap</tt> and <tt>:help termencoding</tt> for more details.</p>
 
-<p>Vim refers to non-standard characters as <i>digraphs</i>. <span class="todo">Make less
-condescending</span> A list of digraphs available on your system can be obtained
-with the command <tt>:digraphs</tt>. The output may appear chaotic, but that's mainly
-because it's so dense. It lists, in columns, the character's internal name, the
+<p>Vim refers to printable, non-ASCII characters as <i>digraphs</i>. A list of
+digraphs available on your system can be obtained with the command
+<tt>:digraphs</tt>. The output may appear chaotic, but that's mainly because
+it's so dense. It lists, in columns, the character's internal name, the
 literal character, and the character code in decimal.</p>
 
 <p>You can also insert characters using their character code. If you're one of
@@ -154,9 +169,9 @@ either hexadecimal or decimal.  Continuing the above example of producing
   <kbd>xe9</kbd></kbd> or <kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>V</kbd>
   <kbd>233</kbd></kbd>. </p>
 
-<p>The internal name <tt>:digraphs</tt> lists corresponds with the shortcut table
-above.  That is to say, the internal name for <i>é</i> is <i>e'</i>. Thus, we
-can generalise the <kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>K</kbd></kbd> approach
-for any character we know the name of. For example, to produce the
+<p>The internal name <tt>:digraphs</tt> lists corresponds with the shortcut
+table above.  That is to say, the internal name for <i>é</i> is <i>e'</i>.
+Thus, we can generalise the <kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>K</kbd></kbd>
+approach for any character we know the name of. For example, to produce the
 <i>&plusmn;</i> sign you hit
 <kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>K</kbd>-<kbd>+-</kbd></kbd>. </p>

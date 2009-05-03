@@ -1,14 +1,13 @@
-<h3>Abbreviating Common Strings</h3>
+<h3 id="abbreviating-common-strings">Abbreviating Common Strings</h3>
 
 <h4>Problem</h4>
 
-<p>You regularly have to enter the same text, and you don't want to. </p>
+<p>You regularly have to enter the same text, but don't want to. </p>
 
-<p>For instance, if you use Vim to write e-mail <span class="todo">recipe
-link</span> you may often mention the URL of your website. Instead of typing
-<tt>http://example.com/</tt> every time, which is both annoying and error
-prone, you want to enter, say, <i>myUrl</i> and have it replaced with the
-address.</p>
+<p>For instance, if you use Vim to write e-mail you may often mention the URL
+of your website. Instead of typing <tt>http://example.com/</tt> every time,
+which is both annoying and error prone, you want to enter, say, <i>myUrl</i>
+and have it replaced with the address.</p>
 
 <h4>Solution</h4>
 
@@ -21,6 +20,10 @@ of the abbreviation (<i>myUrl</i> in this case) and then hit
 <kbd>&lt;Space&gt;</kbd> or <kbd>&lt;Enter&gt;</kbd>. The name of the
 abbreviation is replaced with its payload.</p>
 
+<p>The syntax for defining abbreviations is <tt>:iabbrev <var>name</var>
+  <var>payload</var></tt>, where <var>name</var> is the text you want
+replaced, and <var>payload</var> is what it should be replaced with.</p>
+
 <h4>Discussion</h4>
 
 <p>The abbreviation feature is smart enough not to expand abbreviation names that
@@ -29,22 +32,21 @@ Useful abbreviation names are easy to type, but will not appear in normal
 text. The convention I use is to prefix them with <i>my</i>, then uppercase
 the first letter. (If you use a programming language that prefers "camelCased"
 variable names, you may see clashes. Either stop using Java&reg;, or disable
-abbreviations for the source code. <span class="todo">explain how</span>)</p>
+abbreviations for the source code.)</p>
 
 <p>You can also abbreviate commands. For instance, if you wanted to type
 <tt>:docs</tt> instead of <tt>:help</tt> you could map one to the other with
 <tt>:cabbr docs help</tt>.</p>
 
 <p>I suggest keeping your abbreviations in an <i>abbreviations</i> file in
-<tt>$VIMHOME</tt>.  You can then source it from your <i>vimrc</i>. For
-example, you can create the file by running <tt>vim $VIM/abbreviations</tt>,
-then populate it with your abbreviations:</p>
+<tt>$VIM</tt>. You can then source it from your <a
+  href="#configuring-vim"><i>vimrc</i></a>. For example, you can create the
+file by running <tt>vim $VIM/abbreviations</tt>, then populate it with your
+abbreviations:</p>
 
 <pre><code>
 iabbrev myUrl http://example.com/
 iabbrev myEmail user@example.com
 </code></pre>
 
-<p>Then in <tt>vimrc</tt><span class="fn">Recipe~\ref{sec:configuring} introduces
-the <tt>vimrc</tt> file for configuration</span> just write <tt>source
-$VIM/abbreviations</tt>. </p>
+<p>Then in <tt>vimrc</tt> just write <tt>source $VIM/abbreviations</tt>. </p>

@@ -1,10 +1,8 @@
-<h3>Spell Checking</h3>
+<h3 id="spell-checking">Spell Checking</h3>
 
 <h4>Problem</h4>
 
 <p>You want Vim to highlight misspelled words and suggest alternatives.</p>
-
-<p><span class="todo">Mention: Vim 7</span></p>
 
 <h4>Solution</h4>
 
@@ -12,19 +10,13 @@
 language you're typing in. If you execute <tt>:echo &amp;spelllang</tt> you'll
 see the language code that Vim thinks applies. For instance <i>en</i>. To
 change this use <tt>:set spelllang=<var>code</var></tt>. For example, I use
-<tt>:set spelllang=en_GB.UTF-8</tt>. If you're not sure what language code
-you need see the sidebar.</p>
+<tt>:set spelllang=en_GB.UTF-8</tt>.</p>
 
-<p><span class="todo">Sidebar of common language codes</span></p>
-
-<p>If you're spellchecking in American English, you should already have the
+<p>If you're spell checking in American English, you should already have the
 dictionary installed. Otherwise, Vim should prompt you to download it. If
-you're not and it doesn't, you'll have to download a dictionary yourself. See
-the sidebar for details.</p>
-
-<p><span class="todo">Sidebar: If you're not using a region, just download the
-*.spl from ftp.vim.org; else install aap and do aap -f
-.../main.aap</span></p>
+you're not and it doesn't, see the <a href="#getting-dictionaries"><i>Getting
+    Dictionaries</i></a> sidebar of <a
+  href="#auto-completing-text">Auto-Completing Text</a>.</p>
 
 <p>To highlight spelling errors just execute <tt>:set spell</tt>. To remove the
 highlighting: <tt>:set nospell</tt>.</p>
@@ -33,8 +25,6 @@ highlighting: <tt>:set nospell</tt>.</p>
 
 <p>Spelling errors are highlighted in one of four colours depending on the type
 of error:</p>
-
-<p><span class="todo">Describe default colours for these classes of errors</span></p>
 
 <ul>
   <li>Word is not in the dictionary.</li>
@@ -59,4 +49,4 @@ personal dictionary with <kbd>zg</kbd>. This prevents it from being marked as
 an error in the future.</p>
 
 <p>Conversely, if an incorrectly spelled word isn't highlighted, you can add it
-to the "bad word" list with <kbd>zw</kbd>.</p>
+to the <i>bad word</i> list with <kbd>zw</kbd>.</p>
