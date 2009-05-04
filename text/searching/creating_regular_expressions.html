@@ -1,137 +1,164 @@
-\section{Creating Regular Expressions}
-\label{sec:regex}
+<h2 id="creating-regular-expressions">Creating Regular Expressions</h2>
 
-\subsection{Problem}
+<h3>Problem</h3>
 
-You want to use a Vim regular expression, but don't know how they work.
+<p>You want to use a Vim regular expression, but don't know how they work.</p>
 
-For example, you want to search a document for a word that begins with a
-vowel. 
+<p>For example, you want to search a document for a word that begins with a
+vowel.</p> 
 
-\subsection{Solution}
+<h3>Solution</h3>
 
-\todo{Test all examples}
+<p>Vim allows you to use regular expressions (<i>regexps</i>) in many areas.
+The <a href="#searching-for-any-word">Searching for Any Word</a> recipe, for
+example, explains how to search a file for a regexp.</p>
 
-Vim allows you to use regular expressions (regexps) in many areas. The
-Searching for any Word recipe, for example, explains how to search a file for
-a regexp.
+<p>A regexp is a pattern that describes a string. We will use the
+<tt>/<var>pattern</var>/</tt> notation for describing patterns, and the
+<tt>"<i>string</i>"</tt> notation to represent the text the pattern is being tested
+against.</p> 
 
-A regexp is a pattern that describes a string. We will use the
-\verb"/{pattern}/" notation for describing patterns, and the
-\textit{"\{string\}"} notation to represent the text the pattern is being tested
-against. 
+<p>The simplest form of pattern is a literal string, which matches that exact
+string. For example, <tt>/cow/</tt> matches <tt>"<i>cow</i>"</tt>,
+<tt>"<i>Don't
+    have a cow</i>"</tt>, and <tt>"<i>cower</i>"</tt>.</p>
 
-The simplest form of pattern is a literal string, which matches that exact
-string. For example, \verb"/cow/" matches \textit{"cow"}, \textit{"Don't
-have a cow"}, and \textit{"cower"}.
+<p>The period (<tt>.</tt>) has special significance in a regexp. It matches
+any single character. So, <tt>/.ow/</tt> also matches <tt>"<i>cow</i>"</tt>,
+but also <tt>"<i>sow</i>"</tt>, and <tt>"<i>tow</i>"</tt>.</p>
 
-\todo{Describe '.'}
+<p>You can use character ranges to indicate that any one of the specified
+characters are acceptable. For example <tt>/[cs]ow/</tt> would match
+<tt>"<i>cow</i>"</tt>, <tt>"<i>sow</i>"</tt>, and
+<tt>"<i>undersow</i>"</tt>.</p> 
 
-You can use character ranges to indicate that any one of the specified
-characters are acceptable. For example \verb"/[cs]ow/" would match
-\textit{"cow"}, \textit{"sow"}, and \textit{"undersow"}. 
+<p>If your range consists of alphabetically or numerically consecutive characters
+you can specify the start character and end character separated by a hyphen.
+For example, to match <tt>"<i>b</i>"</tt>, <tt>"<i>c</i>"</tt>,
+<tt>"<i>d</i>"</tt>, <tt>"<i>e</i>"</tt>, or <tt>"<i>f</i>"</tt>, you can use
+<tt>/[b-f]/</tt>. Or, an integer between 1 and 5: <tt>/[1-5]/</tt>.</p>
 
-If your range consists of alphabetically or numerically consecutive characters
-you can specify the start character and end character seperated by a hyphen.
-For example, to match \textit{b}, \textit{c}, \textit{d}, \textit{e}, or
-\textit{f}, you can use
-\verb"/[b-f]/". Or, an integer between 1 and 5: \verb"/[1-5]/".
+<p>You can invert character ranges so they match any character <i>not</i>
+specified. For example, <tt>/[^cs]ow/</tt> matches any character that isn't a
+<tt>"<i>c</i>"</tt> or an <tt>"<i>s</i>"</tt> followed by
+<tt>"<i>ow</i>"</tt>, i.e.  <tt>"<i>acknowledge</i>"</tt>, <tt>"<i>I said
+    "ow"!</i>"</tt>, and <tt>"<i>bellow</i>"</tt>.</p>
 
-\todo{Sidebar character classes}
+<p>Another useful concept of regexps is repetition. If you wanted to match strings
+containing consecutive <tt>"<i>o</i>"</tt>s followed by an
+<tt>"<i>"i"</i></tt>, like <tt>"<i>cooing</i>"</tt> and
+<tt>"<i>tattooist</i>"</tt>, you could use <tt>/ooi/</tt>. If you wanted to
+abstract this pattern, however, to match one or more <tt>"<i>o</i>"</tt>}s
+followed by an <tt>"<i>i</i>"</tt>, you'd have a problem.</p>
 
-You can invert character ranges so they match any character \textit{not}
-specified. For example, \verb"/[^cs]ow/" matches any character that isn't a
-\textit{c} or an \textit{s} followed by \textit{ow}, i.e.
-\textit{"acknowledge"}, \textit{"I said "ow"!}, and \textit{"bellow"}.
+<p>The solution is to suffix the part of the pattern that can be repeated with
+a <i>metacharacter</i> which specifies the type of repetition. A metacharacter
+is simply a character that has special significance in a regular expression.
+For example, the <tt>"<i>+</i>"</tt> metacharacter requires that what precedes
+it<span class="fn">In fact, it requires that the <i>atom</i> that precedes it
+  occurs one or more times, but this recipe is already too complex. If you
+  want this level of detail see <tt>:help pattern</tt> or a regular expression
+  book.</span> occurs either one or more times. For example, <tt>/o\+i/</tt>,
+matches one or more <tt>"<i>o</i>"</tt>s followed by an <tt>"<i>i</i>"</tt>:
+<tt><i>"abattoir</i>"</tt>, <tt>"<i>cooing</i>"</tt>, and
+<tt>"<i>oii</i>"</tt>.</p>
 
-Another concept of regexps is repetition. If you wanted to match strings
-containing consectutive \textit{o}s followed by an \textit{i}, like
-\textit{"cooing"} and \textit{"tattooist"}, you could use \verb"/ooi/". If
-you wanted to abstract this pattern, however, to match one or more \textit{o}s
-followed by an \textit{i}, you'd have a problem.
+<p>The <tt>"<i>*</i>"</tt> metacharacter represents any number of occurrences
+of the preceding character, so <tt>/o*i/</tt> matches
+<tt>"<i>zucchini</i>"</tt>, <tt>"<i>boating</i>"</tt>, and
+<tt>"<i>zooimg</i>"</tt>. This time the <tt>"<i>o</i>"</tt> is made optional.
+(Given that it starts the pattern it's actually unnecessary; <tt>/i/</tt> will
+match everything that it matches).</p>
 
-The solution is to precede the part of the pattern that can be repeated with a
-'metacharacter' which specifies the type of repetition. For example,
-\verb"/o\+i/", matches one or more \textit{o}s followed by an \textit{i}:
-\textit{"abattoir"}, \textit{"cooing"}, and \textit{"oii"}.  The \verb"*"
-metacharacter represents any number of ocuurences of the preceeding character,
-so \verb"/o*i/" matches \textit{"zucchini"}, \textit{"boating"}, and
-\textit{"zooimg"}. This time the \textit{o} is made optional. Given that it
-starts the pattern it's actually unenessary; \verb"/i/" will match everything
-that it matches. \todo{Explain properly} 
+<p>A more useful example is <tt>/[a-c]t*o\+i/</tt> which matches either
+<tt>"<i>a</i>"</tt>, <tt>"<i>b</i>"</tt>, or <tt>"<i>c</i>"</tt> followed by
+any number of <tt>"<i>t</i>"</tt>s, followed by at least one
+<tt>"<i>o</i>"</tt>, followed by an <tt>"<i>i</i>"</tt>. The following words
+satisfy the pattern: <tt>"<i>"tattooing</i>"</tt>, <tt>"<i>coins</i>"</tt>,
+and <tt>"<i>limboing</i>"</tt>.  It may not be intuitive that
+<tt>"<i>tattooing</i>"</tt> would match, so let's walk through it: The
+<tt>"<i>a</i>"</tt> satisfies <tt>/[a-c]/</tt>, the following two
+<tt>"<i>t</i>"</tt>s match <tt>/t*/</tt>, the following two
+<tt>"<i>o</i>"</tt>s match <tt>/o\+/</tt>, then the <tt>"<i>i</i>"</tt>
+matches <tt>/i/</tt>.</p>
 
-A more useful example is \verb"/[a-c]t*o\+i/" which matches either
-\textit{a}, \textit{b}, or \textit{c} followed by any number of \textit{t}s,
-followed by at least one \textit{o}, followed by an \textit{i}. The following
-words satisfy the pattern: \textit{"tattooing"}, \textit{"coins"}, and
-\textit{"limboing"}.  It may not be intutive that \textit{"tattooing"} would
-match, so let's walk through it: The \textit{a} satisfies \verb"/[a-c]/",
-the following two \textit{t}s match \verb"/t*/", the following two
-\textit{o}s match \verb"/o\+/", then the \textit{i} matches \verb"/i/".
+<p>A key concept to grasp here is that a string matches a regexp as long as a
+contiguous portion of it matches. In the example above the regexp looks at the
+first character of <tt>"<i>tattooing</i>"</tt> and tries applying the pattern
+to it. This fails because <tt>"t"</tt> is not a member of the character class
+<tt>[a-c]</tt>. So it moves on to the next letter and starts again, this time
+it matches up to <tt>"<i>i</i>"</tt>, as explained above, and because the
+pattern has now been exhausted, the rest of the string is ignored.</p>
 
-You can make a portion of the regexp optional (i.e. insiting that it matches 0
-or 1 times) with \verb"\=". You can generalise this with the
-\verb"\{min,max\}" notation which matches at least \textit{min} times, but no
-more than \textit{max} times. For example, \verb"/[^a-c][a-c]\{2,4\}/" matches
-\textit{"yachts"} (\textit{yac}), and \textit{"blabbed"} (\textit{labb}), but
-doesn't match \textit{"cabbage"}.
+<p>You can make a portion of the regexp optional (i.e. insisting that it
+matches 0 or 1 times) with <tt>\=</tt>. You can generalise this with the
+<tt>\{<var>min</var>,<var>max</var>\}</tt> notation which matches at least
+<var>min</var> times, but no more than <var>max</var> times. For example,
+<tt>/[^a-c][a-c]\{2,4\}/</tt> matches <tt>"<i>yachts</i>"</tt>
+(<tt>"<i>yac</i>"</tt>), and <tt>"<i>blabbed</i>"</tt>
+(<tt>"<i>labb</i>"</tt>), but doesn't match <tt>"<i>cabbage</i>"</tt>.</p>
 
-Like character ranges, alternation allows you to specify a list of
+<p>Like character ranges, alternation allows you to specify a list of
 alternatives that can match at a given point.  Whereas character ranges
 specify sets of characters, alternation is used for sets of strings. For
-example, \verb"/\(ing|ed\)/" matches the string \textit{ing} or the string
-\textit{ed}, e.g.  \textit{"simpered"}, and \textit{"attacking"}. If you used
-a character range here, e.g.  \verb"/[inged]/", the pattern would match any
-string that contained an \textit{i}, an \textit{n}, a \textit{g}, an
-\textit{e}, or a \textit{d}. i.e. it would match all the strings the
-alternation approach does, but also many, many more.
+example, <tt>/\(ing|ed\)/</tt> matches the string <tt>"<i>ing</i>"</tt> or the
+string <tt>"<i>ed</i>"</tt>, e.g.  <tt>"<i>simpered</i>"</tt>, and
+<tt>"<i>attacking</i>"</tt>. If you used a character range here, e.g.
+<tt>/[inged]/</tt>, the pattern would match any string that contained an
+<tt>"<i>i</i>"</tt>, an <tt>"<i>n</i>"</tt>, a <tt>"<i>g</i>"</tt>, an
+<tt>"<i>e</i>"</tt>, or a <tt>"<i>d</i>"</tt>. i.e. it would match all the
+strings the alternation approach does, but also many, many more.</p>
 
-All the patterns so far have been allowed to match at any point in the string.
-That is to say, before Vim gives up on a match it will try applying the
-pattern at every point in the text. You can change this behaviour by using
-anchors: \verb"^" matches the start of a line, while \verb"$" matches the end.
-So, \verb"/^\s\=\uo/" matches a line that begins with optional white space,
-which is followed by an uppercase letter, which is followed by an \textit{o}.
-The following strings will all match: \textit{" Popes are religious"},
-\textit{"Roman"}, and \textit{"Soviet Union"}.
+<p>All the patterns so far have been allowed to match at any point in the
+string.  That is to say, before Vim gives up on a match it will try applying
+the pattern at every point in the text. You can change this behaviour by using
+anchors: <tt>^</tt> matches the start of a line, while <tt>$</tt> matches the
+end.  So, <tt>/^\s\=\uo/</tt> matches a line that begins with optional white
+space, which is followed by an uppercase letter, which is followed by an
+<tt>"<i>o</i>"</tt>. The following strings will all match: <tt>"<i> Popes are
+    religious</i>"</tt>, <tt>"<i>Roman</i>"</tt>, and <tt>"<i>Soviet
+    Union</i>"</tt>.</p>
 
-You can combine the two anchors to require that the whole line matches the
-pattern. For example, \\\verb"/\^uo\(v|ma\).\+[rnt]\$/" will match \textit{"November"} and \textit{"Soviet"}, but will reject \textit{"Soviet
-Union"} or \textit{"During November"}.
+<p>You can combine the two anchors to require that the whole line matches the
+pattern. For example, <tt>/\^uo\(v|ma\).\+[rnt]\$/</tt> will match
+<tt>"<i>November</i>"</tt> and <tt>"<i>Soviet</i>"</tt>, but will reject
+<tt>"<i>Soviet Union</i>"</tt> or <tt>"<i>During November</i>"</tt>.</p>
 
-\subsection{Discussion}
+<h3>Discussion</h3>
 
-The features described above are common to most regexp implementations. Vim
+<p>The features described above are common to most regexp implementations. Vim
 offers some extensions, though, that users familiar with other regexp
-implementations may not be aware of.
+implementations may not be aware of.</p>
 
-By default regexps are case sensitive. That is to say \verb"/cow/" will not
-match \textit{"Cow"}. You can make all patterns ignore case with \texttt{:set
-ignorecase}. To change the case sensitivity for a particular pattern surround
-the relevant portions with \verb"\c" (to ignore case from
-this point on) and/or \verb"\C" to respect case from this
-point on. For example, \verb"/\ccow/" matches \textit{"cow"},
-\textit{"coW"}, and \textit{"Cow"}.  However,
-\verb"/\cco\Cw/" matches \textit{"COw"} and
-\textit{"cow"}, but not \textit{"COW"}. The \verb"\c" makes
-the \textit{co} case insentitive, then the \verb"\C" makes
-the \textit{w} case sensitive.  \todo{mention 'smartcase'?}
+<p>By default regexps are case sensitive. That is to say <tt>/cow/</tt> will not
+match <tt>"<i>Cow</i>"</tt>. You can make all patterns ignore case with <tt>:set
+  ignorecase</tt>. To change the case sensitivity for a particular pattern surround
+the relevant portions with <tt>\c</tt> (to ignore case from
+this point on) and/or <tt>\C</tt> to respect case from this
+point on. For example, <tt>/\ccow/</tt> matches <tt>"<i>cow</i>"</tt>,
+<tt>"<i>coW</i>"</tt>, and <tt>"<i>Cow</i>"</tt>.  However,
+<tt>/\cco\Cw/</tt> matches <tt>"<i>COw</i>"</tt> and
+<tt>"<i>cow</i>"</tt>, but not <tt>"<i>COW</i>"</tt>. The <tt>\c</tt> makes
+the <tt>"<i>co</i>"</tt> case insensitive, then the <tt>\C</tt> makes
+the <tt>"<i>w</i>"</tt> case sensitive.</p>
 
-Some characters in a regexp have a special significance and don't match
-themselves literally in the string. For example, \verb"/\^{}foo/" matches a
-line starting with \textit{foo}; it doesn't match
-\textit{"\textbackslash{}\^{}foo"}. To match a special character you need to
-precede it with a backslash, For example \verb"\^" matches \textit{\^},
-\verb"\$" matches \textit{\$}, \verb"\." matches \textit{.}, etc.  \todo{This
-is far too vague}
+<p>Some characters in a regexp have a special significance and don't match
+themselves literally in the string. For example, <tt>/^foo/</tt> matches a
+line starting with <tt>"<i>foo</i>"</tt>; it doesn't match
+<tt>"<i>^foo</i>"</tt>. To match a special character you need to
+precede it with a backslash, For example <tt>\^</tt> matches <tt>"<i>^</i>"</tt>,
+<tt>\$</tt> matches <tt>"<i>$</i>"</tt>, <tt>\.</tt> matches
+<tt>"<i>.</i>"</tt>, etc.</p>
 
-\todo{mention '\n'. How?}
+<p>Of particular note in Vim is <tt>\n</tt>, which matches a newline
+character, <tt>\r</tt> which matches a carriage return character. and
+<tt>\t</tt> which matches a <kbd>&lt;Tab&gt;</kbd>.</p>
 
-Vim supports backreferences which allow you to refer to part of a match later
-in the same match. For example, \verb"/\([a-z]\)\1/" matches a lowercase
+<p>Vim supports <i>backreferences</i> which allow you to refer to part of a match later
+in the same match. For example, <tt>/\([a-z]\)\1/</tt> matches a lowercase
 letter followed by the same character that just matched. This would match
-\textit{"zoom"}, and \textit{"seeing"}. The parenthesised portion of the
-pattern is a 'group', and the backreference (\verb"\{n}") refers to the
-\textit{n}'th group. So, \verb"/\([a-z]\)\([a-z]\)\2\1/" matches two lowercase
+<tt>"<i>zoom</i>"</tt>, and <tt>"<i>seeing</i>"</tt>. The parenthesised portion of the
+pattern is a <i>group</i>, and the backreference (<tt>\<var>n</var></tt>) refers to the
+<var>n</var><sup>th</sup> group. So, <tt>/\([a-z]\)\([a-z]\)\2\1/</tt> matches two lowercase
 letters, followed by the second one again, then the first one again.  This
-would match strings like \textit{"abba"}.
+matches strings like <tt>"<i>abba</i>"</tt>.</p>
