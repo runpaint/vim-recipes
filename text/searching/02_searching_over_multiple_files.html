@@ -1,0 +1,88 @@
+<h3 id="searching-over-multiple-files">Searching Over Multiple Files</h3>
+
+<h4>Problem</h4>
+
+<p>You want to search for a particular term in a collection of files. For
+example, you want to find the files in your project that mention <i>Mr J.
+  Random</i>.</p>
+
+<h4>Solution</h4>
+
+<p>Use the <tt>:vimgrep</tt> command: <tt>:vimgrep /<var>pattern</var>/
+  <var>[flags]</var> <var>file0</var> <var>file1</var>
+  <var>fileN</var></tt>.</p>
+
+<h4>Discussion</h4>
+
+<p>In its simplest form, <tt>vimgrep</tt> takes a word to search for, and a
+list of files in which to do so. So, to search for <i>grapes</i> in
+<tt>shopping-list.txt</tt> you'd run <tt>:vimgrep /grapes/
+  shopping-list.txt</tt>.</p>
+
+<p>You can name as many files as you like, but you'll probably want to use
+<i>shell globbing</i>, see the sidebar for details, instead to specify groups
+of files.  Searching for <i>grapes</i> in all <tt>*.txt</tt> files could be
+accomplished with: <tt>:vimgrep /grapes/ *.txt</tt>. </p>
+
+<blockquote class="callout">
+
+  <h5>Globbing</h5>
+
+  <p>A number of Vim commands support filename <i>globbing</i>. This is a way of
+  selecting a group of files by specifying a pattern matching their names. For
+  example, <tt>*.txt</tt> refers to all files in the current directory whose
+  names end in <i>.txt</i>. The <tt>*</tt> is a <i>wildcard</i> and means
+  <i>anything</i>.</p> 
+
+  <p><tt>**</tt> recursively matches directories below the current one, so
+  <tt>**/*.txt</tt> searches recursively downwards from the current directory
+  for filenames ending in <i>.txt</i>.</p> 
+
+  <p>If your operating system supports additional globbing patterns, you can use
+  these as well.</p> 
+
+</blockquote>
+
+<p>You're not restricted to searching on simple words, however. You can use
+any of Vim's <a href="#creating-regular-expressions">regular expressions</a>
+between the forward slashes. Searching <tt>/tmp/bar.txt</tt> and
+<tt>~/foo.tex</tt> for lines starting with numbers: <tt>:vimgrep /^[0-9]/
+  /tmp/bar.txt ~/foo.tex</tt>.</p> 
+
+<p><tt>vimgrep</tt> jumps to the first match it finds. To jump to the next match
+use <kbd>:cn</kbd>; use <kbd>:cN</kbd> for the previous.</p>
+
+<blockquote class="tip">
+  <p>If you use <tt>:grep</tt> instead of <tt>:vimgrep</tt> an external
+  <tt>grep</tt>-like utility is used to perform the search. The program used
+  is the value of <tt>&amp;grepprg</tt>.</p>
+  <p>A good choice is Andy Lester's <a
+    href="http://betterthangrep.com/"><i>ack</i></a> which can be used with
+  <tt>set grepprg=ack</tt> and <tt>set grepformat=%f:%l:%m</tt>.</p>
+</blockquote>  
+
+<p>The <kbd>j</kbd> flag inhibits the jumpiness (<i>Ritalin</i> for Vim);
+simply saving the search results to the <i>quickfix list</i> (see sidebar for
+details) and leaving your cursor where it was.</p>
+
+<p>The <kbd>g</kbd> flag controls how lines matching the pattern multiple times are
+handled. If not present (by default), only the first match of a line is shown;
+otherwise, every occurrence of the pattern is regarded as a separate match.</p>
+
+<p>The flags can be combined in either order.</p>
+
+<blockquote class="callout">
+
+  <h5>Quick Fix List</h5>
+
+  <p>The <i>quick fix</i> list mentioned above is a Vim concept for creating a
+  temporary index of positions in a file. <tt>vimgrep</tt> stores its results (a
+  file name, a position within that file, and the matched text) in the quick fix
+  list.</p>
+
+  <p>To view the quick fix list (i.e. the results of the last search) use
+  <tt>:cl[ist]</tt>. The results are numbered, so you can jump to a specific one with
+  <tt>:cc <var>number</var></tt>.</p>
+
+  <p>For more information see <tt>:help quickfix</tt>.</p>
+</div>
