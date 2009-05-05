@@ -1,28 +1,29 @@
-<h3>Creating Keyboard Shortcuts with Key Mappings</h3>
+<h3 id="creating-keyboard-shortcuts-with-key-mappings">Creating Keyboard
+  Shortcuts with Key Mappings</h3>
 
 <h4>Problem</h4>
 
-<p>You'd like to execute a command, or series thereof, with a keyboard shortcut
-rather than continually type it in. Or, you'd like to change an existing
-keyboard shortcut so that it does something more useful.</p>
+<p>You'd like to execute a command, or series thereof, with a keyboard
+shortcut rather than continually type it in. Or, you'd like to change an
+existing keyboard shortcut so that it does something more useful.</p>
 
 <p>For example, you use the <kbd>&lt;Space&gt;</kbd> key to page down in other
 applications, and you'd like to do the same in Vim. Or, you regularly reformat
-paragraphs with <kbd>gqap</kbd> <span class="todo">link recipe</span>, but
-would prefer to simply hit <kbd>Q</kbd>.</p>
+paragraphs with <kbd>gqap</kbd>, but would prefer to simply hit
+<kbd>Q</kbd>.</p>
 
 <h4>Solution</h4>
 
-<p>Use "key mappings". A map is simply a key combination followed by another key
-combination. When you enter the first key combination Vim acts as if you
-entered the second.</p>
+<p>Use <i>key mappings</i>. A map is simply a key combination followed by
+another key combination. When you enter the first key combination Vim acts as
+if you entered the second.</p>
 
-<p>For example, to remap <kbd>&lt;Space&gt;</kbd> to <kbd>&lt;PageDown&gt;</kbd>
-you execute <tt>:map &lt;Space&gt; &lt;PageDown&gt;</tt>. The <tt>map</tt>
-command creates a mapping for Normal, Visual, and Operator Pending <span
-class="todo">footnote with explanation</span> mode; i.e. if you press
-<kbd>&lt;Space&gt;</kbd> in Insert mode this mapping, thankfully, has no
-effect.</p>
+<p>For example, to remap <kbd>&lt;Space&gt;</kbd> to
+<kbd>&lt;PageDown&gt;</kbd> you execute <tt>:map &lt;Space&gt;
+  &lt;PageDown&gt;</tt>. The <tt>map</tt> command creates a mapping for
+<i>Normal</i>, <i>Visual</i>, and <i>Operator
+  Pending</i> mode; i.e. if you press <kbd>&lt;Space&gt;</kbd> in
+<i>Insert</i> mode this mapping, thankfully, has no effect.</p>
 
 <p>Mapping <kbd>Q</kbd> to <kbd>gqap</kbd> is similarly straight forward:
 <tt>:nmap Q gqap</tt>. Unlike <tt>map</tt>, <tt>:nmap</tt> only takes effect
@@ -44,29 +45,24 @@ the current paragraph. The Visual mode mapping is <tt>:vmap Q gq</tt>.</p>
 
 <h4>Discussion</h4>
 
-<p>Keyboard mapping is yet another way to save valuable keystrokes. If you find
-yourself executing a command repeatedly create a mapping. It's also useful for
-creating more sensible aliases for existing keyboard shortcuts that you can
-never quite remember.</p>
+<p>Keyboard mapping is yet another way to save valuable keystrokes. If you
+find yourself executing a command repeatedly create a mapping. It's also
+useful for creating more sensible aliases for existing keyboard shortcuts that
+you can never quite remember.</p>
 
 <p>It's generally recommended to map the function keys
 (<kbd>&lt;F1&gt;</kbd>-<kbd>&lt;F12&gt;</kbd>), as well as their shifted
 counterparts (e.g.  <kbd><kbd>&lt;Shift&gt;</kbd>-<kbd>&lt;F3&gt;</kbd></kbd>)
-because they're not used by Vim <span class="fn"><kbd>&lt;F1&gt;</kbd>
-<i>is</i> used for <tt>:help</tt> but pretty useless given that you'd normally
-use <tt>:help <var>topic</var></tt>.</span>. As long as you use a combination
-that doesn't interfere with the commands you do use, you're free to use
-whatever you want, though.</p>
+because they're not used by Vim<span class="fn"><kbd>&lt;F1&gt;</kbd>
+  <i>is</i> used for <tt>:help</tt> but pretty useless given that you'd
+  normally use <tt>:help <var>topic</var></tt>.</span>. As long as you use a
+combination that doesn't interfere with the commands you do use, you're free
+to use whatever you want, though.</p>
 
 <p>Before you create a mapping you might like to check what, if anything, it's
 currently being used for. You can do this by executing <tt>:help
-<var>key</var></tt>, e.g. <tt>:help &lt;F1&gt;</tt> will show that Vim maps it
-to <tt>:help</tt>. If you want to see the user-defined mappings (whether set
-by you or a plugin) call the <tt>:map</tt> command with no arguments. This
+  <var>key</var></tt>, e.g. <tt>:help &lt;F1&gt;</tt> will show that Vim maps
+it to <tt>:help</tt>. If you want to see the user-defined mappings (whether
+set by you or a plugin) call the <tt>:map</tt> command with no arguments. This
 works will the mode-specific map commands outlined above, too, so
 <tt>:imap</tt> will show Insert mode mappings.</p>
-
-<p><span class="todo">Look into map vs remap, etc. What exactly does this do?</span></p>
-
-<p><span class="todo">There's an awful lot more to say here; <tt>:help map</tt>
-is huge</span></p>

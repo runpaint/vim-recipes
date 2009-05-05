@@ -1,41 +1,37 @@
-<h3>Extending Vim with Scripts and Plugins</h3>
+<h3 id="extending-vim-with-scripts-and-plugins">Extending Vim with Scripts and
+  Plugins</h3>
 
 <h4>Problem</h4>
 
 <p>You want to add functionality to Vim, preferably without having to write it
 yourself.</p>
 
-<p><span class="todo">Pick a script to use as an example. It should be mature,
-generally useful, and easy to install...</span></p>
-
 <h4>Solution</h4>
 
-<p>Browse <a href="http://www.vim.org/scripts/">Vim Scripts</a> to find a script
-that meets your needs. Its 'type' should be <i>utility</i> or <i>ftplugin</i>.
-Download the latest version to your computer. If the plugin comes with its own
-installation instructions, use those; otherwise, read on.</p>
+<p>Browse <a href="http://www.vim.org/scripts/">Vim Scripts</a> to find a
+script that meets your needs. Its 'type' should be <i>utility</i> or
+<i>ftplugin</i>.  Download the latest version to your computer. If the plugin
+comes with its own installation instructions, use those; otherwise, read
+on.</p>
 
-<p>If the file you've downloaded has a name ending with <i>.vim</i> you usually
-just need to save it in the right directory and then its ready to use. For
-scripts labelled <i>utility</i>, also known as <i>global plugins</i>, this
+<p>If the file you've downloaded has a name ending with <tt>.vim</tt> you
+usually just need to save it in the right directory and then its ready to use.
+For scripts labelled <i>utility</i>, also known as <i>global plugins</i>, this
 directory is <tt>$VIMHOME/plugin</tt>; for those labeled <i>ftplugin</i>, also
 known as <i>filetype plugins</i>,  the last component of this path is
 <i>ftplugin</i> instead. If this directory does not already exist you need to
 create it. The sidebar lists the locations of the plugin directories on
 various operating systems.</p>
 
-<p>If the file is compressed (ending with <i>.zip</i> or <i>.tar.gz</i>), try
-uncompressing it in the parent directory of the applicable plugin directory.
-For example, on Linux this is <tt>~/.vim/</tt>.</p>
+<p>If the file is compressed (ending with <tt>.zip</tt> or <tt>.tar.gz</tt>),
+try uncompressing it in the parent directory of the applicable plugin
+directory.  For example, on Linux this is <tt>~/.vim/</tt>.</p>
 
 <p>Now you should just be able to start Vim and have the plugin work.</p>
 
-<div class="callout">
+<blockquote class="callout">
 
 <h5>Plugin Directory Location</h5>
-
-<span class="todo">Make this clearer. For instance, how do
-Windows users find \$HOME?</span>
 
 <b>Note</b>: For filetype plugins, the last portion of
 these paths is <i>ftplugin</i>; not <i>plugin</i>.
@@ -55,20 +51,20 @@ these paths is <i>ftplugin</i>; not <i>plugin</i>.
   <dd><tt>Choices:vimfiles.plugin</tt></dd>
 </dl>
 
-</div>
+</blockquote>
 
 <h5>Plugin Types</h5>
 
-<p>Plugins can be either <i>global</i> or filetype-specific. Global plugins are
-loaded for every file you open; filetype-specific plugins are only loaded for
-certain filetypes.</p>
+<p>Plugins can be either <i>global</i> or filetype-specific. Global plugins
+are loaded for every file you open; filetype-specific plugins are only loaded
+for certain filetypes.</p>
 
 <h4>Discussion</h4>
 
-<p>As complicated as the above instructions may sound, it's generally trivial to
-install a plugin. For example, on Linux to install the <a
-href="http://www.vim.org/scripts/script.php?script_id=1018"><i>potwiki</i>
-plugin</a>:</p>
+<p>As complicated as the above instructions may sound, it's generally trivial
+to install a plugin. For example, on Linux to install the <a
+  href="http://www.vim.org/scripts/script.php?script_id=1018"><i>potwiki</i>
+  plugin</a>:</p>
 
 <pre>
 <samp>$ </samp><kbd>mkdir -p ~/.vim/plugin</kbd> 
@@ -77,11 +73,12 @@ http://www.vim.org/scripts/download_script.php?src_id=9316 -O
 ~/.vim/plugin/potwiki.vim</kbd>
 </pre>
 
-<p>(If your plugin directory already exists, the first command is superflous.)</p>
+<p>(If your plugin directory already exists, the first command is
+superfluous.)</p>
 
 <p>Vim 7 added support for a new plugin installation method called
 <i>vimball</i>.  Vimballs make plugin installation and configuration easier,
-and are a definite improvement over the previous methods. They're not in wide
+and are a slight improvement over the previous methods. They're not in wide
 use yet, but if you find a plugin distributed in this way (they have a
 <i>*.vba</i> extension), try following the steps below:</p>
 
