@@ -37,14 +37,14 @@ conceivable way, and many more aside.</p>
 specify options on the command line, as shown in the example above. If you
 want to specify a lot of options, put them into a config file, and point
 <tt>tidy</tt> to it: <tt>tidy
-  --config <var>file</var></tt>. At a minimumn you probably want to use:</p>
+  --config <var>file</var></tt>. At a minimum you probably want to use:</p>
 
 <pre><code>
 :setlocal equalprog=tidy\ -utf8\ --indent\ yes\ -q\ -f\ /tmp/err
 </code></pre>
 
 <p>Then you can reformat your file with <kbd>1G=G</kbd>. One caveat is that
-this won't work correctly for reformating a specific section of the file. You
+this won't work correctly for reformatting a specific section of the file. You
 can use the <tt>--show-body-only true</tt> option if you want to be able to do
 this, but like many formatters of markup languages, Tidy doesn't perform as
 well on fragments because of lack of context.</p>
