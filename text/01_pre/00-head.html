@@ -28,111 +28,102 @@
 	</div-->
  <div class="toc">
     
-   <ul class="level3">
-     <li class='level3'><a href="#introduction"><span>Introduction</span></a></li>
-     <li class='level3'><a href="#conventions"><span>Conventions</span></a></li>
-     <li class='level3'><a
-       href="#contributing"><span>Contributing</span></a></li>
-     <li class='section'><a href="#basics"><span>Basics</span></a> 
+   <ul id="toc">
+     <li><a href="#introduction">Introduction</a></li>
+     <li><a href="#conventions">Conventions</a></li>
+     <li><a href="#contributing">Contributing</a></li>
+     <li class='section'><a href="#basics">Basics</a> 
      <ul class="inline-list">
-       <li class='level3'><a
-         href="#choosing-the-right-mode"><span>Choosing the Right Mode</span></a></li>
-       <li class='level3'><a href="#basic-navigation"><span>Basic Navigation</span></a></li>
-       <li class='level3'><a href="#opening-files"><span>Opening Files</span></a></li>
-       <li class='level3'><a href="#saving-a-file"><span>Saving a File</span></a></li>
-       <li class='level3'><a href="#quitting-vim"><span>Quitting Vim</span></a></li>
-       <li class='level3'><a href="#deleting-text"><span>Deleting Text</span></a></li>
-       <li class='level3'><a
-         href="#visually-selecting-text"><span>Visually Selecting Text</span></a></li>
-       <li class='level3'><a
-         href="#copying-cutting-pasting"><span>Copying, Cutting, and Pasting</span></a></li>
-       <li class='level3'><a href="#configuring-vim"><span>Configuring Vim</span></a></li>
+       <li><a
+         href="#choosing-right-mode">Choosing the Right Mode</a></li>
+       <li><a href="#basic-navigation">Basic Navigation</a></li>
+       <li><a href="#opening-files">Opening Files</a></li>
+       <li><a href="#saving-a-file">Saving a File</a></li>
+       <li><a href="#quitting-vim">Quitting Vim</a></li>
+       <li><a href="#deleting-text">Deleting Text</a></li>
+       <li><a
+         href="#visually-selecting-text">Visually Selecting Text</a></li>
+       <li><a
+         href="#copying-cutting-pasting">Copying, Cutting, and Pasting</a></li>
+       <li><a href="#configuring-vim">Configuring Vim</a></li>
      </ul></li>
-     <li class='level2'><a href="#editing"><span>Editing</span></a>
-     <ul class="level3">
-       <li class='level3'><a href="#indenting-lines"><span>Indenting Lines</span></a></li>
-       <li class='level3'><a href="#selecting-text-with-motions"><span>Selecting Text with Motions</span></a></li>
-       <li class='level3'><a href="#repeating-commands"><span>Repeating Commands</span></a></li>
-       <li class='level3'><a href="#changing-the-case-of-text"><span>Changing the Case of Text</span></a></li>
-       <li class='level3'><a href="#sorting-text"><span>Sorting Text</span></a></li>
-       <li class='level3'><a href="#executing-external-commands"><span>Executing External Commands</span></a></li>
-       <li class='level3'><a href="#managing-sessions"><span>Managing Sessions</span></a></li>
-       <li class='level3'><a
-         href="#formatting-with-an-external-program"><span>Formatting with an
-           External Program</span></a></li></ul></li>
-     <li class='level2'><a href="#typing"><span>Typing</span></a>
-     <ul class="level3">
-       <li class='level3'><a href="#spell-checking"><span>Spell Checking</span></a></li>
-       <li class='level3'><a href="#using-templates"><span>Using Templates</span></a></li>
-       <li class='level3'><a href="#undoing-mistakes"><span>Undoing Mistakes</span></a></li>
-       <li class='level3'><a href="#auto-completing-text"><span>Auto-Completing Text</span></a></li>
-       <li class='level3'><a href="#abbreviating-common-strings"><span>Abbreviating Common Strings</span></a></li>
-       <li class='level3'><a href="#inserting-accented-or-foreign-characters"><span>Inserting Accented or “Foreign” Characters</span></a></li>
-       <li class='level3'><a href="#opening-the-file-name-beneath-the-cursor"><span>Opening the File
-           Name Beneath the Cursor</span></a></li></ul></li>
-     <li class='level2'><a href="#navigation"><span>Navigation</span></a>
-     <ul class="level3">
-       <li class='level3'><a href="#navigating-text-files"><span>Navigating Text Files</span></a></li>
-       <li class='level3'><a href="#navigating-source-code"><span>Navigating Source Code</span></a></li>
-       <li class='level3'><a href="#navigating-the-viewport"><span>Navigating the Viewport</span></a></li>
-       <li class='level3'><a href="#navigating-buffers"><span>Navigating Buffers</span></a></li>
-       <li class='level3'><a href="#navigating-tabs"><span>Navigating Tabs</span></a></li>
-       <li class='level3'><a href="#manually-creating-folds"><span>Manually Creating Folds</span></a></li>
-       <li class='level3'><a href="#navigating-folds"><span>Navigating Folds</span></a></li>
-       <li class='level3'><a href="#splitting-the-screen"><span>Splitting the Screen</span></a></li>
-       <li class='level3'><a href="#navigating-marks"><span>Navigating Marks</span></a></li>
-       <li class='level3'><a href="#navigating-tags"><span>Navigating Tags</span></a></li>
-       <li class='level3'><a href="#bookmarking-lines-with-visible
-         markers-signs"><span>Bookmarking Lines with Visible
-           Markers (</span></a><a href="#bookmarking-lines-with-visible
-         markers-signs"><span>Signs</span></a><a href="#bookmarking-lines-with-visible
-         markers-signs"><span>)</span></a></li></ul></li>
-     <li class='level2'><a href="#gui-gvim"><span>GUI</span></a><a href="#gui-gvim"><span> (GVim)</span></a>
-     <ul class="level3">
-       <li class='level3'><a href="#changing-the-font"><span>Changing the Font</span></a></li>
-       <li class='level3'><a href="#maximising-screen-space"><span>Maximising Screen Space</span></a></li>
-       <li class='level3'><a
-         href="#creating-menus-and-toolbar-buttons"><span>Creating Menus and
-           Toolbar Buttons</span></a></li></ul></li>
-     <li class='level2'><a href="#searching"><span>Searching</span></a>
-     <ul class="level3">
-       <li class='level3'><a href="#searching-for-any-word"><span>Searching for any Word</span></a></li>
-       <li class='level3'><a href="#searching-over-multiple-files"><span>Searching Over Multiple Files</span></a></li>
-       <li class='level3'><a href="#searching-and-replacing"><span>Searching and Replacing</span></a></li>
-       <li class='level3'><a href="#searching-for-the-word-beneath-the
-         cursor"><span>Searching for the Word Beneath the
-           Cursor</span></a></li>
-       <li class='level3'><a href="#creating-regular-expressions"><span>Creating Regular Expressions</span></a></li>
-       <li class='level3'><a href="#searching-the-vim-documentation"><span>Searching the Vim Documentation</span></a></li>
-       <li class='level3'><a
-         href="#looking-up-documentation-for-the-keyword-under-the-cursor"><span>Looking
+     <li class='section'><a href="#editing">Editing</a>
+     <ul class="inline-list">
+       <li><a href="#indenting-lines">Indenting Lines</a></li>
+       <li><a href="#selecting-text-with-motions">Selecting Text with Motions</a></li>
+       <li><a href="#repeating-commands">Repeating Commands</a></li>
+       <li><a href="#changing-case-of-text">Changing the Case of Text</a></li>
+       <li><a href="#sorting-text">Sorting Text</a></li>
+       <li><a href="#executing-external-commands">Executing External Commands</a></li>
+       <li><a href="#managing-sessions">Managing Sessions</a></li>
+       <li><a
+         href="#formatting-with-an-external-program">Formatting with an
+           External Program</a></li></ul></li>
+     <li class='section'><a href="#typing">Typing</a>
+     <ul class="inline-list">
+       <li><a href="#spell-checking">Spell Checking</a></li>
+       <li><a href="#using-templates">Using Templates</a></li>
+       <li><a href="#undoing-mistakes">Undoing Mistakes</a></li>
+       <li><a href="#auto-completing-text">Auto-Completing Text</a></li>
+       <li><a href="#abbreviating-common-strings">Abbreviating Common Strings</a></li>
+       <li><a href="#inserting-accented-characters">Inserting Accented or “Foreign” Characters</a></li>
+       <li><a href="#opening-the-file-name-beneath-the-cursor">Opening the File
+           Name Beneath the Cursor</a></li></ul></li>
+     <li class='section'><a href="#navigation">Navigation</a>
+     <ul class="inline-list">
+       <li><a href="#navigating-text-files">Navigating Text Files</a></li>
+       <li><a href="#navigating-source-code">Navigating Source Code</a></li>
+       <li><a href="#navigating-the-viewport">Navigating the Viewport</a></li>
+       <li><a href="#navigating-buffers">Navigating Buffers</a></li>
+       <li><a href="#navigating-tabs">Navigating Tabs</a></li>
+       <li><a href="#manually-creating-folds">Manually Creating Folds</a></li>
+       <li><a href="#navigating-folds">Navigating Folds</a></li>
+       <li><a href="#splitting-screen">Splitting the Screen</a></li>
+       <li><a href="#navigating-marks">Navigating Marks</a></li>
+       <li><a href="#navigating-tags">Navigating Tags</a></li>
+       <li><a href="#bookmarking-lines-with-visible-markers">Bookmarking Lines with Visible Markers (Signs)</a></li></ul></li>
+     <li class='section'><a href="#gui">GUI</a>
+     <ul class="inline-list">
+       <li><a href="#changing-the-font">Changing the Font</a></li>
+       <li><a href="#maximising-screen-space">Maximising Screen Space</a></li>
+       <li><a
+         href="#creating-menus-toolbar-buttons">Creating Menus and
+           Toolbar Buttons</a></li></ul></li>
+     <li class='section'><a href="#searching">Searching</a>
+     <ul class="inline-list">
+       <li><a href="#searching-for-any-word">Searching for any Word</a></li>
+       <li><a href="#searching-over-multiple-files">Searching Over Multiple Files</a></li>
+       <li><a href="#searching-and-replacing">Searching and Replacing</a></li>
+       <li><a href="#searching-for-word-beneath-cursor">Searching for the Word Beneath the
+           Cursor</a></li>
+       <li><a href="#creating-regular-expressions">Creating Regular Expressions</a></li>
+       <li><a href="#searching-vim-documentation">Searching the Vim Documentation</a></li>
+       <li><a
+         href="#looking-up-documentation-for-keyword-under-cursor">Looking
            up Documentation for the Keyword Under the
-           Cursor</span></a></li></ul></li>
-     <li class='level2'><a href="#display"><span>Display</span></a>
-     <ul class="level3">
-       <li class='level3'><a href="#working-with-long-lines"><span>Working with Long Lines</span></a></li>
-       <li class='level3'><a href="#displaying-line-numbers"><span>Displaying Line Numbers</span></a></li>
-       <li class='level3'><a href="#working-with-remote-files"><span>Working with Remote Files</span></a></li>
-       <li class='level3'><a href="#changing-the-status-line"><span>Changing the Status Line</span></a></li>
-       <li class='level3'><a href="#redefining-highlight-groups"><span>Redefining Highlight Groups</span></a></li>
-       <li class='level3'><a href="#modifying-the-cursor"><span>Modifying the
-           Cursor</span></a></li></ul></li>
-     <li class='level2'><a href="#extending"><span>Extending</span></a>
-     <ul class="level3">
-       <li class='level3'><a href="#creating-keyboard
-         shortcuts-with-key-mappings"><span>Creating Keyboard
-           Shortcuts with Key Mappings</span></a></li>
-       <li class='level3'><a href="#chaging-the-colour-scheme"><span>Chaging the Colour Scheme</span></a></li>
-       <li class='level3'><a href="#creating-command-line-commands"><span>Creating Command-Line Commands</span></a></li>
-       <li class='level3'><a href="#extending-vim-with-scripts-and
-         plugins"><span>Extending Vim with Scripts and
-           Plugins</span></a></li></ul></li>
-     <li class='level2'><a href="#other-uses-of-vim"><span>Other Uses of Vim</span></a>
-     <ul class="level3">
-       <li class='level3'><a href="#browsing-directories"><span>Browsing Directories</span></a>
-       <ul>
-         <li class='level3'><a href="#using-vim-as-a-file-manager"><span>Using Vim as a File Manager</span></a></li>
-         <li class='level3'><a href="#viewing-differences-between-files"><span>Viewing Differences Between Files</span></a></li></ul></li>
+           Cursor</a></li></ul></li>
+     <li class='section'><a href="#display">Display</a>
+     <ul class="inline-list">
+       <li><a href="#working-with-long-lines">Working with Long Lines</a></li>
+       <li><a href="#displaying-line-numbers">Displaying Line Numbers</a></li>
+       <li><a href="#working-with-remote-files">Working with Remote Files</a></li>
+       <li><a href="#changing-status-line">Changing the Status Line</a></li>
+       <li><a href="#redefining-highlight-groups">Redefining Highlight Groups</a></li>
+       <li><a href="#modifying-cursor">Modifying the
+           Cursor</a></li></ul></li>
+     <li class='section'><a href="#extending">Extending</a>
+     <ul class="inline-list">
+       <li><a href="#creating-keyboard-shortcuts-with-key-mappings">Creating Keyboard
+           Shortcuts with Key Mappings</a></li>
+       <li><a href="#changing-colour-scheme">Changing the Colour Scheme</a></li>
+       <li><a href="#creating-command-line-commands">Creating Command-Line Commands</a></li>
+       <li><a href="#extending-vim-with-scripts-plugins">Extending Vim with Scripts and
+           Plugins</a></li></ul></li>
+     <li class='section'><a href="#other-uses-vim">Other Uses of Vim</a>
+     <ul class="inline-list">
+       <li><a href="#browsing-directories">Browsing Directories</a></li>
+       <li><a href="#using-vim-as-file-manager">Using Vim as a File Manager</a></li>
+       <li><a href="#viewing-differences-between-files">Viewing Differences Between Files</a></li></ul></li>
      </ul>
 
   </div>
