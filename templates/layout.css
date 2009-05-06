@@ -185,8 +185,8 @@ div.backcover {
 	page: cover; 
 	position: absolute;
 	width: 9.25in; height: 7in;
-    left: 0; top: 0;
-    z-index: -1;
+  left: 0; top: 0;
+  z-index: -1;
 }
 
 /* the front cover; this code is probably not very reusable by other books */
@@ -203,41 +203,6 @@ div.titlepage p, div.halftitlepage p {
   margin: 0; padding: 0;
 }
 
-
-/* TOC */
-
-ul.toc, ul.toc ul { 
-  list-style-type: none;
-  margin: 0; padding: 0;
-}
-ul.toc ul {
-  margin-left: 1em;
-  font-weight: normal;
-}
-ul.toc > li { 
-  font-weight: bold;
-  margin-bottom: 0.5em;
-}
-ul.toc a::after {
-  content: leader('.') target-counter(attr(href), page);
-  font-style: normal;
-}
-ul.toc > li.frontmatter a::after {
-  content: leader('.') target-counter(attr(href), page, lower-roman);
-  font-style: normal;
-}
-ul.toc > li.endmatter a::after {
-  content: leader('.') target-counter(attr(href), page);
-  font-style: normal;
-}
-ul.toc > li.chapter::before {
-  content: "Chapter " counter(toc-chapter, decimal);
-  display: block;
-  margin: 1em 0 0.1em -2.5cm;
-  font-weight: normal;
-  counter-increment: toc-chapter;
-  page-break-after: avoid;
-}
 
 /* chapter numbers */
 
