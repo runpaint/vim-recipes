@@ -50,6 +50,10 @@ Acknowledgements & Inspirations
 "Unicode Support in HTML, Fonts, and Web Browsers" ....... http://alanwood.net/unicode/
 */
 
+/* The portions of this stylesheet _not_ derived from Pilgrim's come from
+ * http://www.alistapart.com/articles/boom or my own fevered imagination. ;-)
+*/
+
 /* typography */
 body,.w a{font:medium 'Gill Sans','Gill Sans MT',Corbel,Helvetica,Jara,'Nimbus Sans L',sans-serif;line-height:1.75;word-spacing:0.1em}
 pre,kbd,samp,code,var{font-family:Consolas,'Andale Mono',Monaco,'Liberation Mono','Bitstream Vera Sans Mono','DejaVu Sans Mono',monospace;font-size:medium;line-height:1.75;word-spacing:0}
@@ -199,18 +203,18 @@ dt.compact {
 dd.compact {
     display:inline;
 }
-/*dd:before {
-  content: ' - '
-} */ 
-  li a:link,a:hover,a,a:visited {
+ul#toc {
+  list-style: none;
+}  
+ul#toc li a:link,a:hover,a,a:visited {
     border-bottom: 0;
     color: black;
     text-decoration: none;
   }  
-  ul a::after {
+ul#toc ul a::after {
     content: leader('.') target-counter(attr(href), page);
   }
-ul.inline-list {
+ul#toc ul.inline-list {
   margin-bottom: 0;
   border-bottom: 0;
   margin-top: 0;
@@ -218,33 +222,6 @@ ul.inline-list {
   margin-left: 2%;
   list-style: none;
 }
-li.section > a:link {
+ul#toc li.section > a:link {
   font-size: large;
 }  
-/*
-.toc ul {
-  margin: auto;
-}  
-li.section {
-  font-size: large;
-  color: black;
-  list-style: none;
-}  
-li.section > a {
-  border-bottom: 0;
-  color: black;
-}  
-ul.inline-list {
-  display: inline;
-}
-ul.inline-list > li > a {
-  border-bottom: 0;
-  color: black;
-}
-ul.inline-list > li {
-  display: inline;
-}
-ul.inline-list > li:after {
-  content: ' \00a0 '
-} 
-*/ 
