@@ -186,7 +186,6 @@ h2,h3 { page-break-before: always }
     border-top: thin solid black;
     padding-top: 0.3em;
     margin-top: 0.6em;
-    margin-left: 30%;
   }
 }
 /*dl {
