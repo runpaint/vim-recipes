@@ -168,7 +168,7 @@ pre {  margin: 1em 1.3em; color: #600; }
 /* which section uses which named page */
 
 div.halftitlepage, div.titlepage, div.imprint, div.dedication { page: blank }
-div.foreword, div.toc, div.preface { page: frontmatter }
+div.frontmatter, div.foreword, div.toc, div.preface { page: frontmatter }
 
 
 /* page breaks */
