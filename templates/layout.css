@@ -55,6 +55,7 @@ pre {  margin: 1em 1.3em; color: #600; }
     border-top: thin solid black;
     padding-top: 0.3em;
     margin-top: 0.6em;
+    margin-left: 3%;
   }
 }
 
@@ -206,12 +207,14 @@ div.titlepage p, div.halftitlepage p {
 
 div.chapter h1 { counter-increment: chapter }
 
+
 h1::before {
   white-space: pre;
   margin-left: -2.5cm;
   font-size: 50%;
   content: "\B0  \B0  \B0  \B0  \B0 \A";  /* ornaments */
-}
+} 
+
 
 div.chapter h1::before { content: "Chapter " counter(chapter) " \A"; }
 
