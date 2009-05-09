@@ -211,7 +211,10 @@ ul#toc li a:link,a:hover,a,a:visited {
   }  
 ul#toc ul a::after {
     content: leader('.') target-counter(attr(href), page);
-  }
+}
+li.frontmatter > a::after {
+    content: leader('.') target-counter(attr(href), page, lower-roman);
+}
 ul#toc ul.inline-list {
   margin-bottom: 0;
   border-bottom: 0;
