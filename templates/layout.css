@@ -11,19 +11,19 @@ body {
   margin: 0 0 0 13%;
 }
 
-h1, h2, h3, h4, h5, h6 { 
+h2, h3, h4, h5, h6 { 
   font-family: "Gill Sans", sans-serif;
   margin: 2em 0 0.5em 0;
   page-break-after: avoid;
 } 
 
-h1 { 
+/*h1 { 
 	page-break-before: always;
   padding: 2em 0 2em 0;
   margin: 0;
   font-size: 2.4em;
   font-weight: 900;
-}
+}*/
 
 h2 { 
   font-size: 1.2em;
@@ -167,7 +167,7 @@ pre {  margin: 1em 1.3em; color: #600; }
 
 /* which section uses which named page */
 
-div.frontcover, div.halftitlepage, div.titlepage, div.imprint, div.dedication { page: blank }
+div.halftitlepage, div.titlepage, div.imprint, div.dedication { page: blank }
 div.foreword, div.toc, div.preface { page: frontmatter }
 
 
@@ -193,7 +193,6 @@ div.backcover {
 
 /* titlepage, halftitlepage */
 
-div.titlepage h1, div.halftitlepage h1 { margin-bottom: 2em; }
 div.titlepage h2, div.halftitlepage h2 { font-size: 1.2em; margin-bottom: 3em; }
 div.titlepage h3, div.halftitlepage h3 { font-size: 1em; margin-bottom: 3em; }
 div.titlepage p, div.halftitlepage p { 
@@ -208,20 +207,12 @@ div.titlepage p, div.halftitlepage p {
 div.chapter h1 { counter-increment: chapter }
 
 
-h1::before {
-  white-space: pre;
-  margin-left: -2.5cm;
-  font-size: 50%;
-  content: "\B0  \B0  \B0  \B0  \B0 \A";  /* ornaments */
-} 
-
-
 div.chapter h1::before { content: "Chapter " counter(chapter) " \A"; }
 
 div.blank {
   counter-reset: page;
 }  
-div.frontcover h1::before, div.titlepage h1::before, div.halftitlepage h1::before {
+div.titlepage h1::before, div.halftitlepage h1::before {
   content: normal;                  /* that is, none */
 }
 
@@ -260,4 +251,24 @@ code, pre, span.css, span.value, span.declaration {
 }
 
 
+div.frontcover {
+  page-break-before: never; 
+  width: 100%;
+  margin-left: auto; 
+  margin-right: auto; 
+  margin-top: 0;
+  padding-top: 0;
+  text-align: center;
+  page: cover;
+}  
+div.frontcover h1 {
+  font-size: 325%; 
+  font-family: Andale Mono;
+  margin: 0;
+  padding: 0;
+}
 div.white_page { page: cover; }
+.tagline {
+  font-size: large; 
+  font-weight: bold;
+}  

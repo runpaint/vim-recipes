@@ -121,14 +121,13 @@ blockquote.tip p:before {
   content: '\272A \00a0 ';
 }  
 /* headers and pullquotes */
-h1,h2,h3,h4,h5,h6,aside{font-family:"Book Antiqua",Palatino,Georgia,serif}
-h1,h2,h3,h4{font-variant:small-caps}
-h1,h2{letter-spacing:-1px}
-h1,h1 code{font-size:xx-large}
+h2,h3,h4,h5,h6,aside{font-family:"Book Antiqua",Palatino,Georgia,serif}
+h2,h3,h4{font-variant:small-caps}
+h2{letter-spacing:-1px}
+h1 code{font-size:xx-large}
 h2,h2 code{font-size:x-large}
 h3,h3 code{font-size:large}
 h4, h5, h6{font-size: medium}
-h1{border-bottom:4px double;width:100%;margin:1em 0}
 /*h1:before{content:"Chapter " counter(h1) ". "}*/
 
 /* Give each chapter its own number */
