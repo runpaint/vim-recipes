@@ -65,17 +65,15 @@ basic. I use it when:</p>
   source code.</li>
 </ul>
 
-<p>Vim also lets you follow URLs in this way<span
-  class="fn"><a href="#opening-remote-files">Opening Remote Files</a> explains how to use Vim with remote
-files</span>, so you can <tt>gf</tt> on <tt>http://example.com/</tt>, to open
-the HTML in Vim, or <tt>sftp://example.com/README</tt> to connect to
-<i>example.com</i> via SFTP, fetch <tt>README</tt>, then open it for editing
-in Vim.</p>
+<p>Vim also lets you follow URLs in this way, so you can <tt>gf</tt> on
+<tt>http://example.com/</tt>, to open the HTML in Vim, or
+<tt>sftp://example.com/README</tt> to connect to <i>example.com</i> via SFTP,
+fetch <tt>README</tt>, then open it for editing in Vim.</p>
 
 <p>By default <tt>gf</tt> opens the file in the same window. To open it in a
-new window (by <a href="#splitting-the-screen">splitting the screen</a> use
+new window (by <a href="#splitting-screen">splitting the screen</a> use
 <kbd><kbd>&lt;Ctrl&gt;</kbd>+<kbd>wf</kbd></kbd>. To make this behaviour the
-default consider a <a href="#creating-keyboard-shortcuts">key remap</a>:
+default consider a <a href="#creating-keyboard-shortcuts-with-key-mappings">key remap</a>:
 <tt>:nnoremap gf &lt;C-W&gt;gf</tt>.</p>
 
 <p>If your filename is followed by a line number, e.g.  <i>foo.txt:10</i> you
