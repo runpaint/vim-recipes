@@ -78,9 +78,9 @@ form div,#level{float:right}
 .todo{display: none}
 
 /* links */
-a{text-decoration:none;border-bottom:1px dotted}
-a:hover{border-bottom:1px solid}
-a:link,.w a{color:steelblue}
+a{text-decoration:none}
+a:hover{color: steelblue; border-bottom:1px solid}
+a:link,.w a{border-bottom:1px dotted}
 a:visited{color:darkorchid}
 .c a{color:inherit}
 
