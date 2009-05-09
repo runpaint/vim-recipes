@@ -110,7 +110,7 @@ pre {  margin: 1em 1.3em; color: #600; }
   }
 }
 
-@page cover { margin: 0; }
+@page cover { margin: 0;}
 
 @page frontmatter :right {
   @top-right {
@@ -209,9 +209,6 @@ div.chapter h1 { counter-increment: chapter }
 
 div.chapter h1::before { content: "Chapter " counter(chapter) " \A"; }
 
-div.blank {
-  counter-reset: page;
-}  
 div.titlepage h1::before, div.halftitlepage h1::before {
   content: normal;                  /* that is, none */
 }
@@ -256,8 +253,8 @@ div.frontcover {
   width: 100%;
   margin-left: auto; 
   margin-right: auto; 
-  margin-top: 0;
-  padding-top: 0;
+  /*margin-top: 0;
+  padding-top: 0; */
   text-align: center;
   page: cover;
 }  
