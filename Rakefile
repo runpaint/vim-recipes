@@ -4,6 +4,7 @@ OUTPUT_HTML = 'output/all.html'
 
 directory "output"
 
+desc "Copy images to output directory"
 task :images => :output
 task :images => IMAGES do |t|
   IMAGES.each do |image|
@@ -11,6 +12,7 @@ task :images => IMAGES do |t|
   end  
 end
 
+desc "Combine source HTML into single HTML file"
 task OUTPUT_HTML => [:output, :images, :ilinks]
 file OUTPUT_HTML => SOURCE_HTML do |t|
   File.open(t.name,'w') do |out|
@@ -24,8 +26,10 @@ file 'output/vim-recipes.pdf' => OUTPUT_HTML do |t|
   system("prince #{t.prerequisites.first} #{t.name}")
 end
 
+desc "Generate the PDF"
 task :pdf => 'output/vim-recipes.pdf'
 
+desc "Check for broken internal links"
 task :ilinks do |t|
   require 'hpricot'
   target = {}
