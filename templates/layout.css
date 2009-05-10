@@ -85,6 +85,14 @@ pre {  margin: 1em 1.3em; color: #600; }
     padding-bottom: 2em; 
   }
 
+  @bottom-left {
+    font: 11pt "Gill Sans", serif;
+    content: "Visit http://vim.runpaint.org/ for latest updates.";
+    text-align: left;
+    vertical-align: top;
+    padding-top: 2em;
+  }
+
   @bottom-right {
     font: 11pt "Gill Sans", serif;
     content: counter(page);
