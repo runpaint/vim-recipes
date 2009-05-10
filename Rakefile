@@ -12,7 +12,7 @@ task :images => IMAGES do |t|
 end
 
 task OUTPUT_HTML => [:output, :images]
-file OUTPUT_HTML => FileList['text/**/*.html'] do |t|
+file OUTPUT_HTML => SOURCE_HTML do |t|
   File.open(t.name,'w') do |out|
     SOURCE_HTML.sort.each do |source|
       out.puts File.open(source).read
@@ -30,7 +30,7 @@ task :ilinks => OUTPUT_HTML do |t|
   require 'hpricot'
   target = {}
   source = {}
-  FileList['text/**/*.html'].each do |file|
+  SOURCE_HTML.each do |file|
     doc = Hpricot(File.open(file, 'r'))
     doc.search("a[@href*='#']").each do |a|
       source[a['href'][/[^#]+/]] = file
