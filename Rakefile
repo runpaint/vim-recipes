@@ -1,6 +1,9 @@
+require 'rake/clean'
+
 SOURCE_HTML = FileList['text/**/*.html']
 IMAGES = FileList['images/*']
 OUTPUT_HTML = 'output/all.html'
+CLOBBER.include('output')
 
 directory "output"
 
@@ -27,7 +30,7 @@ file 'output/vim-recipes.pdf' => OUTPUT_HTML do |t|
 end
 
 desc "Generate the PDF"
-task :pdf => 'output/vim-recipes.pdf'
+task :pdf => [:clobber, 'output/vim-recipes.pdf']
 
 desc "Check for broken internal links"
 task :ilinks do |t|
