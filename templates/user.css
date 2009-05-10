@@ -226,3 +226,7 @@ ul#toc ul.inline-list {
 ul#toc li.section > a:link {
   font-size: large;
 }  
+img {
+  display: block;
+  margin: 0 auto;
+}  
