@@ -50,3 +50,13 @@ task :ilinks do |t|
     $stderr.puts "Link #{s} from #{source[s]} is broken" unless target.key? s
   end  
 end  
+
+desc "Generate the website"
+task :www => 'output/vim-recipes.pdf' do
+  cp 'output/vim-recipes.pdf', 'www/'
+end  
+
+desc "Upload the website"
+task :upload => :www do
+  sh "rsync -v www/* vim.runpaint.org:/home/public/"
+end
