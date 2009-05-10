@@ -11,7 +11,7 @@ task :images => IMAGES do |t|
   end  
 end
 
-task OUTPUT_HTML => [:output, :images]
+task OUTPUT_HTML => [:output, :images, :ilinks]
 file OUTPUT_HTML => SOURCE_HTML do |t|
   File.open(t.name,'w') do |out|
     SOURCE_HTML.sort.each do |source|
@@ -26,7 +26,7 @@ end
 
 task :pdf => 'output/vim-recipes.pdf'
 
-task :ilinks => OUTPUT_HTML do |t|
+task :ilinks do |t|
   require 'hpricot'
   target = {}
   source = {}
