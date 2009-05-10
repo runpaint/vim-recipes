@@ -1,5 +1,6 @@
 SOURCE_HTML = FileList['text/**/*.html']
 IMAGES = FileList['images/*']
+OUTPUT_HTML = 'output/all.html'
 
 directory "output"
 
@@ -10,8 +11,8 @@ task :images => IMAGES do |t|
   end  
 end
 
-task 'output/all.html' => [:output, :images]
-file 'output/all.html' => FileList['text/**/*.html'] do |t|
+task OUTPUT_HTML => [:output, :images]
+file OUTPUT_HTML => FileList['text/**/*.html'] do |t|
   File.open(t.name,'w') do |out|
     SOURCE_HTML.sort.each do |source|
       out.puts File.open(source).read
@@ -19,13 +20,13 @@ file 'output/all.html' => FileList['text/**/*.html'] do |t|
   end  
 end
 
-file 'output/vim-recipes.pdf' => 'output/all.html' do |t|
+file 'output/vim-recipes.pdf' => OUTPUT_HTML do |t|
   system("prince #{t.prerequisites.first} #{t.name}")
 end
 
 task :pdf => 'output/vim-recipes.pdf'
 
-task :ilinks => ['output/all.html'] do |t|
+task :ilinks => OUTPUT_HTML do |t|
   require 'hpricot'
   target = {}
   source = {}
