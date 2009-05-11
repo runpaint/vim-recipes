@@ -1,0 +1,19 @@
+h1 {
+  text-align: center;
+  font-family:"Book Antiqua",Palatino,Georgia,serif;
+  font-variant:small-caps;
+  letter-spacing:-1px;
+  font-size:xx-large;
+}
+h2,h3,h4 {
+  margin-top: 0;
+  padding-top: 0;
+}  
+a {text-decoration:none;}
+a:link {color: steelblue; border-bottom: 1px dotted;}
+a:visited {color: darkorchid; border-bottom: 1px dotted; }
+a:hover {color: steelblue; border-bottom:1px solid;}
+table {
+  margin-left: auto;
+  margin-right: auto;
+}  

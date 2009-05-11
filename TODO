@@ -46,3 +46,15 @@ MAX. SCREEN SPACE
   * Screenshots
 ACCENTED CHARACTERS
   * If Prince supports it, add the examples column back into the table.
+
+Web Version
+* Underline all links
+* Merge CSS into single file? We want a general stylesheet, then one each for PDF and web which makes the relevant tweaks.
+* Add chapter-level ToC.
+* Add icon to callouts.
+* Style ToC
+* Add frontmatter pages
+* Add CC license fragment to recipe template.
+* Link PDF from recipes?
+* Fix images.
+* Add next/prev links.

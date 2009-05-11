@@ -82,7 +82,6 @@ a{text-decoration:none}
 a:hover{color: steelblue; border-bottom:1px solid}
 a:link,.w a{border-bottom:1px dotted}
 a:visited{color:darkorchid}
-.c a{color:inherit}
 
 /* code blocks */
 pre{white-space:pre-wrap;padding-left:2.154em;border-left:1px solid #ddd}
@@ -150,7 +149,7 @@ h2,h3 { page-break-before: always }
 .nav a{text-decoration:none;border:0;display:block}
 .nav a:first-child{float:left}
 .nav a:last-child{float:right}
-.nav span{font-size:1000%;line-height:1;margin:0;text-shadow:gainsboro 3px 3px 3px}
+/*.nav span{font-size:1000%;line-height:1;margin:0;text-shadow:gainsboro 3px 3px 3px} */
 
 /* footnotes */
 

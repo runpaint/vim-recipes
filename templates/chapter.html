@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>Vim Recipes: <%= title %></title>
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/user.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/web.css"/>
+  </head>
+  <body>
+    <form action="http://www.google.com/cse">
+      <div>
+        <input type="hidden" name="cx" value="012927387456573046134:nfygyscsu3q">
+        <input type="hidden" name="ie" value="UTF-8">&nbsp;
+        <input name="q" size="25">&nbsp;
+        <input type="submit" name="root" value="Search">
+      </div>
+    </form>
+    <p><a href="/toc/">Vim Recipes</a> <span>&#8227;</span> <i><%= title %></i></p>
+    <h1><%= title %></h1>
+    <ul>
+      <% recipes.each do |r| %>
+        <li><a href="/<%= r[:section_id] %>/<%= r[:id] %>/"><%= r[:title] %></a> 
+      <% end %>
+    <ul> 
+  </body>
+</html>  
+<html>

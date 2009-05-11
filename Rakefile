@@ -1,9 +1,20 @@
 require 'rake/clean'
+require 'hpricot'
 
 SOURCE_HTML = FileList['text/**/*.html']
+WWW_HTML = FileList['output/**/**/*.html']
 IMAGES = FileList['images/*']
 OUTPUT_HTML = 'output/all.html'
 CLOBBER.include('output')
+
+#def www_path(local_path)
+#  www_path = local_path.dup
+#  www_path.sub!(/^text\//,'')
+#  www_path.gsub!(/[0-9]+_?/,'')
+#  www_path.sub!(/\.html$/,'')
+#  www_path.sub!(/\/$/,'')
+#  www_path + '/index.html'
+#end  
 
 directory "output"
 
@@ -32,6 +43,89 @@ end
 desc "Generate the PDF"
 task :pdf => [:clobber, 'output/vim-recipes.pdf']
 
+def make_toc
+  toc = []
+  section = 'Preliminaries'
+  section_id = 'preliminaries'
+  SOURCE_HTML.sort.each do |f|
+    #next if f =~ %r{/[0-9]+_p(re|ost)/}
+    source = File.open(f).read
+    doc = Hpricot(source)
+    h_tag = doc.search('h1, h2, h3, h4').first
+    title = h_tag ? h_tag.inner_html : 'Untitled'
+    id = h_tag['id'] if h_tag
+    next unless id && h_tag
+    if h_tag.name == 'h2'
+      section = title
+      section_id = h_tag['id']
+    end
+    toc << { :id => h_tag['id'], :title => h_tag.inner_html, :file => f,
+     :type => h_tag.name == 'h2' ? :section : :recipe, 
+     :section_name => section, :section_id => section_id }
+  end    
+  toc
+end
+
+desc "Generate the HTML version"
+task :html => SOURCE_HTML do |t|
+  require 'erubis'
+  require 'hpricot'
+  template = File.open('templates/recipe.html').read
+  toc = make_toc()
+  toc.each_with_index do |entry,idx|
+    source = File.open(entry[:file]).read
+    doc = Hpricot(source)
+
+    if (entry[:type] == :section) || (entry[:id] == 'introduction')
+      page = Erubis::Eruby.new(File.open('templates/chapter.html').read).result(
+        {:title => entry[:id] == 'introduction' ? 'Preliminaries' : entry[:title],
+         :recipes => toc.select do |e| 
+            (e[:section_id] == entry[:section_id]) &&
+            (e[:type] == :recipe)
+         end   
+        }
+      )
+      path = "output/#{entry[:section_id]}/index.html"
+      mkdir_p File.dirname(path)
+      File.open(path,'w'){|f| f.puts page}
+    else  
+      doc.search('h1, h2, h3, h4, h5, h6').each do |tag|
+        new_tag = tag.name.sub(/(\d)/) {|m| m.to_i - 2}
+        tag.swap("<#{new_tag}>#{tag.inner_html}</#{new_tag}>")
+      end  
+        
+      doc.search('a[@href*=#]').each do |a|
+        id = a['href'].sub(/^#/,'')
+        sections = toc.select {|e| e[:id] == id}
+        next unless sections.size == 1
+        a.swap("<a href='/#{sections.first[:section_id]}/#{id}/'>#{a.inner_html}</a>")
+      end
+
+      doc.search('img').each do |img|
+        # FIXME: Awful hack: junks other attributes, assumes images to be in
+        # root directory.
+        img.swap("<img src='/#{img['src']}' />")
+      end
+
+      nxt = idx + 1 >= toc.size ? toc[0] : toc[(idx + 1)..-1].select{
+        |e| e[:type] == :recipe}.first
+      prv = idx == 0 ? toc[-1] : toc[0..(idx - 1)].select{
+        |e| e[:type] == :recipe}[-1]
+      page = Erubis::Eruby.new(template).result(
+        {:body => doc.to_s, :title => entry[:title], :id => entry[:id], 
+          :section_id => entry[:section_id], :section => entry[:section_name], 
+          :next_e => nxt, :prev_e => prv})
+        
+       path = "output/#{entry[:section_id]}/#{entry[:id]}/index.html"
+       mkdir_p File.dirname(path) 
+       File.open(path,'w') {|file| file.puts page}
+    end    
+  end  
+  page = Erubis::Eruby.new(File.open('templates/toc.html').read).result({:toc => toc.dup})
+  mkdir_p 'output/toc'
+  File.open('output/toc/index.html','w') {|file| file.puts page}
+end
+
 desc "Check for broken internal links"
 task :ilinks do |t|
   require 'hpricot'
@@ -51,12 +145,19 @@ task :ilinks do |t|
   end  
 end  
 
+directory 'output/css'
 desc "Generate the website"
-task :www => 'output/vim-recipes.pdf' do
-  cp 'output/vim-recipes.pdf', 'www/'
+task :www => ['output/vim-recipes.pdf',:html, 'output/css'] do
+  FileList['www/*'].each {|f| cp f, 'output/'}
+  File.open('output/css/style.css','w') do |merged|
+    ['layout','user','web'].each do |name| 
+      merged.print File.open('templates/' + name + '.css').read
+    end  
+  end  
 end  
 
 desc "Upload the website"
 task :upload => :www do
-  sh "rsync -v www/* vim.runpaint.org:/home/public/"
+  sh "rsync -vaz output/ vim.runpaint.org:/home/public/"
 end
+
