@@ -1,52 +1,3 @@
-/* Sample style sheet for boom!, the book microformat              */
-/* written  by Hakon Wium Lie and Bert Bos, November 2005          */
-/* You may reuse this style sheet for any purpose without any fees */
-
-html { 
-  margin: 0;
-  font: 10pt/1.26 "Gill Sans", sans-serif;
-}
-
-body { 
-  margin: 0 0 0 13%;
-}
-
-h2, h3, h4, h5, h6 { 
-  font-family: "Gill Sans", sans-serif;
-  margin: 2em 0 0.5em 0;
-  page-break-after: avoid;
-} 
-
-/*h1 { 
-	page-break-before: always;
-  padding: 2em 0 2em 0;
-  margin: 0;
-  font-size: 2.4em;
-  font-weight: 900;
-}*/
-
-h2 { 
-  font-size: 1.2em;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-h3 { 
-  font-size: 1em;
-  font-weight: bold;
-}
-
-q::before {
-  content: "\201C";
-}
-
-q::after {
-  content: "\201D";
-}
-
-
-pre {  margin: 1em 1.3em; color: #600; }
-
 @page {
   margin: 27mm 16mm 27mm 16mm;
   /*size: 7in 9.25in landscape;*/
@@ -248,14 +199,6 @@ code, pre, span.css, span.value, span.declaration {
 }
 
 
-@media screen, handheld {
-  html { margin: 1em; font: 14px "Gill Sans", sans-serif; }
-  h1 { margin-bottom: 0.5em }
-  div.frontcover, div.backcover, div.halftitlepage, div.titlepage, div.imprint, 
-  div.dedication, div.foreword, div.toc, div.index { display: none }
-}
-
-
 div.frontcover {
   page-break-before: never; 
   width: 100%;
@@ -277,3 +220,69 @@ div.white_page { page: cover; }
   font-size: large; 
   font-weight: bold;
 }  
+ul#toc {
+  list-style: none;
+}  
+ul#toc li a:link,a:hover,a,a:visited {
+    border-bottom: 0;
+    color: black;
+    text-decoration: none;
+  }  
+ul#toc ul a::after {
+    content: leader('.') target-counter(attr(href), page);
+}
+li.frontmatter > a::after {
+    content: leader('.') target-counter(attr(href), page, lower-roman);
+}
+ul#toc ul.inline-list {
+  margin-bottom: 0;
+  border-bottom: 0;
+  margin-top: 0;
+  border-top: 0;
+  margin-left: 2%;
+  list-style: none;
+}
+ul#toc li.section > a:link {
+  font-size: large;
+}  
+/* footnotes */
+
+.fn {
+  display: none;                   /* default rule */
+
+  display: prince-footnote;        /* prince-specific rules */
+  position: footnote;
+  footnote-style-position: inside;
+
+  counter-increment: footnote;
+  margin-left: 1.4em;
+  font-size: 90%;
+  line-height: 1.4;
+}
+
+.fn::footnote-call {
+  vertical-align: super;
+  font-size: 80%;
+}
+
+.fn::footnote-marker {
+  vertical-align: super;
+  padding-right: 0.4em;
+}
+
+@page {
+  /* margin: 27mm 16mm 27mm 16mm;
+  size: 7in 9.25in portrait; */
+
+  @footnotes {
+    border-top: thin solid black;
+    padding-top: 0.3em;
+    margin-top: 0.6em;
+  }
+}
+h2,h3 { page-break-before: always }
+/* links */
+a{text-decoration:none}
+a:hover{color: steelblue; border-bottom:1px solid}
+a:link,.w a{border-bottom:1px dotted}
+a:visited{color:darkorchid}

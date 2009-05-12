@@ -17,3 +17,37 @@ table {
   margin-left: auto;
   margin-right: auto;
 }  
+
+span.fn {
+  display: always;
+  position: static;
+	color: #f30;
+}
+
+a.footnote {
+	vertical-align: super;
+	font-size: 0.7em;
+}
+
+#footnotes {
+	border-top: 1px solid #ccc;
+	margin: 20px 0 20px 0;
+	padding: 10px 0 0 0;
+}
+
+#footnotes div.footnote {
+	margin: 0 0 5px 0;
+}
+
+@media screen, handheld {
+  html { margin: 1em; font: 14px "Gill Sans", sans-serif; }
+  h1 { margin-bottom: 0.5em }
+  div.frontcover, div.backcover, div.halftitlepage, div.titlepage, div.imprint, 
+  div.dedication, div.foreword, div.toc, div.index { display: none }
+}
+/* previous/next navigation links */
+
+.nav a{text-decoration:none;border:0;display:block}
+.nav a:first-child{float:left}
+.nav a:last-child{float:right}
+/*.nav span{font-size:1000%;line-height:1;margin:0;text-shadow:gainsboro 3px 3px 3px} */
