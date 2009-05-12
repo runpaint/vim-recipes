@@ -38,10 +38,21 @@ end
 
 file 'output/vim-recipes.pdf' => OUTPUT_HTML do |t|
   system("prince #{t.prerequisites.first} #{t.name}")
+  rm OUTPUT_HTML
 end
 
 desc "Generate the PDF"
 task :pdf => [:clobber, 'output/vim-recipes.pdf']
+
+desc "Generate the Sitemap"
+task :sitemap do
+  sh "sitemap_gen.py --config=sitemap_config.xml --testing"
+end
+
+desc "Notify search engines about Sitemap"
+task :sitemap_notify do
+  sh "sitemap_gen.py --config=sitemap_config.xml"
+end
 
 def make_toc
   toc = []
@@ -157,7 +168,8 @@ task :www => ['output/vim-recipes.pdf',:html, 'output/css'] do
 end  
 
 desc "Upload the website"
-task :upload => :www do
+task :upload => [:www, :sitemap] do
   sh "rsync -vaz output/ vim.runpaint.org:/home/public/"
+  Rake::Task['sitemap_notify'].invoke
 end
 

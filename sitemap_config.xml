@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  sitemap_gen.py example configuration script
+
+  This file specifies a set of sample input parameters for the
+  sitemap_gen.py client.
+
+  You should copy this file into "config.xml" and modify it for
+  your server.
+
+
+  ********************************************************* -->
+
+
+<!-- ** MODIFY **
+  The "site" node describes your basic web site.
+
+  Required attributes:
+    base_url   - the top-level URL of the site being mapped
+    store_into - the webserver path to the desired output file.
+                 This should end in '.xml' or '.xml.gz'
+                 (the script will create this file)
+
+  Optional attributes:
+    verbose    - an integer from 0 (quiet) to 3 (noisy) for
+                 how much diagnostic output the script gives
+    suppress_search_engine_notify="1"
+               - disables notifying search engines about the new map
+                 (same as the "testing" command-line argument.)
+    default_encoding
+               - names a character encoding to use for URLs and
+                 file paths.  (Example: "UTF-8")
+    sitemap_type
+               - declares the Sitemap type,  Common values are
+                 web, mobile and news.  'web" Sitemap is default. 
+                 (Example: sitemap_type="news")
+-->
+ <site
+  base_url="http://vim.runpaint.org/"
+  store_into="output/sitemap.xml"
+  verbose="1"
+  sitemap_type="web">
+ 
+ 
+
+  <!-- ********************************************************
+          INPUTS
+
+  All the various nodes in this section control where the script
+  looks to find URLs.
+
+  MODIFY or DELETE these entries as appropriate for your server.
+  ********************************************************* -->
+
+  <!-- ** MODIFY or DELETE **
+    "url" nodes specify individual URLs to include in the map.
+
+    Required attributes:
+      href       - the URL
+
+    Optional attributes:
+      lastmod    - timestamp of last modification (ISO8601 format)
+      changefreq - how often content at this URL is usually updated
+      priority   - value 0.0 to 1.0 of relative importance in your site
+  -->
+
+<url href="http://vim.runpaint.org/vim-recipes.pdf"  priority="0.9"/>
+<url href="http://vim.runpaint.org/toc/"  priority="0.9"/>
+
+
+  <!-- ** MODIFY or DELETE **
+    "directory" nodes tell the script to walk the file system
+    and include all files and directories in the Sitemap.
+
+    Required attributes:
+      path       - path to begin walking from
+      url        - URL equivalent of that path
+
+    Optional attributes:
+      default_file - name of the index or default file for directory URLs
+      remove_empty_directories - Values are true or false.  Default is false.
+      						     true=remove empty directories
+  -->
+
+  <directory 
+    path="output/" 
+    url="http://vim.runpaint.org/" 
+    default_file="index.html" 
+    remove_empty_directories="true"/>
+
+  <!-- ********************************************************
+          FILTERS
+
+  Filters specify wild-card patterns that the script compares
+  against all URLs it finds.  Filters can be used to exclude
+  certain URLs from your Sitemap, for instance if you have
+  hidden content that you hope the search engines don't find.
+
+  Filters can be either type="wildcard", which means standard
+  path wildcards (* and ?) are used to compare against URLs,
+  or type="regexp", which means regular expressions are used
+  to compare.
+
+  Filters are applied in the order specified in this file.
+
+  An action="drop" filter causes exclusion of matching URLs.
+  An action="pass" filter causes inclusion of matching URLs,
+  shortcutting any other later filters that might also match.
+  If no filter at all matches a URL, the URL will be included.
+  Together you can build up fairly complex rules.
+
+  The default action is "drop".
+  The default type is "wildcard".
+
+  You can MODIFY or DELETE these entries as appropriate for
+  your site.  However, unlike above, the example entries in
+  this section are not contrived and may be useful to you as
+  they are.
+  ********************************************************* -->
+
+  <!-- Exclude URLs that end with a '~'   (IE: emacs backup files)      -->
+  <filter  action="drop"  type="wildcard"  pattern="*~"           />
+
+  <!-- Exclude URLs within UNIX-style hidden files or directories       -->
+  <filter action="drop" type="regexp"   pattern="/\.[^/]*"     />
+
+  <!-- Exclude stylesheets -->
+  <filter action="drop" type="wildcard" pattern="*/css/*" />
+</site>
