@@ -160,10 +160,11 @@ desc "Generate the website"
 task :www => ['output/vim-recipes.pdf',:html, 'output/css'] do
   FileList['www/*'].each {|f| cp f, 'output/'}
   File.open('output/css/style.css','w') do |merged|
-    ['layout','user','web'].each do |name| 
+    ['main','web'].each do |name| 
       merged.print File.open('templates/' + name + '.css').read
     end  
   end  
+  cp_r 'js', 'output/'
 end  
 
 desc "Upload the website"
