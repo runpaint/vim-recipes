@@ -38,7 +38,6 @@ end
 
 file 'output/vim-recipes.pdf' => OUTPUT_HTML do |t|
   system("prince #{t.prerequisites.first} #{t.name}")
-  rm OUTPUT_HTML
 end
 
 desc "Generate the PDF"
@@ -169,6 +168,7 @@ end
 
 desc "Upload the website"
 task :upload => [:www, :sitemap] do
+  rm OUTPUT_HTML
   sh "rsync -vaz output/ vim.runpaint.org:/home/public/"
   Rake::Task['sitemap_notify'].invoke
 end
