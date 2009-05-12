@@ -1,0 +1,120 @@
+<h3 id="outlining-document">Outlining a Document</h3>
+
+<h4>Problem</h4>
+
+<p>You want to create an <i>outline view</i> of a document such that its
+structure can be treated as a hierarchy, the levels of which can be expanded
+or collapsed.</p>
+
+<p>For example, if you were writing an essay you may begin by creating an
+outline. Initially that would consist of the main section headings. You may
+then decide to subdivide those headings further, or add explanatory text that
+explains the heading's scope. As you continue this iterative process, you can
+focus on a particular level by <i>expanding</i> that level of the hierarchy.
+This process enables long or complex documents to be planned and organised in
+a logical fashion.</p>
+
+<h4>Solution</h4>
+
+<p>Use the <a href="http://www.vimoutliner.org/">Vim Outliner</a> plugin.</p>
+
+<p>Vim Outliner satisfies all of the objectives above. It's completely
+integrated with Vim, so your existing Vim knowledge still applies, and there's
+little to learn.</p>
+
+<p>Download the plugin from <a
+  href="http://www.vimoutliner.org/modules.php?op=modload&amp;name=Downloads&amp;file=index&amp;req=viewdownload&amp;cid=4">VimOutliner.org</a>,
+then follow the installation instructions. (The <a
+  href="#extending-vim-with-scripts-plugins">Extending Vim with Scripts and
+  Plugins</a> recipe may be helpful here).</p>
+
+<blockquote class="tip">
+  <p>Debian/Ubuntu users can install Vim Outliner via their package manager.
+  The installation process is slightly convoluted, however, so instructions
+  follow:</p>
+  <pre><code>
+  <samp>$ </samp><kbd>sudo apt-get install vim-vimoutliner
+  vim-addon-manager</kbd>
+  <samp>$ </samp><kbd>sudo vim-addons -w install vimoutliner</kbd>
+  </code></pre>
+</blockquote>
+
+<p>Add the following line to your <a
+  href="#configuring-vim"><tt>vimrc</tt></a> if not already there:</p>
+
+<pre><code>
+filetype plugin indent on
+</code></pre>
+
+<p>Now open a new file with an <tt>.otl</tt> extension with Vim, e.g.</p>
+
+<pre><code>
+vim outline.otl
+</code></pre>
+
+<p>Each line of this file becomes an entry in the outline. Indentation is used
+to denote levels of hierarchy. For example:</p>
+
+<img width="176" height="206" src="vim-outliner.png" />
+
+<p>In this example, <i>Solar System</i> is at the top level of the outline.
+<i>Sun</i> and <i>Planets</i> are the next level down. All of the planets are
+in the next level after that. Each level is automatically assigned a
+colour.</p>
+
+<p>You can add body text to a heading by starting a new line with a colon
+followed by a space, i.e. <tt>: Body text</tt>.</p>
+
+<img width="383" height="256" src="vim-outliner-body-text.png" />
+
+<p>In the example above, body text has been added to the <i>Sun</i>
+heading.</p>
+
+<p>Vim Outliner uses Vim's <a href="#navigating-folds">folds</a> feature, so
+the standard <i>folds</i> commands still work. Continuing the above example,
+if your cursor is over the body text and you hit the fold close command
+<kbd>zc</kbd> the text will be hidden.</p>
+
+<img width="605" height="216" src="vim-outliner-body-text-closed.png" />
+
+<p>Using <kbd>zc</kbd> on a heading collapses its child elements. So, with the
+cursor over <i>Planets</i> <kbd>zc</kbd> displays:</p>
+
+<img width="603" height="120" src="vim-outliner-heading-collapsed.png" />
+
+<p>To expand a tree one level use <kbd>zo</kbd>; to expand it all the way down
+use <kbd>zO</kbd>.</p>
+
+<p>To move a heading to a lower level in the hierarchy use <kbd>&gt;&gt;</kbd>
+in Normal mode; <kbd>&lt;&lt;</kbd> reverses the process.</p>
+
+<p>A shortcut for expanding the hierarchy to a certain level is
+<kbd>\<var>n</var></kbd>, where <var>n</var> is the minimum level you want
+displayed. <kbd>\0</kbd> expands every level. <kbd>\1</kbd> collapses every
+level. Using <kbd>\2</kbd> on our solar system outline displays only the
+first- and second-level headings:</p>
+
+<img width="604" height="91" src="vim-outliner-level-2.png" />
+
+<p>For more information see <tt>:help vimoutliner</tt>.</p>
+
+<h4>Discussion</h4>
+
+<p>A key strength of this form of organisation is that you can view a complex
+document <i>at a glance</i> with <kbd>\1</kbd>, then drill down to a specific
+heading to work on it.</p>
+
+<p>I use one for my todo/ideas list by putting every item on a line of its
+own, then, as patterns emerge, grouping items under headings. For instance, I
+may add a heading for <i>Book on
+  HTML</i>. Some time later I think of some chapters, so add them as
+subheadings to <i>Book on HTML</i>. When I want to start writing notes for a
+chapter I add body text to a heading, and start typing.</p>
+
+<p>Vim Outliner comes with various scripts to convert outlines into other file
+formats. For instance, there is a script named <tt>otl2html</tt> which can be
+used to convert a <tt>.otl</tt> file into a <tt>.html</tt>. This lets you
+create semantically-correct webpages without writing HTML. There's also
+<tt>otl2docbook</tt> and <tt>otl2pdb</tt>, which target <i>DocBook</i> and
+<i>AddressDB Palm</i>, respectively. For more tools like this, see <a
+  href="http://vimoutliner.org/">VimOutliner.org</a>.</p>
