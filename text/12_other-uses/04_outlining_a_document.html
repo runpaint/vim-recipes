@@ -55,7 +55,8 @@ vim outline.otl
 <p>Each line of this file becomes an entry in the outline. Indentation is used
 to denote levels of hierarchy. For example:</p>
 
-<img width="176" height="206" src="vim-outliner.png" />
+<img alt="Screenshot of .otl file as displayed by Vim Outliner" 
+     width="176" height="206" src="vim-outliner.png" />
 
 <p>In this example, <i>Solar System</i> is at the top level of the outline.
 <i>Sun</i> and <i>Planets</i> are the next level down. All of the planets are
@@ -65,7 +66,8 @@ colour.</p>
 <p>You can add body text to a heading by starting a new line with a colon
 followed by a space, i.e. <tt>: Body text</tt>.</p>
 
-<img width="383" height="256" src="vim-outliner-body-text.png" />
+<img alt="Screenshot of Vim Outliner file with body text"
+     width="383" height="256" src="vim-outliner-body-text.png" />
 
 <p>In the example above, body text has been added to the <i>Sun</i>
 heading.</p>
@@ -75,12 +77,14 @@ the standard <i>folds</i> commands still work. Continuing the above example,
 if your cursor is over the body text and you hit the fold close command
 <kbd>zc</kbd> the text will be hidden.</p>
 
-<img width="605" height="216" src="vim-outliner-body-text-closed.png" />
+<img alt="Screenshot of Vim Outliner file with body text collapsed"
+     width="605" height="216" src="vim-outliner-body-text-closed.png" />
 
 <p>Using <kbd>zc</kbd> on a heading collapses its child elements. So, with the
 cursor over <i>Planets</i> <kbd>zc</kbd> displays:</p>
 
-<img width="603" height="120" src="vim-outliner-heading-collapsed.png" />
+<img alt="Screenshot of Vim Outliner file with a heading collapsed"
+     width="603" height="120" src="vim-outliner-heading-collapsed.png" />
 
 <p>To expand a tree one level use <kbd>zo</kbd>; to expand it all the way down
 use <kbd>zO</kbd>.</p>
@@ -94,7 +98,8 @@ displayed. <kbd>\0</kbd> expands every level. <kbd>\1</kbd> collapses every
 level. Using <kbd>\2</kbd> on our solar system outline displays only the
 first- and second-level headings:</p>
 
-<img width="604" height="91" src="vim-outliner-level-2.png" />
+<img alt="Screenshot of Vim Outliner file with only level 2 headings shown"
+     width="604" height="91" src="vim-outliner-level-2.png" />
 
 <p>For more information see <tt>:help vimoutliner</tt>.</p>
 
