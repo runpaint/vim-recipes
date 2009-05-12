@@ -18,15 +18,26 @@ table {
   margin-right: auto;
 }  
 
+/* Initially we hide footnotes. A JavaScript function is then run to render
+ * them at the bottom of the page, replacing their previous location with a
+ * link to their new location. Having done this, the JavaScript sets span.fn
+ * _display_ to 'inline', thus avoiding the footnotes initially appearing in 
+ * their original position prior to being moved. 
+ *
+ * This is imperfect because it hides footnotes from users with CSS enabled
+ * and JS disabled, but it will do for now.
+ */ 
 span.fn {
-  display: always;
-  position: static;
-	color: #f30;
+	display: none;
 }
 
-a.footnote {
+span.fn a:link {
 	vertical-align: super;
-	font-size: 0.7em;
+  color: black;
+  font-weight: bold;
+  font-size: 100%;
+  padding-left: 1px;
+  border: none;
 }
 
 #footnotes {

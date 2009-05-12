@@ -2,9 +2,6 @@
   <head>
     <title>Vim Recipes: <%= title %></title>
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
-    <!--<link rel="stylesheet" type="text/css" href="/css/layout.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/user.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/web.css"/> -->
   </head>
   <body>
     <form action="http://www.google.com/cse">
@@ -18,6 +15,7 @@
     <p><a href="/toc/">Vim Recipes</a> <span>&#8227;</span> <a href="/<%= section_id %>/"><%= section %></a> <span>&#8227;</span>
     <i><%= title %></i></p>
     <%= body %>
+    <div id="footnotes"></div>
     <div class="nav"><a
         rel="prev" href="/<%= prev_e[:section_id] %>/<%= prev_e[:id]
         %>/">&#x21A9; &nbsp; <%=

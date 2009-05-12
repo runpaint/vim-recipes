@@ -53,5 +53,5 @@ Web Version
 * Add CC license fragment to recipe template.
 * Link PDF from recipes?
 * Gzip HTML.
-* Format footnotes.
 * Add Atom feed of recipes sorted by ctime.
+* Add Analytics to all templates.
