@@ -7,15 +7,6 @@ IMAGES = FileList['images/*']
 OUTPUT_HTML = 'output/all.html'
 CLOBBER.include('output')
 
-#def www_path(local_path)
-#  www_path = local_path.dup
-#  www_path.sub!(/^text\//,'')
-#  www_path.gsub!(/[0-9]+_?/,'')
-#  www_path.sub!(/\.html$/,'')
-#  www_path.sub!(/\/$/,'')
-#  www_path + '/index.html'
-#end  
-
 directory "output"
 
 desc "Copy images to output directory"
