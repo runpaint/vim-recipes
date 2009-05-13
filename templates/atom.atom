@@ -3,7 +3,6 @@
   xmlns:thr="http://purl.org/syndication/thread/1.0">
   <link rel="self" href="http://vim.runpaint.org/index.atom"/>
   <id>http://vim.runpaint.org/index.atom</id>
-
   <title>Vim Recipes</title>
   <subtitle>A cookbook for the Vim text editor</subtitle>
   <author>
@@ -11,18 +10,18 @@
     <email>runrun@runpaint.org</email>
     <uri>http://runpaint.org/</uri>
   </author>
-  <updated>2009-05-13T08:42:22-04:00</updated> <!-- FIXME -->
+  <% require 'time' %>
+  <updated><%= updated.xmlschema %></updated>
   <link href="http://vim.runpaint.org/"/>
   <link rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"/>
 
   <% 
-  require 'time'
   toc.each do |entry|
     next unless entry[:type] == :recipe
   %>  
   <entry>
     <id>tag:vim.runpaint.org,2009:<%= entry[:id] %></id>
-    <link href="/<%= entry[:section_id] %>/<%= entry[:id] %>/"/>
+    <link href="http://vim.runpaint.org/<%= entry[:section_id] %>/<%= entry[:id] %>/"/>
     <title><%= entry[:title] %></title>
     <updated><%= entry[:time].xmlschema %></updated>
     <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">

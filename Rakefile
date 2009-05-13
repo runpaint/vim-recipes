@@ -147,9 +147,11 @@ task :html => SOURCE_HTML do |t|
          result({:toc => toc.dup.reject{|e| e[:type] == :subsection}})
   mkdir_p 'output/toc'
   File.open('output/toc/index.html','w') {|file| file.puts page}
+  recipes_by_time = toc.reject{|e| e[:type] == :subsection}.
+                        sort_by{|e| e[:time]}.reverse
   page = Erubis::Eruby.new(File.open('templates/atom.atom').read).
-         result({:toc => toc.
-                reject{|e| e[:type] == :subsection}.sort_by{|e| e[:time]}.reverse
+         result({:toc => recipes_by_time,
+                 :updated => recipes_by_time.first[:time]            
           })
   File.open('output/index.atom','w') {|file| file.puts page}
 end
