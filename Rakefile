@@ -96,7 +96,8 @@ task :html => SOURCE_HTML do |t|
       path = "output/#{entry[:section_id]}/index.html"
       mkdir_p File.dirname(path)
       File.open(path,'w'){|f| f.puts page}
-    else  
+    end  
+    if entry[:type] == :recipe 
       doc.search('h1, h2, h3, h4, h5, h6').each do |tag|
         new_tag = tag.name.sub(/(\d)/) {|m| m.to_i - 2}
         tag.swap("<#{new_tag} id='#{tag['id']}'>#{tag.inner_html}</#{new_tag}>")
