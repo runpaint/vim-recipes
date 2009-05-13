@@ -18,7 +18,7 @@ task :images => IMAGES do |t|
 end
 
 desc "Combine source HTML into single HTML file"
-task OUTPUT_HTML => [:output, :images, :ilinks]
+task OUTPUT_HTML => [:output, :images]
 file OUTPUT_HTML => SOURCE_HTML do |t|
   File.open(t.name,'w') do |out|
     SOURCE_HTML.sort.each do |source|
@@ -122,29 +122,11 @@ task :html => SOURCE_HTML do |t|
        File.open(path,'w') {|file| file.puts page}
     end    
   end  
-  page = Erubis::Eruby.new(File.open('templates/toc.html').read).result({:toc => toc.dup})
+  page = Erubis::Eruby.new(File.open('templates/toc.html').read).
+         result({:toc => toc.dup.reject{|e| e[:type] == :subsection}})
   mkdir_p 'output/toc'
   File.open('output/toc/index.html','w') {|file| file.puts page}
 end
-
-desc "Check for broken internal links"
-task :ilinks do |t|
-  require 'hpricot'
-  target = {}
-  source = {}
-  SOURCE_HTML.each do |file|
-    doc = Hpricot(File.open(file, 'r'))
-    doc.search("a[@href*='#']").each do |a|
-      source[a['href'][/[^#]+/]] = file
-    end
-    doc.search("*[@id]").each do |e|
-      target[e['id']] = 1
-    end  
-  end  
-  source.keys.each do |s|
-    $stderr.puts "Link #{s} from #{source[s]} is broken" unless target.key? s
-  end  
-end  
 
 directory 'output/css'
 desc "Generate the website"
