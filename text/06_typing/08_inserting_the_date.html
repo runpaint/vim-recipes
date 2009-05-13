@@ -1,0 +1,47 @@
+<h3 id="inserting-date">Inserting the Date</h3>
+
+<h4>Problem</h4>
+
+<p>You're typing a document and want to insert the current date.</p>
+
+<p>For example, you're composing a letter and want to include today's date at
+the top.</p>
+
+<h4>Solution</h4>
+
+<p>Use <tt>!!date</tt> in Normal mode.</p>
+
+<h4>Discussion</h4>
+
+<p>The <tt>!!<var>command</var></tt> syntax executes <var>command</var> and
+replaces the current line with the output.<span style="fn">This is
+  infact an oversimplification. <tt><var>count</var>!!<var>command</var></tt>
+  actually filters <var>count</var> lines through <var>command</var> and
+  returns the result, but when <var>count</var> is omitted, it has the effect
+  I've described. This is why the text on the current line is
+  <em>replaced</em> with the date.</span>. To control where the date is
+inserted see the following paragraphs.</p>
+
+<p>A similar same effect can be acheived with <tt>:r!date</tt>. The advantage
+is that it inserts the output of <tt>date</tt> on the next line, rather than
+replacing the current one.</p>
+
+<p>The solutions above assume that you have a <tt>date</tt> executable in your
+<tt>PATH</tt>, as all UNIX-based systems should. I understand that Windows
+users have to use <tt>!!date /t</tt>.</p>
+
+<p>Alternatively, you can call Vim's <tt>strftime()</tt> function, e.g.
+<tt>strftime("%c")</tt>. This will work on all systems which support the
+<tt>strftime</tt> system call, which I believe is the majority. You can <a
+  href="#creating-keyboard-shorctuts-with-key-mappings">map</a> this function
+to a function key. For example, the following commands map
+<kbd>&lt;F7&gt;</kbd> to insert a date stamp after the cursor.</p>
+
+<pre><code>
+:inoremap &lt;F7&gt; &lt;C-R&gt;=strftime("%c")&lt;CR&gt;
+:nnoremap &lt;F7&gt; "=strftime("%c")&lt;CR&gt;p
+</code></pre>
+
+<p>I suggest the use of <tt>!!date</tt> because it doesn't waste a function
+key, and, personally, I find it more memorable. If you intend to insert dates
+regularly, by all means remap a key to do so.</p> 
