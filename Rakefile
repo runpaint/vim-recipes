@@ -49,20 +49,26 @@ def make_toc
   section = 'Preliminaries'
   section_id = 'preliminaries'
   SOURCE_HTML.sort.each do |f|
-    #next if f =~ %r{/[0-9]+_p(re|ost)/}
     source = File.open(f).read
     doc = Hpricot(source)
-    h_tag = doc.search('h1, h2, h3, h4').first
-    title = h_tag ? h_tag.inner_html : 'Untitled'
-    id = h_tag['id'] if h_tag
-    next unless id && h_tag
-    if h_tag.name == 'h2'
-      section = title
-      section_id = h_tag['id']
-    end
-    toc << { :id => h_tag['id'], :title => h_tag.inner_html, :file => f,
-     :type => h_tag.name == 'h2' ? :section : :recipe, 
-     :section_name => section, :section_id => section_id }
+    recipe_id = nil
+    doc.search('h1, h2, h3, h4, h5, h6').each do |h_tag|
+      title = h_tag ? h_tag.inner_html : 'Untitled'
+      id = h_tag['id'] if h_tag
+      next unless id && h_tag
+      type = :subsection
+      if h_tag.name == 'h2'
+        section = title
+        section_id = h_tag['id']
+        type = :section
+      elsif h_tag.name == 'h3'
+        type = :recipe
+        recipe_id = h_tag['id']
+      end  
+      toc << { :id => h_tag['id'], :title => h_tag.inner_html, :file => f,
+       :type => type, :section_name => section, :section_id => section_id,
+       :recipe_id => recipe_id }
+    end  
   end    
   toc
 end
@@ -74,6 +80,7 @@ task :html => SOURCE_HTML do |t|
   template = File.open('templates/recipe.html').read
   toc = make_toc()
   toc.each_with_index do |entry,idx|
+    next if entry[:type] == :subsection
     source = File.open(entry[:file]).read
     doc = Hpricot(source)
 
@@ -92,14 +99,20 @@ task :html => SOURCE_HTML do |t|
     else  
       doc.search('h1, h2, h3, h4, h5, h6').each do |tag|
         new_tag = tag.name.sub(/(\d)/) {|m| m.to_i - 2}
-        tag.swap("<#{new_tag}>#{tag.inner_html}</#{new_tag}>")
+        tag.swap("<#{new_tag} id='#{tag['id']}'>#{tag.inner_html}</#{new_tag}>")
       end  
         
       doc.search('a[@href*=#]').each do |a|
         id = a['href'].sub(/^#/,'')
         sections = toc.select {|e| e[:id] == id}
+        raise "Broken link (#{a}) in #{entry[:file]}" if sections.empty?
         next unless sections.size == 1
-        a.swap("<a href='/#{sections.first[:section_id]}/#{id}/'>#{a.inner_html}</a>")
+        sec = sections.first
+        target = sec[:section_id] + '/' + id + '/'
+        if sec[:type] == :subsection
+          target = sec[:section_id] + '/' + sec[:recipe_id] + '/#' + sec[:id]
+        end
+        a.swap("<a href='/#{target}'>#{a.inner_html}</a>")
       end
 
       doc.search('img').each do |img|
