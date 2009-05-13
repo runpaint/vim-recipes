@@ -44,6 +44,11 @@ task :sitemap_notify do
   sh "sitemap_gen.py --config=sitemap_config.xml"
 end
 
+def commit_time(file)
+  Time.at(`git log -r --name-only --no-color --pretty=raw -z #{file}`.
+       to_a.grep(/^committer/).last.match(/ (\d+) /)[1].to_i)
+end
+
 def make_toc
   toc = []
   section = 'Preliminaries'
@@ -53,7 +58,7 @@ def make_toc
     doc = Hpricot(source)
     recipe_id = nil
     doc.search('h1, h2, h3, h4, h5, h6').each do |h_tag|
-      title = h_tag ? h_tag.inner_html : 'Untitled'
+      title = h_tag ? h_tag.inner_text : 'Untitled'
       id = h_tag['id'] if h_tag
       next unless id && h_tag
       type = :subsection
@@ -65,9 +70,10 @@ def make_toc
         type = :recipe
         recipe_id = h_tag['id']
       end  
-      toc << { :id => h_tag['id'], :title => h_tag.inner_html, :file => f,
+      toc << { :id => h_tag['id'], :title => title, :file => f,
        :type => type, :section_name => section, :section_id => section_id,
-       :recipe_id => recipe_id }
+       :recipe_id => recipe_id, :time => commit_time(f),
+       :target_path => "output/#{section_id}/#{h_tag['id']}/index.html" }
     end  
   end    
   toc
@@ -130,16 +136,22 @@ task :html => SOURCE_HTML do |t|
         {:body => doc.to_s, :title => entry[:title], :id => entry[:id], 
           :section_id => entry[:section_id], :section => entry[:section_name], 
           :next_e => nxt, :prev_e => prv})
-        
+       #FIXME: Use :target_path instead: 
        path = "output/#{entry[:section_id]}/#{entry[:id]}/index.html"
        mkdir_p File.dirname(path) 
        File.open(path,'w') {|file| file.puts page}
+       entry[:body] = doc.to_s
     end    
   end  
   page = Erubis::Eruby.new(File.open('templates/toc.html').read).
          result({:toc => toc.dup.reject{|e| e[:type] == :subsection}})
   mkdir_p 'output/toc'
   File.open('output/toc/index.html','w') {|file| file.puts page}
+  page = Erubis::Eruby.new(File.open('templates/atom.atom').read).
+         result({:toc => toc.
+                reject{|e| e[:type] == :subsection}.sort_by{|e| e[:time]}.reverse
+          })
+  File.open('output/index.atom','w') {|file| file.puts page}
 end
 
 directory 'output/css'
