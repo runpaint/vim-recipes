@@ -3,6 +3,7 @@
   /*size: 7in 9.25in landscape;*/
 
   @footnotes {
+    font: 11pt "Gill Sans", sans-serif;
     border-top: thin solid black;
     padding-top: 0.3em;
     margin-top: 0.6em;
@@ -37,7 +38,7 @@
   }
 
   @bottom-left {
-    font: 11pt "Gill Sans", serif;
+    font: 11pt "Gill Sans", sans-serif;
     content: "Visit http://vim.runpaint.org/ for latest updates.";
     text-align: left;
     vertical-align: top;
