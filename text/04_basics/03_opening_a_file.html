@@ -18,6 +18,17 @@ argument. For example: <tt>vim docs/novel.txt</tt> (on Windows:
 (mnemonic: <b>e</b>dit).  This closes the current file and opens a new buffer
 containing the given file. </p>
 
+<blockquote class="tip">
+  <p>If you use Andy Lester's ack utility you can create a shell script to
+  open files without having to specify their path. For example, using
+  <tt>bash</tt>:</p>
+  <pre><code>#!/bin/sh
+vim $(ack -g $@)</code></pre>
+  <p>Name it <tt>vack</tt>, then <tt>vack shapes.rb</tt> will search
+  recursively downwards from the current directory to find <tt>shapes.rb</tt>,
+  then open it in Vim.</p>
+</blockquote>
+
 <h4>Discussion</h4>
 
 <p>You may prefix the filename with <tt>+<var>linenumber</var> </tt> to
