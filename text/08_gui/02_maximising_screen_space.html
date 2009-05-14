@@ -39,13 +39,11 @@ letter.</p>
 assigns <tt>&lt;F11&gt;</tt> to toggle the display of extraneous GUI
 elements:</p>
 
-<pre><code>
-function ToggleGUICruft()
+<pre><code>function ToggleGUICruft()
   let opts = ['T','m','r','L']
   let sign = &amp;guioptions =~# 'T' ? '-' : '+'
   for opt in opts
     exec('set guioptions'.sign.'='.opt)
   endfor
 endfunction
-map &lt;F11&gt; &lt;Esc&gt;:call ToggleGUICruft()&lt;cr&gt;
-</code></pre>
+map &lt;F11&gt; &lt;Esc&gt;:call ToggleGUICruft()&lt;cr&gt;</code></pre>

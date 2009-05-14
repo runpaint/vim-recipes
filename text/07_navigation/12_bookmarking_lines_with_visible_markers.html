@@ -17,9 +17,7 @@ two-character string in the terminal, and an icon in Gvim.</p>
 
 <p>Before you use a sign you must define it. For example: </p>
 
-<pre><code>
-:sign define fixme text=!! linehl=Todo texthl=Error icon=/path/to/todo.xpm
-</code></pre>
+<pre><code>:sign define fixme text=!! linehl=Todo texthl=Error icon=/path/to/todo.xpm</code></pre>
 
 <p>Let's break this down. We name the sign <i>fixme</i>, which is how we'll
 refer to it later. We specify that in the terminal the sign should be
@@ -33,16 +31,12 @@ defines the highlight group used for the entire line the sign is attached to;
   href="#configuring-vim"><tt>vimrc</tt></a>, you can use it
   in any file. To attach the sign to a specific line you use:</p>
 
-<pre><code>
-:sign place <var>id</var> line=<var>line</var> name=<var>name</var>
-file=<var>file-path</var>
-</code></pre>
+<pre><code>:sign place <var>id</var> line=<var>line</var> name=<var>name</var>
+file=<var>file-path</var></code></pre>
 
 <p>For example:</p>
 
-<pre><code>
-:sign place 22 line=200 name=fixme file=/home/user/novel.txt
-</code></pre>
+<pre><code>:sign place 22 line=200 name=fixme file=/home/user/novel.txt</code></pre>
 
 <p>The <var>id</var> is arbitrary, but must be unique and numeric. The
 <var>name</var> is the same name you used when you defined the sign. The value
@@ -62,12 +56,10 @@ approaches.</p>
 <kbd>&lt;F5&gt;</kbd> places the previously defined <i>fixme</i> sign on the
 current line of the current file:</p>
 
-<pre><code>
-function! SignFixme()
+<pre><code>function! SignFixme()
   execute(":sign place ".line(".")." line=".line(".")." name=fixme file=".expand("%:p"))
 endfunction
-map &lt;F5&gt; :call SignFixme()&lt;CR&gt;
-</code></pre>
+map &lt;F5&gt; :call SignFixme()&lt;CR&gt;</code></pre>
 
 <p>Rather than placing signs manually, you may prefer to have them
 automatically placed on lines satisfying some criteria. The following stanza
@@ -76,8 +68,7 @@ attaches the <i>fixme</i> sign to lines containing notes like <i>TODO: check
 you can select a range of lines, press <kbd>&lt;F6&gt;</kbd> then have your
 to-do list items flagged in the margin.</p>
 
-<pre><code>
-function! SignLines() range
+<pre><code>function! SignLines() range
   let n = a:firstline
   execute(":sign define fixme text=!! texthl=Todo")
   while n &lt;= a:lastline
@@ -87,5 +78,4 @@ function! SignLines() range
     let n = n + 1
   endwhile  
 endfunction
-map &lt;F6&gt; :call SignLines()&lt;CR&gt;
-</code></pre>
+map &lt;F6&gt; :call SignLines()&lt;CR&gt;</code></pre>

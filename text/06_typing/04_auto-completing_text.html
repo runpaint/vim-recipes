@@ -58,14 +58,12 @@ documentation suggests adding the following stanza to your <a
 command, to enable <i>Omni-Completion</i> using the best available method:
 </p>
 
-<pre><code>
-if has("autocmd") &amp;&amp; exists("+omnifunc")            
+<pre><code>if has("autocmd") &amp;&amp; exists("+omnifunc")            
   autocmd Filetype *
     \   if &amp;omnifunc == "" |
     \     setlocal omnifunc=syntaxcomplete#Complete |
     \   endif
-endif
-</code></pre>
+endif</code></pre>
 
 <p>To use Omni-Completion hit <kbd><kbd>Ctrl</kbd>+<kbd>o</kbd></kbd> to be
 presented with a list of choices for the text behind the cursor.</p>

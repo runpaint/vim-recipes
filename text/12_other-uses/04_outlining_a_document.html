@@ -32,25 +32,19 @@ then follow the installation instructions. (The <a
   <p>Debian/Ubuntu users can install Vim Outliner via their package manager.
   The installation process is slightly convoluted, however, so instructions
   follow:</p>
-  <pre><code>
-  <samp>$ </samp><kbd>sudo apt-get install vim-vimoutliner
+  <pre><code><samp>$ </samp><kbd>sudo apt-get install vim-vimoutliner
   vim-addon-manager</kbd>
-  <samp>$ </samp><kbd>sudo vim-addons -w install vimoutliner</kbd>
-  </code></pre>
+  <samp>$ </samp><kbd>sudo vim-addons -w install vimoutliner</kbd></code></pre>
 </blockquote>
 
 <p>Add the following line to your <a
   href="#configuring-vim"><tt>vimrc</tt></a> if not already there:</p>
 
-<pre><code>
-filetype plugin indent on
-</code></pre>
+<pre><code>filetype plugin indent on</code></pre>
 
 <p>Now open a new file with an <tt>.otl</tt> extension with Vim, e.g.</p>
 
-<pre><code>
-vim outline.otl
-</code></pre>
+<pre><code>vim outline.otl</code></pre>
 
 <p>Each line of this file becomes an entry in the outline. Indentation is used
 to denote levels of hierarchy. For example:</p>

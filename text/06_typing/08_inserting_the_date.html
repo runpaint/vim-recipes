@@ -37,10 +37,8 @@ users have to use <tt>!!date /t</tt>.</p>
 to a function key. For example, the following commands map
 <kbd>&lt;F7&gt;</kbd> to insert a date stamp after the cursor.</p>
 
-<pre><code>
-:inoremap &lt;F7&gt; &lt;C-R&gt;=strftime("%c")&lt;CR&gt;
-:nnoremap &lt;F7&gt; "=strftime("%c")&lt;CR&gt;p
-</code></pre>
+<pre><code>:inoremap &lt;F7&gt; &lt;C-R&gt;=strftime("%c")&lt;CR&gt;
+:nnoremap &lt;F7&gt; "=strftime("%c")&lt;CR&gt;p</code></pre>
 
 <p>I suggest the use of <tt>!!date</tt> because it doesn't waste a function
 key, and, personally, I find it more memorable. If you intend to insert dates

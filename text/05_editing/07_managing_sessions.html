@@ -30,21 +30,17 @@ example, you could save it to <tt>$VIMHOME/Session.vim</tt>. You could add a
 mapping something like this to your <a
   href="#configuring-vim"><tt>vimrc</tt></a>.</p>
 
-<pre><code>
-nmap SQ &lt;ESC&gt;:mksession! ~/vim/Session.vim&lt;CR&gt;:wqa&lt;CR&gt;
-</code></pre>
+<pre><code>nmap SQ &lt;ESC&gt;:mksession! ~/vim/Session.vim&lt;CR&gt;:wqa&lt;CR&gt;</code></pre>
 
 <p>(<kbd>SQ</kbd> for <i>S</i>ession <i>Q</i>uit). To automatically restore
 this session when Vim is called without arguments add the following:</p>
 
-<pre><code>
-function! RestoreSession()
+<pre><code>function! RestoreSession()
   if argc() == 0 "vim called without arguments
     execute 'source ~/.vim/Session.vim'
   end
 endfunction
-autocmd VimEnter * call RestoreSession()
-</code></pre>
+autocmd VimEnter * call RestoreSession()</code></pre>
 
 <p>You can extend this in arbitrary ways to suit your working environment. One
 approach is to only restore a session if it exists in the current file's
@@ -55,10 +51,8 @@ used. This is useful for one-project-per-directory organisation. </p>
 <p>If you don't just want one global session file, as described above, a more
 granular approach is suggested below:</p>
 
-<pre><code>
-nmap SSA :wa&lt;CR&gt;:mksession! ~/sessions/
-nmap SO :wa&lt;CR&gt;:so ~/sessions/
-</code></pre>
+<pre><code>nmap SSA :wa&lt;CR&gt;:mksession! ~/sessions/
+nmap SO :wa&lt;CR&gt;:so ~/sessions/</code></pre>
 
 <p><i>S</i>ession <i>S</i>ave <i>A</i>s saves the open files and prefills the
 command line with the command to save the current session in a

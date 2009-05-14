@@ -11,9 +11,7 @@ utility to format <abbr title="HyperText Markup Language">HTML</abbr>.</p>
 <p>Set the <tt>equalprog</tt> option to the name of the program you want
 to use, along with any arguments it should be passed.  For example:</p>
 
-<pre><code>
-:set equalprog=tidy\ --indent=yes\ -q
-</code></pre>
+<pre><code>:set equalprog=tidy\ --indent=yes\ -q</code></pre>
 
 <p>You can now <a href="#visually-selecting-text">select</a> the text you want
 to format, then hit <kbd>=</kbd>. You can reformat the entire file with
@@ -39,9 +37,7 @@ want to specify a lot of options, put them into a config file, and point
 <tt>tidy</tt> to it: <tt>tidy
   --config <var>file</var></tt>. At a minimum you probably want to use:</p>
 
-<pre><code>
-:setlocal equalprog=tidy\ -utf8\ --indent\ yes\ -q\ -f\ /tmp/err
-</code></pre>
+<pre><code>:setlocal equalprog=tidy\ -utf8\ --indent\ yes\ -q\ -f\ /tmp/err</code></pre>
 
 <p>Then you can reformat your file with <kbd>1G=G</kbd>. One caveat is that
 this won't work correctly for reformatting a specific section of the file. You
@@ -54,6 +50,4 @@ well on fragments because of lack of context.</p>
 <p><em>HTML Tidy</em> can be used to format XML as well by passing it the
 <tt>-xml</tt> option. Alternatively, you can use <tt>xmllint</tt>:</p>
 
-<pre><code>
-:set equalprg=xmllint\ --format\ -
-</code></pre>  
+<pre><code>:set equalprg=xmllint\ --format\ -</code></pre>  

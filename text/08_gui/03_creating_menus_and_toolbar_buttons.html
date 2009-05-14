@@ -29,9 +29,7 @@ command.</p>
 new top-level menu simply by specifying a name not currently in use. For
 example:</p>
 
-<pre><code>
-:amenu &lt;silent&gt;&amp;Vim.vim\.org :!xdg-open http://www.vim.org/&lt;cr&gt;
-</code></pre>
+<pre><code>:amenu &lt;silent&gt;&amp;Vim.vim\.org :!xdg-open http://www.vim.org/&lt;cr&gt;</code></pre> 
 
 <p>will create a new top-level menu called <i>Vim</i> with the shortcut key
 <kbd>V</kbd>. It will contain one entry named <i>vim.org</i> (we escape the
@@ -57,16 +55,12 @@ item to the <i>Help</i> menu, which appears before the other items.</p>
 
 <p>You can also use <tt>:amenu</tt> to add a new toolbar icon: </p>
 
-<pre><code>
-:amenu icon=<var>image-path</var> Toolbar.<var>item-name</var>
-<var>command</var>
-</code></pre>
+<pre><code>:amenu icon=<var>image-path</var> Toolbar.<var>item-name</var>
+<var>command</var></code></pre>
 
 <p>For example:</p>
 
-<pre><code>
-:amenu icon=options.png ToolBar.OptionsHelp :help&lt;cr&gt;
-</code></pre>
+<pre><code>:amenu icon=options.png ToolBar.OptionsHelp :help&lt;cr&gt;</code></pre>
 
 <p>If the <var>image-path</var> consists only of a filename, as above, Vim prepends
 <tt>$VIMRUNTIME/bitmaps/</tt> to it.</p>

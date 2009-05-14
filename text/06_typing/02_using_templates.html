@@ -16,8 +16,7 @@ contents will be inserted.</p>
 
 <p>You must first create a skeleton document, e.g.:</p>
 
-<pre><code>
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"&gt;
 &lt;html xmlns="http://www.w3.org/1999/xhtml"
@@ -28,8 +27,7 @@ xml:lang="en"&gt;
     &lt;title&gt;Document Title&lt;/title&gt;
     &lt;/head&gt;
     &lt;body&gt;&lt;/body&gt;
-&lt;/html&gt;   
-</code></pre>
+&lt;/html&gt;</code></pre>
 
 <p>Save this document in your Vim directory with the corresponding file
 extension, e.g. <tt>~/.vim/skel/tmpl.html</tt>. (You may also want to make
@@ -37,9 +35,7 @@ this file read only so you don't modify it by mistake).</p>
 
 <p>Add the following to your <tt>.vimrc</tt>:</p>
 
-<pre><code>
-:autocmd BufNewFile * silent! 0r ~/.vim/skel/tmpl.%:e
-</code></pre>
+<pre><code>:autocmd BufNewFile * silent! 0r ~/.vim/skel/tmpl.%:e</code></pre>
 
 <p>Now, every time you open a new file Vim checks <tt>~/.vim/skel/</tt> for a
 file whose name starts with <tt>tmpl.</tt> and ends with the extension of the
@@ -65,8 +61,7 @@ then providing a method to jump between them. </p>
 
 <p>Here's the previous template with placeholders added:</p>
 
-<pre><code>
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"&gt;
 &lt;html xmlns="http://www.w3.org/1999/xhtml"
@@ -77,8 +72,7 @@ xml:lang="en"&gt;
     &lt;title&gt;%TITLE%&lt;/title&gt;
     &lt;/head&gt;
     &lt;body&gt;%BODY%&lt;/body&gt;
-&lt;/html&gt;   
-</code></pre>
+&lt;/html&gt;</code></pre>
 
 <p>The placeholder notation is arbitrary, but let's stick with
 <tt>%VARIABLE%</tt> for the sake of example. Now we need a way to jump between
@@ -91,16 +85,14 @@ Surely we either want to enforce a string of \u, or just let anything be
 between the two percentage signs? If we do keep them this, maybe document
 that, if users just copy and paste, they need to pay attention to case?</span></p>
 
-<pre><code>
-"Jump between %VAR% placeholders in Normal mode with
+<pre><code>"Jump between %VAR% placeholders in Normal mode with
 " &lt;Ctrl-p&gt;
 nnoremap &lt;c-p&gt; /%\u.\{-1,}%&lt;cr&gt;c/%/e&lt;cr&gt;
 "Jump between %VAR% placeholders in Insert mode with
 " &lt;Ctrl-p&gt;
 inoremap &lt;c-p&gt; &lt;ESC&gt;/%\u.\{-1,}%&lt;cr&gt;c/%/e&lt;cr&gt;
 " Highlight %VAR% placeholders with the Todo colour group
-syn match Todo "%\u\+%" containedin=ALL
-</code></pre>
+syn match Todo "%\u\+%" containedin=ALL</code></pre>
 
 <p>If we create a new HTML file now this is what we see: <span
 class="todo">screenshot</span>.  <span class="todo">Walk through inserting

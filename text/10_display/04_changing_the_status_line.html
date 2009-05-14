@@ -45,9 +45,7 @@ escaped.</p>
 
 <p>Here's a longer example:</p>
 
-<pre><code>
-:set statusline=%t\ %y\ format:\ %{&amp;ff};\ [%c,%l]
-</code></pre>
+<pre><code>:set statusline=%t\ %y\ format:\ %{&amp;ff};\ [%c,%l]</code></pre>
 
 <p>Sample output: <samp>.vimrc [vim] format: unix [2,3]</samp>.</p>
 
@@ -71,8 +69,6 @@ this way.</p>
 <p>You can even call a function in this way. For example, to show the last
 modification time of the current file:</p>
 
-<pre><code>
-\%{strftime(\"\%c\",getftime(expand(\"\%\%\")))}
-</code></pre>
+<pre><code>\%{strftime(\"\%c\",getftime(expand(\"\%\%\")))}</code></pre>
 
 <p>Sample output: <samp>Fri 01 May 2009 19:26:07 BST</samp></p>
