@@ -144,7 +144,7 @@ blockquote.callout h5:before {
   font-size: xx-large;
   content: '\21F0 \00a0 ';
 }  
-blockquote.tip p:before {
+blockquote.tip p:first-child:before {
   font-size: xx-large;
   content: '\272A \00a0 ';
 }  
