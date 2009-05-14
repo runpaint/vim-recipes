@@ -19,9 +19,10 @@ argument. For example: <tt>vim docs/novel.txt</tt> (on Windows:
 containing the given file. </p>
 
 <blockquote class="tip">
-  <p>If you use Andy Lester's ack utility you can create a shell script to
-  open files without having to specify their path. For example, using
-  <tt>bash</tt>:</p>
+  <p>If you use Andy Lester's <a
+    href="http://betterthangrep.com/"><tt>ack</tt></a> utility you can create
+  a shell script to open files without having to specify their path. For
+  example, using <tt>bash</tt>:</p>
   <pre><code>#!/bin/sh
 vim $(ack -g $@)</code></pre>
   <p>Name it <tt>vack</tt>, then <tt>vack shapes.rb</tt> will search
