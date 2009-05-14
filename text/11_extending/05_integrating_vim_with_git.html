@@ -1,0 +1,90 @@
+<h3 id="integrating-vim-with-git">Integrating Vim with Git</h3>
+
+<h4>Problem</h4>
+
+<p>You use the Git version control system with Vim and want shortcuts for
+common operations and syntax highlighting for <tt>git</tt> output.</p>
+
+<h4>Solution</h4>
+
+<p>Thanks to the work of <a href="http://www.tpope.net/">Tim Pope</a> and
+others, Vim ships with syntax highlighting support for Git output/templates.
+For example, after executing <tt>git commit -a</tt>, with Vim set as your
+default editor, you'll see
+
+<img src="vim-git-commit.png" width="716" height="188" 
+     alt="Screenshot of Vim syntax highlighting for Git commit messages"/>
+
+<p>Vim can even help you write better commit messages. Git commit messages
+should typically have a 50-character or less summary as their first line, with
+a blank second line, then, optionally a long explanation, wrapped at about 72
+characters<span class="fn">For an explanation
+  of this convention see <a href="http://www.tpope.net/node/106">A Note About
+    Git Commit Messages</a>.</span>. There's no need to remember this
+convention, however, because Vim warns you, visually, if you colour outside
+the lines. For example:</p>
+
+<img src="vim-git-commit-highlighting.png" width="718" height="221"
+     alt="Screenshot of Vim syntax highlighting for badly formatted Git commit
+     messages"/>
+
+<p>In this example, the first line is too long, so the extraneous characters
+are coloured black. The second line should be blank, so it has a red
+background to indicate its contents are in error.</p>
+
+<p><a
+  href="http://subtech.g.hatena.ne.jp/motemen/"><i>motemen</i></a>'s <a
+  href="http://github.com/motemen/git-vim"><i>git-vim</i></a> plugin extends
+this support by adding shortcuts and commands for common Git operations.</p>
+
+<p>Install it by copying its files to your Vim directory. For example, on
+Linux:</p>
+
+<pre><code>
+mkdir -p ~/.vim
+cd /tmp
+git clone git://github.com/motemen/git-vim.git
+cp -r git-vim/{plugin,syntax} ~/.vim/
+cd -
+</code></pre>
+
+<p>You now have access to commands such as <tt>:GitCommit</tt>, which will,
+split your window horizontally, loading the Git commit template into the upper
+pane. Once you have written your commit message and quit the buffer, your file
+will be committed. (This assumes, of course, that the current file is located
+in a Git working directory).</p>
+
+<h4>Discussion</h4>
+
+<p>Through a combination of editable history and particularly fast operation,
+Git invites regular commits. This is only feasible, however, if Git is tightly
+integrated into Vim, because otherwise version control will become a source of
+distraction that steals your focus and wastes your time.</p>
+
+<p>Vim's ability to <a href="#executing-external-commands">execute external
+  commands</a> already makes using <tt>git</tt> reasonably straightforward.
+For instance, <tt>:!git add %</tt> would add the current file, while <tt>:!git
+  log</tt> would temporarily suspend Vim to show you the commit log.</p>
+
+<p>The <i>git-vim</i> plugin expedites this process by providing Normal mode
+shortcuts. <kbd>\ga</kbd><span class="fn">This example and those following
+  assume that your <tt>Leader</tt> variable is set to the default of
+  <tt>/</tt>; see <tt>:help leader</tt> for details.</span> adds the current
+file, <kbd>\gc</kbd> commits it, etc.<span class="fn">For a complete list of
+  shortcuts offered by this plugin see its <tt>README.rdoc</tt>
+  file.</span></p>
+
+<p><i>git-vim</i> takes this integration further for commands like
+<tt>:GitBlame</tt> where the window is split vertically to show the author's
+name alongside the lines he was responsible for. </p>
+
+<img src="vim-git-blame.png" width="811" height="151"
+     alt="Screenshot of Vim with the git-vim plugin showing Git 'blame' output
+     alongside the file."/>
+
+<p>This presentation is clearly superior to the output of <tt>:!git blame
+  %</tt>, shown below, in that it employs syntax highlighting, allows inline
+editing, and hides extraneous output.</p>
+
+<img src="git-blame.png" width="1002" height="155"
+     alt="Screenshot of the output of `git blame`."/>
