@@ -1,3 +1,5 @@
+  * Box callouts?
+  * Caption images
   * Note that arguments to :set should have spaces backslash escaped.
   * Note on bias toward POSIX systems...
   * Note <tt>vim</tt> is synonymous with <tt>gvim</tt> unless otherwise stated.
@@ -52,4 +54,3 @@ Web Version
 * Add CC license fragment to recipe template.
 * Link PDF from recipes?
 * Gzip HTML.
-* Add Atom feed of recipes sorted by ctime.
