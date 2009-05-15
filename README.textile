@@ -1,0 +1,5 @@
+h1. Vim Recipes
+
+"Vim Recipes":http://vim.runpaint.org/ is a free cookbook for the Vim text
+editor. The book is available in PDF or HTML format under a Creative Commons
+license.
