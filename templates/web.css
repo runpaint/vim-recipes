@@ -62,3 +62,4 @@ span.fn a:link {
 .nav a:first-child{float:left}
 .nav a:last-child{float:right}
 /*.nav span{font-size:1000%;line-height:1;margin:0;text-shadow:gainsboro 3px 3px 3px} */
+p {margin: 1em 0}
