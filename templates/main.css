@@ -111,7 +111,7 @@ abbr{font-variant:small-caps;text-transform:lowercase;letter-spacing:0.1em}
 .note span{display:block;float:left;font-size:xx-large;line-height:0.875;margin:0 0.22em 0 -1.22em;color:steelblue}
 .c,pre,.w,.w a,.d{line-height:2.154}
 .f:first-letter{float:left;color:lightblue;padding:0.11em 4px 0 0;font:normal 4em/0.68 serif}
-p {margin:1.75em 0;font-size:medium} 
+p {margin:1em 0;font-size:medium} 
 /*p,ul,ol{margin:1.75em 0;font-size:medium} */
 
 /* basics */
