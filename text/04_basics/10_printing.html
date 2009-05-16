@@ -1,0 +1,64 @@
+<h3 id="printing">Printing</h3>
+
+<h4>Problem</h4>
+
+<p>You want to print something from Vim.</p>
+
+<h4>Solution</h4>
+
+<p>In GVim there's a <i>Print</i> entry on the <i>File</i> menu, and a printer
+icon on the toolbar.</p>
+
+<p>In Vim execute <tt>:hardcopy</tt>.</p>
+
+<h4>Discussion</h4>
+
+<p><tt>:hardcopy</tt> converts the current file to Postscript and sends it to
+the default printer. You can specify that a different printer is used with
+<tt>:set
+  pdev=<var>printer</var></tt>. For example, <tt>:set pdev=usblp1</tt>.</p>
+
+<p>If you have a <abbr title="Portable Document Format">PDF printer</abbr>
+installed<span class="fn">Linux/Mac users can
+  install the <tt>CUPS PDF</tt> package to get a PDF printer, e.g. on
+  Debian/Ubuntu: <tt>apt-get install cups-pdf</tt>.</span>, you can use this
+technique to print a file to PDF. For example, assuming your PDF printer is
+called <tt>pdf</tt>:</p>
+
+<pre><code>set pdev=pdf
+set printoptions=paper:A4,syntax:y,wrap:y</code></pre>
+
+<p>The <tt>printoptions</tt> line is a comma separated list of values that
+affect how Vim formats the document before it sends it to the printer. A list
+of options is at <tt>:help popt</tt>.</p>
+
+<p>The <tt>paper</tt> option sets the paper size. It accepts values such as
+<tt>A3</tt>, <tt>letter</tt>, and <tt>legal</tt>.</p>
+
+<p>The <tt>syntax</tt> option determines whether the document is printed with syntax
+highlighting. By default it has the value <tt>a</tt> which means that Vim only
+uses highlighting for colour printers. A value of <tt>y</tt> forces
+highlighting.</p>
+
+<p>Lines are wrapped when <tt>wrap:y</tt>, which is the default. If
+<tt>wrap</tt> has the value <tt>n</tt>, long lines are truncated.</p>
+
+<p>Other useful options are <tt>header:0</tt> to stop a header from being
+printed, <tt>number:y</tt> to number lines, <tt>duplex:off</tt> to print on
+only one side of the page.</p>
+
+<p>On Linux the <tt>lpr</tt> utility is used for printing. To use a different
+program add a stanza such as the following to your <a
+  href="#configuring-vim"><tt>vimrc</tt></a>:</p>
+
+<pre><code>set printexpr=PrintFile(v:fname_in)
+function PrintFile(fname)
+  call system("a2ps " . a:fname)
+  call delete(a:fname)
+  return v:shell_error
+endfunc</code></pre>
+
+<p>The above example specifies that the GNU <i>Anything to Postscript</i>
+(<tt>a2ps</tt>) utility is used for printing. <tt>a2ps</tt> can print two
+pages per physical page and custom headers, for example; see <tt>man a2ps</tt>
+for a complete list of features.</p>  
