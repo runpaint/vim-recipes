@@ -11,10 +11,13 @@ open Vim, type the recipe, save it to <tt>turkey-recipe.txt</tt>, then e-mail
 
 <h4>Solution</h4>
 
-<p>In Vim parlance, saving is 'writing', so to save your changes to the
-current file use <tt>:w[rite]</tt>. If your file doesn't have a name yet,
-you'll need to follow <tt>:w</tt> with a filename. This is conceptually
-similar to most word processors' <em>Save</em> function.</p>
+<p>The <tt>:up[date]</tt> command saves the current buffer if it has been
+modified<span class="fn">The more common command to save a file is
+  <tt>:w</tt>, however this always saves the file, even if it hasn't been
+  changed. <tt>:up</tt> preserves timestamps and saves needless disk
+  access.</span>.  If your file doesn't have a name yet, you'll need to follow
+<tt>:up</tt> with a filename. This is conceptually similar to most word
+processors' <em>Save</em> function.</p>
 
 <p>To change the name of an existing file, use <tt>:saveas
   <var>file</var></tt>. If <var>file</var> already exists and you want to
@@ -41,10 +44,10 @@ saved when you quit Vim, use <tt>:set autowriteall</tt>.</p>
 </blockquote>
 
 <p>You can also "write" a specific portion of a file to a new filename. By
-prefixing the <tt>:write</tt> command with a line range only the specified
-lines are written to the named file. For example, <tt>:20,30w 20-30.txt</tt>
+prefixing the <tt>:up</tt> command with a line range only the specified
+lines are written to the named file. For example, <tt>:20,30up 20-30.txt</tt>
 saves lines twenty to thirty of the current buffer to a file named
 <tt>20-30.txt</tt>. Alternatively, select a portion of a file <a
-  href="#visually-selecting-text">visually</a> then execute <tt>:w
+  href="#visually-selecting-text">visually</a> then execute <tt>:up
   <var>filename</var></tt> and the text you selected will be written to a file
 named <tt>filename</tt>.

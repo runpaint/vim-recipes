@@ -6,8 +6,11 @@
 
 <h4>Solution</h4>
 
-<p>To save the changes in the current file then quit use <tt>:wq</tt>. In
-Normal mode you use <kbd>ZZ</kbd>.</p>
+<p>To save the changes in the current file then quit use <tt>:x</tt><span
+  class="fn">The more usual suggestion for saving then quiting is
+  <tt>:wq</tt>. We use <tt>:x</tt> here because it only saves the file if it
+  has been changed, thus preserving its timestamp and saving needless disk
+  access.</span>. In Normal mode you use <kbd>ZZ</kbd>.</p>
 
 <h4>Discussion</h4>
 
@@ -15,9 +18,8 @@ Normal mode you use <kbd>ZZ</kbd>.</p>
 or just the current window) and what you want to do with your unsaved
 changes.</p>
 
-<p>As mentioned above, if you're using a single window either <tt>:wq</tt>
-(mnemonic: <b>w</b>rite and <b>q</b>uit) or <kbd>ZZ</kbd> will save any
-unsaved changes, and exit Vim. </p>
+<p>As mentioned above, if you're using a single window either <tt>:x</tt> or
+<kbd>ZZ</kbd> will save any unsaved changes, and exit Vim. </p>
 
 <p>To exit and discard your changes you use <tt>:q!</tt> (mnemonic:
 <b>q</b>uit in a possibly dangerous (exclamatory) manner). </p>
