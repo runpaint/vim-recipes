@@ -54,3 +54,4 @@ Web Version
 * Add CC license fragment to recipe template.
 * Link PDF from recipes?
 * Gzip HTML.
+* Generate DevHelp version.

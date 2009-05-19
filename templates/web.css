@@ -63,3 +63,8 @@ span.fn a:link {
 .nav a:last-child{float:right}
 /*.nav span{font-size:1000%;line-height:1;margin:0;text-shadow:gainsboro 3px 3px 3px} */
 p {margin: 1em 0}
+#disqus_thread {
+	border-top: 1px solid #ccc;
+	margin: 20px 0 20px 0;
+	padding: 10px 0 0 0;
+}
