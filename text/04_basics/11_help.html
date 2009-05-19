@@ -1,17 +1,14 @@
-<h3 id="searching-vim-documentation">Searching the Vim Documentation</h3>
+<h3 id="help">Getting Help</h3>
 
 <h4>Problem</h4>
 
-<p>You want help with Vim but don't know where to look.</p>
+<p>You want help with Vim but don't know where to look. Or, you've found help
+but find the output of the online help confusing.</p>
 
 <h4>Solution</h4>
 
-<p>Use the <tt>:helpgrep pattern</tt> command.</p>
-
-<h4>Discussion</h4>
-
-<p>To look up documentation for a specific Vim feature you can use <tt>:help
-feature-name</tt>. But this is only useful if you know the name of the feature.</p>
+<p>Look up a topic in the online help with <tt>:help <var>topic</var></tt>.
+Search it with the <tt>:helpgrep <var>pattern</var></tt> command.</p>
 
 <blockquote class="tip">
   <p>When requesting help for a subject use
@@ -20,6 +17,94 @@ feature-name</tt>. But this is only useful if you know the name of the feature.<
       :h<kbd><kbd>&lt;Ctrl&gt;</kbd>+<kbd>d</kbd></tt> shows a list of help
       topics for commands starting with <tt>:h</tt>.</p>
 </blockquote>  
+
+<h4>Discussion</h4>
+
+<p>The <tt>:help <var>topic</var></tt> displays documentation for the <a
+  href="#navigating-tags">tag</a> named <var>topic</var> in the Vim
+documentation. The tags are named
+with the following convention:</p>
+
+<table>
+  <tr><th>Type of Topic</th><th>Prepend</th><th>Example</th></tr>
+  <tr>
+    <td>Normal mode command</td>
+    <td>(nothing)</td>
+    <td><tt>:help x</tt></td>
+  </tr>
+  <tr>
+    <td>Visual mode command</td>
+    <td>v</td>
+    <td><tt>:help v_u</tt></td>
+  </tr>
+  <tr>
+    <td>Insert mode command</td>
+    <td>i</td>
+    <td><tt>:help i_&lt;Esc&gt;</tt></td>
+  </tr>
+  <tr>  
+    <td>Command-line command</td>
+    <td>:</td>
+    <td><tt>:help :quit</tt></td>
+  </tr>
+  <tr>  
+    <td>Command-line editing</td>
+    <td>c</td>
+    <td><tt>:help c_&lt;Del&gt;</tt></td>
+  </tr>
+  <tr>
+    <td>Vim command argument</td>
+    <td>-</td>
+    <td>:help -r</td>
+  </tr>
+  <tr>
+    <td>Option</td>
+    <td>'</td>
+    <td><tt>:help 'textwidth'</tt></td>
+  </tr>
+</table>
+
+<p><small>(The table above is excerpted from the Vim online help).</small></p>
+
+<p>The documentation itself also uses several conventions that may not be
+immediately obvious. For example, <tt>:help help</tt> displays the
+following<span class="fn">If you're using a different <a
+    href="#changing-colour-scheme">colour scheme</a> the
+  colours may be different.</span>:</p>
+
+<img src="vim-help.png" width="639" height="209" 
+alt="Screenshot of a portion of the output for `:help help`">
+
+<p>The strings in pink are synonymous tags for the current entry. For example,
+<tt>:help &lt;F1&gt;</tt> locates the same entry as <tt>:help help</tt>.</p>
+
+<p>The blue <tt>&lt;Help&gt;</tt> label indicates that in GVim the <i>Help</i>
+menu is the GUI equivalent of this command.</p>
+
+<p>The <tt>:h[elp]</tt> notation uses square brackets to indicate the optional
+portion of the command. Command-line commands can be shortened to the point
+that they are still unambiguous. In this case, <tt>:help</tt> can be shortened to
+<tt>:h</tt> or <tt>:hel</tt>.</p>
+
+<p>The green text (<tt>'helplang'</tt>) indicates an option. It's also a
+hyperlink to an explanation of the option, so if your cursor is over it you
+can use <kbd><kbd>&lt;Ctrl&gt;</kbd>+<kbd>]</kbd></kbd> to follow it.</p>
+
+<img src="vim-help-helpgrep.png" width="627" height="153"
+     alt="Screenshot of a portion of the output for `:help :helpgrep`.">
+     
+<p>The screenshot above identifies some further conventions to be aware
+of.</p>
+
+<p>The <tt>{pattern}</tt> notation describes a variable, i.e. it's a placeholder
+for text that you must supply.</p> 
+
+<p>Again square brackets are denote optional text. In this example,
+<tt>[@xx]</tt> means that you can follow the pattern by a two-letter language
+code.</p>
+
+<p>Lastly, the light green text are also hyperlinks. For example,
+<tt>:cwindow</tt> links to documentation for that command.</p>
 
 <p><tt>helpgrep</tt> takes a pattern and matches it against the locally
 installed documentation in much the same way as <tt>vimgrep</tt> did in <a
@@ -30,10 +115,12 @@ it finds any matches, it adds them to the <i>quick fix list</i><span
   for more information</span>, and jumps to the first one.</p>
 
 <blockquote class="tip">
-  <p>Phrases in the help files in a different font face to the rest of the
-  text are hyperlinks to related documentation. To follow these links use
-  <kbd><kbd>&lt;Ctrl&gt;</kbd>+<kbd>]</kbd></kbd> when your cursor is over
-  one.</p>
+  <p>Once you've followed a hyperlink (with
+  <kbd><kbd>&lt;Ctrl&gt;</kbd>+<kbd>]</kbd></kbd>), you can return to your
+  previous location with <kbd><kbd>&lt;Ctrl&gt;</kbd>+<kbd>o</kbd></kbd>. This
+  works in a similar fashion to a web browser's <i>Back</i> button, so using
+  this key combination <var>n</var> times will take you to the place you were
+  at <var>n</var> links previously.</p>
 </blockquote>  
 
 <p>If you've installed a Vim addon, you'll need to run <tt>:helptags
