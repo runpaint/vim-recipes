@@ -159,7 +159,7 @@ end
 directory 'output/css'
 desc "Generate the website"
 task :www => ['output/vim-recipes.pdf',:html, 'output/css'] do
-  FileList['www/*'].each {|f| cp f, 'output/'}
+  FileList['www/*', 'www/.[a-z]*'].each {|f| cp f, 'output/'}
   File.open('output/css/style.css','w') do |merged|
     ['main','web'].each do |name| 
       merged.print File.open('templates/' + name + '.css').read
