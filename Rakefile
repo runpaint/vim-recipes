@@ -173,5 +173,6 @@ task :upload => [:www, :sitemap] do
   rm OUTPUT_HTML
   sh "rsync -vaz output/ vim.runpaint.org:/home/public/"
   Rake::Task['sitemap_notify'].invoke
+  sh 'git push'
 end
 
