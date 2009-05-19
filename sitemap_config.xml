@@ -126,4 +126,7 @@
 
   <!-- Exclude stylesheets -->
   <filter action="drop" type="wildcard" pattern="*/css/*" />
+
+  <!-- Exclude output/all.html  -->
+  <filter action="drop" type="wildcard" pattern="*/all.html" />
 </site>
