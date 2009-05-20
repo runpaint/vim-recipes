@@ -17,7 +17,17 @@
     </form>
     <p><a href="/toc/">Vim Recipes</a> <span>&#8227;</span> <a href="/<%= section_id %>/"><%= section %></a> <span>&#8227;</span>
     <i><%= title %></i></p>
+    <div class="nav"><a
+        rel="prev" href="/<%= prev_e[:section_id] %>/<%= prev_e[:id]
+        %>/">&#x21A9; &nbsp; <%=
+      prev_e[:title] %></a> <a rel="next" href="/<%= next_e[:section_id] %>/<%= next_e[:id] %>/"><%=
+      next_e[:title] %> &nbsp; &#x21AA;</a></div>
     <%= body %>
+    <div class="nav"><a
+        rel="prev" href="/<%= prev_e[:section_id] %>/<%= prev_e[:id]
+        %>/">&#x21A9; &nbsp; <%=
+      prev_e[:title] %></a> <a rel="next" href="/<%= next_e[:section_id] %>/<%= next_e[:id] %>/"><%=
+      next_e[:title] %> &nbsp; &#x21AA;</a></div>
   <div style="clear:both" id="disqus_thread"></div>
   <script type="text/javascript" 
           src="http://disqus.com/forums/vimrecipes/embed.js">
@@ -26,11 +36,6 @@
     <a href="http://vimrecipes.disqus.com/?url=ref">View the comment thread.</a>
   </noscript>
     <div id="footnotes"></div>
-    <div class="nav"><a
-        rel="prev" href="/<%= prev_e[:section_id] %>/<%= prev_e[:id]
-        %>/">&#x21A9; &nbsp; <%=
-      prev_e[:title] %></a> <a rel="next" href="/<%= next_e[:section_id] %>/<%= next_e[:id] %>/"><%=
-      next_e[:title] %> &nbsp; &#x21AA;</a></div>
   
 
   <script type="text/javascript">
