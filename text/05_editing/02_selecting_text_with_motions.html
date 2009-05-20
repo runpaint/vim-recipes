@@ -15,14 +15,15 @@ by <i>motions</i> which describe what text they should operate on. They can be
 thought of as a set of directions the operator should use to select text.</p>
 
 <p>For example, you can delete the character under the cursor with
-<kbd>d</kbd>.  If you wanted to delete the word <i>fandangle</i> you'd need to
-press <kbd>d</kbd> nine times: once for each character. You could simply the
-process by prefixing <kbd>d</kbd> with a <a
-  href="#repeating-commands"><i>count</i></a>: <kbd>9d</kbd>. However, that
+<kbd>x</kbd>. If you wanted to delete the word <i>fandangle</i> you'd need to
+press <kbd>x</kbd> nine times: once for each character. You could simplify the
+process by prefixing <kbd>x</kbd> with a <a
+  href="#repeating-commands"><i>count</i></a>: <kbd>9x</kbd>. However, that
 requires you to know how many characters are in the word, and would be totally
-impractical if you wanted to delete multiple words at once. The motion for a
-word is <tt>w</tt>, so you can delete the word more easily with
-<kbd>dw</kbd>.</p>
+impractical if you wanted to delete multiple words at once. Instead you can
+use the <kbd>d<var>motion</var></kbd> command which deletes the characters
+selected by <var>motion</var>. The motion for a word is <tt>w</tt>, so you can
+delete the word more easily with <kbd>dw</kbd>.</p>
 
 <p>The following table shows some common operators which understand motions.</p>
 
