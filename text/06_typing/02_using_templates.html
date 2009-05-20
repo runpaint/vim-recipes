@@ -35,7 +35,7 @@ this file read only so you don't modify it by mistake).</p>
 
 <p>Add the following to your <tt>.vimrc</tt>:</p>
 
-<pre><code>:autocmd BufNewFile * silent! 0r ~/.vim/skel/tmpl.%:e</code></pre>
+<pre><code>autocmd BufNewFile * silent! 0r ~/.vim/skel/tmpl.%:e</code></pre>
 
 <p>Now, every time you open a new file Vim checks <tt>~/.vim/skel/</tt> for a
 file whose name starts with <tt>tmpl.</tt> and ends with the extension of the
