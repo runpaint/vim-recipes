@@ -77,24 +77,24 @@ then providing a method to jump between them. </p>
 <p>The placeholder notation is arbitrary, but let's stick with
 <tt>%VARIABLE%</tt> for the sake of example. Now we need a way to jump between
 them, and <kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>p</kbd></kbd> (menmonic:
-<i>p</i>laceholder) seems reasonable. Add the following to your <tt>vimrc</tt>
-<span class="todo">Link recipe</span>:</p>
+<i>p</i>laceholder) seems reasonable. While we're at it, we'll define a
+function (<tt>LoadTemplate()</tt>) to replace the <tt>autocmd</tt> line we
+added earlier. Add the following to your <tt>vimrc</tt>:</p> 
 
-<p><span class="todo">Improve these regexps. Is the \u inclusion sensible?
-Surely we either want to enforce a string of \u, or just let anything be
-between the two percentage signs? If we do keep them this, maybe document
-that, if users just copy and paste, they need to pay attention to case?</span></p>
-
-<pre><code>"Jump between %VAR% placeholders in Normal mode with
+<pre><code>function! LoadTemplate()
+  silent! 0r ~/.vim/skel/tmpl.%:e
+  " Highlight %VAR% placeholders with the Todo colour group
+  syn match Todo "%\u\+%" containedIn=ALL
+endfunction
+autocmd! BufNewFile * call LoadTemplate()
+"Jump between %VAR% placeholders in Normal mode with
 " &lt;Ctrl-p&gt;
 nnoremap &lt;c-p&gt; /%\u.\{-1,}%&lt;cr&gt;c/%/e&lt;cr&gt;
 "Jump between %VAR% placeholders in Insert mode with
 " &lt;Ctrl-p&gt;
-inoremap &lt;c-p&gt; &lt;ESC&gt;/%\u.\{-1,}%&lt;cr&gt;c/%/e&lt;cr&gt;
-" Highlight %VAR% placeholders with the Todo colour group
-syn match Todo "%\u\+%" containedin=ALL</code></pre>
+inoremap &lt;c-p&gt; &lt;ESC&gt;/%\u.\{-1,}%&lt;cr&gt;c/%/e&lt;cr&gt;</code></pre>
 
 <p>If we create a new HTML file now this is what we see:</p>
 
-<img src="vim-html-template.png" width="583" height="206"
+<img src="vim-html-template.png" width="580" height="202"
      alt="Screenshot of GVim displaying a template for a HTML document.">
