@@ -36,7 +36,13 @@ you may want to change <i>bob</i> to <i>Bob</i>.</p>
 use the following <a href="#creating-regular-expressions">regular
   expression</a>: <code>s/\&lt;\(\w\)\(\w*\)\&gt;/\u\1\L\2/g</code>. <a
   href="#visually-selecting-text">Select the text</a> you want to convert, hit
-<kbd>:</kbd>, then enter the regex.  If you use this regularly, consider
-installing the <a
+<kbd>:</kbd>, then enter the regular expression. If you use this regularly,
+consider <a href="#creating-keyboard-shortcuts-with-key-mappings">remapping a
+  key</a> to execute this command. For example:</p>
+
+<pre><code>nnoremap &lt;F7&gt; :s/\&lt;\(\w\)\(\w*\)\&gt;/\u\1\L\2/g&lt;CR&gt;
+vnoremap &lt;F7&gt; :s/\%V\(\w\)\(\w*\)\%V/\u\1\L\2/g&lt;CR&gt;</code></pre>
+
+<p>Alternatively, you can install the <a
   href="http://www.vim.org/scripts/script.php?script_id=439">titlecase</a>
-script.</p>
+<a href="#extending-vim-with-scripts-plugins">plugin</a>.</p>
