@@ -1,0 +1,130 @@
+<h3 id="inserting-snippets">Inserting Snippets</h3>
+
+<h4>Problem</h4>
+
+<p>You repeatedly type the same constructs, so want to expedite the process by
+typing a few letters then have Vim produce the boilerplate text.</p>
+
+<p>For example, to enter a HTML <tt>&lt;table&gt;</tt> you want to type
+<tt>table<kbd><kbd>&lt;Tab&gt;</kbd></kbd></tt> then have Vim produce:</p>
+
+<pre><code>&lt;table border=" "&gt;
+    &lt;tr&gt;&lt;th&gt; &lt;/th&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;h&gt; &lt;/th&gt;&lt;/tr&gt;
+  &lt;/table&gt;</code></pre>
+
+<h4>Solution</h4>
+
+<p>Use Michael Sanders' <a
+  href="http://www.vim.org/scripts/script.php?script_id=2540">snipMate</a>
+plugin.</p>
+
+<p>Follow the installation instructions on the script page, then open up a
+HTML document with Vim, e.g. <tt>vim test.html</tt>. Type
+<tt>table<kbd><kbd>&lt;Tab&gt;</kbd></kbd></tt>. The <tt>&lt;table&gt;</tt>
+given above should be inserted into your document.</p>
+
+<p>In the above example, <i>table</i> is the <i>trigger</i>, the text you
+type, and the resultant HTML is the <i>snippet</i>, the text that is inserted
+after typing <tt><var>trigger</var><kbd>&lt;Tab&gt;</kbd></tt>.</p>
+
+<p><i>snipMate</i> is distributed with a collection of snippets for common
+file types. To see a list of snippets available for the current buffer execute
+<tt><kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>R</kbd>
+    <kbd>&lt;Tab&gt;</kbd></kbd></tt>. To write your own, see <tt>:help
+  snipMate</tt>.</p>
+
+<blockquote class="tip">
+  <p>Several <i>snipMate</i> users have made their snippets available on <a
+    href="http://github.com/search?q=snipmate&amp;type=Repositories">GitHub.com</a>:</p>
+  <ul>
+    <li>Scala snippets by <a
+    href="http://github.com/tjweir/vim-snipmate-scala-snips/tree">Tyler Weir</a>.</li>
+    <li>Ruby,
+      Ruby on Rails, jQuery, rSpec, etc. snippets by <a
+      href="http://github.com/scrooloose/snipmate-snippets/tree/master">Martin
+      Grenfell</a> and <a
+      href="http://github.com/travisjeffery/snipmate-snippets/tree/master">Travis
+      Jeffery</a>.</li>
+    <li>A general collection by <a
+      href="http://github.com/jxl/snippets/tree/master">Ron Damen</a>.</li>
+  </ul>
+</blockquote>
+
+<h4>Discussion</h4>
+
+<p>The power of <i>snipMate</i> comes from how it lets you navigate the
+snippet once inserted. Consider again the <tt>&lt;table&gt;</tt> example:</p>
+
+<pre><code>&lt;table border="<var>1</var>"&gt;
+    &lt;tr&gt;&lt;th&gt;<var>2</var>&lt;/th&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;h&gt;<var>3</var>&lt;/th&gt;&lt;/tr&gt;
+  &lt;/table&gt;<var>4</var></code></pre>
+
+<p>The numbers, e.g. <var>1</var>, in the above output represent <i>tab
+  stops</i>: the positions where the <var>n</var><sup>th</sup>
+<kbd>&lt;Tab&gt;</kbd> after the trigger will move the cursor to. So, the user
+types <tt>table<kbd><kbd>&lt;Tab&gt;</kbd></kbd></tt> to insert the snippet.
+His cursor is placed in position <var>1</var> so he can enter the border size.
+He then hits <kbd>&lt;Tab&gt;</kbd> again to position his cursor in
+<var>2</var> so he can enter the name of the header for the first row. And so
+on.</p>  
+
+<p>Some constructs require user-entered text to appear multiple times. For
+instance, HTML authors may want to enter an <tt>&lt;option&gt;</tt> element
+like the following:</p>
+
+<pre><code>&lt;option value="<var>option</var>"&gt;<var>option</var>&lt;/option&gt;</code></pre>
+
+<p>In this example, <var>option</var> is placeholder text that needs to be
+entered twice. <i>snipMate</i> lets you enter the text in
+<tt>value="<var>option</var>"&gt;</tt>, and have it copied into
+&gt;<var>option</var>&lt; as you type.</p>
+
+<p>To learn more about <i>snipMate</i> and its features see <tt>:help
+  snipMate</tt>.</p>
+
+<blockquote class="callout">
+  <h5>Comparison of Techniques to Auto-Complete Text</h5>
+
+  <p>We have discussed various approaches to automatically inserting text in this
+  chapter, so let us recap<span class="fn">The forthcoming is intentionally
+    opinionated and simplified because a detailed analysis of every possibility is
+    beyond the scope of this book. That said, if there are any factual errors,
+    please let me know.</span>.</p>  
+
+  <p><a href="#using-templates">Templates</a> can be used to associate a skeleton
+  document with a file extension, whereby opening a file whose name ends with
+  that extension causes the skeleton document to be inserted into the buffer.
+  The advantage of this approach is that it doesn't require the installation of
+  any plugins, but other than that <i>snipMate</i> can be used to achieve the
+  same effect. For example, <i>SnipMate</i> has a trigger named <i>docx</i>
+  which inserts the XHTML 1.1 doctype:</p>
+
+  <pre><code>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"&gt;</code></pre>
+
+  <p>This can trivially be adapted to insert whatever boilerplate HTML you
+  desire.</p>
+
+  <p><a href="abbreviating-common-strngs">Abbreviations</a> can be used to
+  replace a piece of text with another piece of text after pressing
+  <kbd>&lt;Tab&gt;</kbd>. They differ from snippets in two key respects.
+  Abbreviations are typically defined globally, whereas snippets are defined
+  for specific filetypes. For instance, a trigger of <tt>for</tt> could insert
+  a C <i>for</i> loop when editing C source code, or a Ruby <i>for</i> loop
+  when editing Ruby code. More importantly, snippets have the notion of
+  placeholders that can be tabbed between. In general, snippets can do
+  everything abbreviations can, and more.</p>  
+
+  <p><a href="#auto-completing-text">Insert-mode auto-completion</a> can
+  auto-complete text based on what has already been typed or the grammar of
+  the current file type. For instance, you can auto-complete a variable name
+  that you have declared previously, or a language keyword. This form of
+  auto-completion augments <i>snipMate</i>: use the former to complete unique
+  definitions and names in the current file, and those that it includes; use
+  the latter to complete pre-defined snippets.  Where the two's
+  functionalities overlap, <i>snipMate</i> has a simpler interface (type a
+  trigger, hit <kbd>&lt;Tab&gt;</kbd>), and is, arguably, easier to
+  configure.</p> 
+</blockquote>  
