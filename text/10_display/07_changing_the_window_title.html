@@ -1,0 +1,64 @@
+<h3 id="changing-window-title">Changing the Window Title</h3>
+
+<h4>Problem</h4>
+
+<p>You want to change the title of a Vim window to make it more
+descriptive.</p>
+
+<h4>Solution</h4>
+
+<p>Assign a value to the <tt>titlestring</tt> option, and set the
+<tt>title</tt> option. For example:</p>
+
+<pre><code>:set title titlestring=My\ Title</code></pre>
+
+<h4>Discussion</h4>
+
+<p>When working with multiple instances of Vim, it can be difficult to
+remember what task each window corresponds to. You can avoid this problem by
+customising each window's title. The window title can also function similarly
+to the <a href="#changing-status-line">status line</a>, reminding the user
+about an important aspect of the current file.</p>
+
+<p>The default window title contains the current filename, followed by a
+character indicating the state of this file, followed by the name of its
+directory<span class="fn">To be precise, the directory name is followed by a
+  hyphen then the value of <tt>&amp;v:servername</tt>, if set, otherwise
+  just <i>VIM</i>.</span>. The state character is one of the following:</p>
+
+<dl>
+  <dt><tt>-</tt></dt><dd>File can't be modified</dd>
+  <dt><tt>+</tt></dt><dd>File has been modified</dd>
+  <dt><tt>=</tt></dt><dd>File is read-only</dd>
+  <dt><tt>=+</tt></dt><dd>File is read-only and has been modified</dd>
+</dl>  
+
+<p>This is already quite a descriptive title, but we can customise it further
+using a format string, as described in the <a
+  href="#changing-status-line">Changing the Status Line</a> recipe. The Vim
+documentation (<tt>:help titlestring</tt>) gives the following example:</p>
+
+<pre><code>:auto BufEnter * let &amp;titlestring = hostname() . "/" .
+expand("%:p")</code></pre>
+
+<p>Here the window title is reset when the user enters a new buffer. It
+contains the hostname, a forward slash, then the full path of the current
+file<span class="fn">For an explanation of the <tt>%:p</tt> syntax see the <a
+    href="#filename-modifers">Filename Modifiers</a> section of the <a
+    href="#executing-external-commands">Executing External Commands</a>
+  recipe.</span>.</p>
+
+<p>Another example is to display the value of an environment variable in the
+window title along with the filename. For instance, Ruby on Rails developers
+could prefix the filename with the value of <tt>RAILS_ENV</tt>, which
+indicates whether the application is in development, production, staging, or
+testing mode:</p>
+
+<pre><code>let &amp;titlestring=expand($RAILS_ENV) . ": " .
+expand("%:t")</code></pre>
+
+<p>One last trick is to embed the value of an external command in the window
+title using the <tt>%{system('<var>command</var>')}</tt> syntax. This could be
+used to display the name of the current branch, if using a version control
+system, or indicate whether the project's unit tests are passing or
+failing.</p>
