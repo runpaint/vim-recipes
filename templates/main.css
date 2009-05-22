@@ -148,6 +148,26 @@ blockquote.tip p:first-child:before {
   font-size: xx-large;
   content: '\272A \00a0 ';
 }  
+
+blockquote.tip > ul > li {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}  
+blockquote.tip > ul {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}  
+
+blockquote.tip > p {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}  
+
+
 /* headers and pullquotes */
 h2,h3,h4,h5,h6,aside{font-family:"Book Antiqua",Palatino,Georgia,serif}
 h2,h3,h4{font-variant:small-caps}
