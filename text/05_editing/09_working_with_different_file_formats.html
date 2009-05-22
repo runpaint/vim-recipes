@@ -1,0 +1,40 @@
+<h3 id="working-different-file-formats">Working with Different File
+  Formats</h3>
+
+<h4>Problem</h4>
+
+<p>You're editing a file created on a different operating system, so need to
+change its line endings. Or, you wish to convert a file to use different line
+endings, perhaps because a tool expects them that way.</p>
+
+<h4>Solution</h4>
+
+<p>Specify the desired file format with <tt>:set ff=<var>format</var></tt>,
+where <var>format</var> is <i>dos</i> for Microsoft Windows/DOS files,
+<i>unix</i> for Unix/Linux, or <i>mac</i> for Apple Mac. As usual, you must
+then <a href="#saving-a-file">save the file</a> to make the changes permanent:
+<tt>:up</tt>.</p>
+
+<h4>Discussion</h4>
+
+<p>Different operating systems have different notions of what constitutes a
+line in a text file. Specifically, they disagree on the control character that
+terminates a line. Unix/Linux uses a line feed (LF), Microsoft Windows uses a
+carriage return followed by a line feed (CRLF), and the Mac uses a carriage
+return (CR). This would be a matter of pedantry were it not for users of
+different operating systems sharing files.</p>
+
+<p>Luckily, Vim handles this situation transparently most of the time. When a
+file is loaded, its format is guessed, and <tt>&amp;ff</tt> is set
+appropriately. If Vim guesses incorrectly, you can insist on a specific file
+format with <tt>:e ++ff=<var>format</var></tt>, thus forcing the file to
+convert to the given format.</p>
+
+<p>The above assumes that a file's line endings are at least consistent. That
+is, each line ends with the same character(s). If your file is mangled (some
+lines ending with CR, some with LF, for example) you
+will likely see stray control characters such as <tt>^J</tt> or <tt>^M</tt>
+peppered throughout. This can be fixed with <a
+  href="#searching-and-replacing">search and replace</a>: <tt>:%s/\r//</tt>.
+Lastly, if you have some Mac line endings with <tt>dos</tt>/<tt>unix</tt> or
+Unix/Linux line endings with <tt>mac</tt>, use <tt>:%s/\r/\r/g</tt>.</p>
