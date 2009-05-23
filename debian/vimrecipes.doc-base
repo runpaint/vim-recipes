@@ -4,7 +4,7 @@ Author: Run Paint Run Run <runrun@runpaint.org>
 Abstract:
  Free "cookbook" for the Vim text editor containing task-orientated
  discussions of common features.
-Section: editors
+Section: Programming
 
 Format: HTML
 Index: /usr/share/doc/vimrecipes/html/index.html
