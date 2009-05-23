@@ -1,0 +1,14 @@
+Source: vimrecipes
+Section: doc
+Priority: optional
+Maintainer: Run Paint Run Run <runrun@runpaint.org>
+Standards-Version: 3.8.0
+Homepage: http://vim.runpaint.org/
+Vcs-Browser: http://github.com/runpaint/vimrecipes
+Vcs-Git: git://github.com/runpaint/vim-recipes.git
+
+Package: vimrecipes
+Architecture: all
+Description: Vim Recipes
+ Free "cookbook" for the Vim text editor. Contains task-orientated descriptions
+ of common features.
