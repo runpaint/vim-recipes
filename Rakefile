@@ -182,4 +182,15 @@ task :deb => [:www] do
   mkdir_p html_dir
   cp 'output/toc/index.html', html_dir
   FileList['output/*/'].each {|d| cp_r d, html_dir}
+  FileList["#{html_dir}/*.html", "#{html_dir}/*/*.html", 
+           "#{html_dir}/*/*/*.html"].each do |file|
+    prefix = '../' * (file.count('/') - html_dir.count('/') - 1)
+    doc = Hpricot(File.open(file).read)
+    doc.search('*[@href]').each do |tag|
+      tag['href'] = prefix + tag['href'][1..-1]
+      tag['href'] += 'index.html' unless tag.name == 'link'
+      tag['href'] = tag['href'].sub('/toc','') || tag['href']
+    end
+    File.open(file,'w').puts doc
+  end  
 end
