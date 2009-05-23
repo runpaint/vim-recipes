@@ -178,9 +178,11 @@ end
 
 desc "Generate the .deb"
 task :deb => [:www] do
-  html_dir = 'deb/usr/share/doc/vimrecipes/html'
+  deb_dir = 'deb/usr/share/doc/vimrecipes'
+  html_dir = deb_dir + '/html'
   mkdir_p html_dir
   cp 'output/toc/index.html', html_dir
+  sh "gzip -c output/vim-recipes.pdf >#{deb_dir}/vim-recipes.pdf.gz"
   FileList['output/*/','output/*.png'].each {|d| cp_r d, html_dir}
   FileList["#{html_dir}/*.html", "#{html_dir}/*/*.html", 
            "#{html_dir}/*/*/*.html"].each do |file|
