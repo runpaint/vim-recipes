@@ -5,7 +5,7 @@ SOURCE_HTML = FileList['text/**/*.html']
 WWW_HTML = FileList['output/**/**/*.html']
 IMAGES = FileList['images/*']
 OUTPUT_HTML = 'output/all.html'
-CLOBBER.include('output', 'deb')
+CLOBBER.include('output')
 
 directory "output"
 
