@@ -5,7 +5,7 @@ SOURCE_HTML = FileList['text/**/*.html']
 WWW_HTML = FileList['output/**/**/*.html']
 IMAGES = FileList['images/*']
 OUTPUT_HTML = 'output/all.html'
-CLOBBER.include('output')
+CLOBBER.include('output', 'deb')
 
 directory "output"
 
@@ -176,3 +176,10 @@ task :upload => [:www, :sitemap] do
   sh 'git push'
 end
 
+desc "Generate the .deb"
+task :deb => [:www] do
+  html_dir = 'deb/usr/share/doc/vimrecipes/html'
+  mkdir_p html_dir
+  cp 'output/toc/index.html', html_dir
+  FileList['output/*/'].each {|d| cp_r d, html_dir}
+end
