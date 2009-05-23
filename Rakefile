@@ -181,15 +181,23 @@ task :deb => [:www] do
   html_dir = 'deb/usr/share/doc/vimrecipes/html'
   mkdir_p html_dir
   cp 'output/toc/index.html', html_dir
-  FileList['output/*/'].each {|d| cp_r d, html_dir}
+  FileList['output/*/','output/*.png'].each {|d| cp_r d, html_dir}
   FileList["#{html_dir}/*.html", "#{html_dir}/*/*.html", 
            "#{html_dir}/*/*/*.html"].each do |file|
     prefix = '../' * (file.count('/') - html_dir.count('/') - 1)
     doc = Hpricot(File.open(file).read)
-    doc.search('*[@href]').each do |tag|
-      tag['href'] = prefix + tag['href'][1..-1]
-      tag['href'] += 'index.html' unless tag.name == 'link'
-      tag['href'] = tag['href'].sub('/toc','') || tag['href']
+    doc.search('link[@rel=alternate]').remove
+    doc.search('form, script, noscript').remove
+    if doc.at('#disqus_thread')
+      doc.at('#disqus_thread').after('<script src="/js/footnotes.js">')
+    end
+    %w{href src}.each do |attr|
+      doc.search("*[@#{attr}]").each do |tag|
+          next unless tag[attr].start_with? '/'
+          tag[attr] = prefix + tag[attr][1..-1]
+          tag[attr] += 'index.html' if tag[attr].end_with? '/'
+          tag[attr] = tag[attr].sub('/toc','') || tag[attr]
+      end
     end
     File.open(file,'w').puts doc
   end  
