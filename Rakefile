@@ -1,12 +1,19 @@
 require 'rake/clean'
 require 'rubygems'
 require 'hpricot'
+require 'erb'
 
 SOURCE_HTML = FileList['text/**/*.html']
 WWW_HTML = FileList['output/**/**/*.html']
 IMAGES = FileList['images/*']
 OUTPUT_HTML = 'output/all.html'
 CLOBBER.include('output','deb')
+
+def template(filename,hash)
+  ERB.new(File.open(filename).read).result(
+    OpenStruct.new(hash).send(:binding)
+  )    
+end
 
 directory "output"
 
@@ -82,9 +89,6 @@ end
 
 desc "Generate the HTML version"
 task :html => SOURCE_HTML do |t|
-  require 'erubis'
-  require 'hpricot'
-  template = File.open('templates/recipe.html').read
   toc = make_toc()
   toc.each_with_index do |entry,idx|
     next if entry[:type] == :subsection
@@ -92,14 +96,13 @@ task :html => SOURCE_HTML do |t|
     doc = Hpricot(source)
 
     if (entry[:type] == :section) || (entry[:id] == 'introduction')
-      page = Erubis::Eruby.new(File.open('templates/chapter.html').read).result(
-        {:title => entry[:id] == 'introduction' ? 'Preliminaries' : entry[:title],
-         :recipes => toc.select do |e| 
+        page = template('templates/chapter.html', 
+          {:title => entry[:id] == 'introduction' ? 'Preliminaries' : entry[:title],
+           :recipes => toc.select do |e| 
             (e[:section_id] == entry[:section_id]) &&
             (e[:type] == :recipe)
          end   
-        }
-      )
+        })
       path = "output/#{entry[:section_id]}/index.html"
       mkdir_p File.dirname(path)
       File.open(path,'w'){|f| f.puts page}
@@ -133,10 +136,10 @@ task :html => SOURCE_HTML do |t|
         |e| e[:type] == :recipe}.first
       prv = idx == 0 ? toc[-1] : toc[0..(idx - 1)].select{
         |e| e[:type] == :recipe}[-1]
-      page = Erubis::Eruby.new(template).result(
+      page = template('templates/recipe.html', 
         {:body => doc.to_s, :title => entry[:title], :id => entry[:id], 
-          :section_id => entry[:section_id], :section => entry[:section_name], 
-          :next_e => nxt, :prev_e => prv})
+         :section_id => entry[:section_id], :section => entry[:section_name], 
+         :next_e => nxt, :prev_e => prv})
        #FIXME: Use :target_path instead: 
        path = "output/#{entry[:section_id]}/#{entry[:id]}/index.html"
        mkdir_p File.dirname(path) 
@@ -144,16 +147,14 @@ task :html => SOURCE_HTML do |t|
        entry[:body] = doc.to_s
     end    
   end  
-  page = Erubis::Eruby.new(File.open('templates/toc.html').read).
-         result({:toc => toc.dup.reject{|e| e[:type] == :subsection}})
+  page = template('templates/toc.html', 
+    {:toc => toc.dup.reject{|e| e[:type] == :subsection}})
   mkdir_p 'output/toc'
   File.open('output/toc/index.html','w') {|file| file.puts page}
   recipes_by_time = toc.reject{|e| e[:type] == :subsection}.
                         sort_by{|e| e[:time]}.reverse
-  page = Erubis::Eruby.new(File.open('templates/atom.atom').read).
-         result({:toc => recipes_by_time,
-                 :updated => recipes_by_time.first[:time]            
-          })
+  page = template('templates/atom.atom', 
+    {:toc => recipes_by_time, :updated => recipes_by_time.first[:time]})
   File.open('output/index.atom','w') {|file| file.puts page}
 end
 
@@ -183,7 +184,7 @@ task :deb => [:www] do
   html_dir = deb_dir + '/html'
   mkdir_p html_dir
   cp 'output/toc/index.html', html_dir
-  sh "gzip -c output/vim-recipes.pdf >#{deb_dir}/vim-recipes.pdf.gz"
+  #sh "gzip -c output/vim-recipes.pdf >#{deb_dir}/vim-recipes.pdf.gz"
   FileList['output/*/','output/*.png'].each {|d| cp_r d, html_dir}
   FileList["#{html_dir}/*.html", "#{html_dir}/*/*.html", 
            "#{html_dir}/*/*/*.html"].each do |file|
