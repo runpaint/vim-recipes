@@ -83,7 +83,7 @@
   -->
 
   <directory 
-    path="output/" 
+    path="output/www/" 
     url="http://vim.runpaint.org/" 
     default_file="index.html" 
     remove_empty_directories="true"/>
