@@ -3,7 +3,7 @@ Section: doc
 Priority: optional
 XSBC-Original-Maintainer: Run Paint Run Run <runrun@runpaint.org>
 Maintainer: Ubuntu MOTU Developers <ubuntu-motu@lists.ubuntu.com>
-Build-Depends: debhelper (>= 7), liberuby, ruby1.8, rake. libhpricot-ruby1.8
+Build-Depends: debhelper (>= 7), liberuby, ruby1.8, rake, libhpricot-ruby1.8
 Standards-Version: 3.8.0
 Homepage: http://vim.runpaint.org/
 Vcs-Browser: http://github.com/runpaint/vimrecipes
