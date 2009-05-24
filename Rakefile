@@ -1,4 +1,5 @@
 require 'rake/clean'
+require 'rubygems'
 require 'hpricot'
 
 SOURCE_HTML = FileList['text/**/*.html']
