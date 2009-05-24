@@ -37,7 +37,7 @@
 -->
  <site
   base_url="http://vim.runpaint.org/"
-  store_into="output/sitemap.xml"
+  store_into="output/www/sitemap.xml"
   verbose="1"
   sitemap_type="web">
  

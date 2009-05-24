@@ -2,30 +2,41 @@ require 'rake/clean'
 require 'hpricot'
 require 'erb'
 
+WEB_OUT = 'output/www'
+OFFLINE_OUT = 'output/offline'
 SOURCE_HTML = FileList['text/**/*.html']
-WWW_HTML = FileList['output/**/**/*.html']
+WWW_HTML = FileList["#{WEB_OUT}/**/**/*.html"]
 IMAGES = FileList['images/*']
-OUTPUT_HTML = 'output/all.html'
+OUTPUT_HTML = "#{WEB_OUT}/all.html"
+PDF = "#{WEB_OUT}/vim-recipes.pdf"
 CLOBBER.include('output','deb')
+TEMPLATES_DIR = 'templates/'
+TEMPLATE_WRAPPER = 'page.html'
+TEMPLATE_NO_WRAP = [TEMPLATE_WRAPPER, 'atom.atom']
+
+def bind(obj)
+  obj.send(:binding)
+end  
 
 def template(filename,hash)
-  ERB.new(File.open(filename).read).result(
-    OpenStruct.new(hash).send(:binding)
-  )    
+  content = ERB.new(File.open(File.join(TEMPLATES_DIR,filename)).read).
+    result(bind(OpenStruct.new(hash)))
+  return content if TEMPLATE_NO_WRAP.include? filename
+  template(TEMPLATE_WRAPPER, {:content => content}.merge(hash))  
 end
 
-directory "output"
+directory WEB_OUT
 
 desc "Copy images to output directory"
-task :images => :output
+task :images => WEB_OUT
 task :images => IMAGES do |t|
   IMAGES.each do |image|
-    cp image, "output"
+    cp image, WEB_OUT
   end  
 end
 
 desc "Combine source HTML into single HTML file"
-task OUTPUT_HTML => [:output, :images]
+task OUTPUT_HTML => [WEB_OUT, :images]
 file OUTPUT_HTML => SOURCE_HTML do |t|
   File.open(t.name,'w') do |out|
     SOURCE_HTML.sort.each do |source|
@@ -34,12 +45,14 @@ file OUTPUT_HTML => SOURCE_HTML do |t|
   end  
 end
 
-file 'output/vim-recipes.pdf' => OUTPUT_HTML do |t|
+file PDF => [OUTPUT_HTML,WEB_OUT] do |t|
   system("prince #{t.prerequisites.first} #{t.name}")
 end
 
 desc "Generate the PDF"
-task :pdf => [:clobber, 'output/vim-recipes.pdf']
+task :pdf => PDF do
+  rm OUTPUT_HTML
+end  
 
 desc "Generate the Sitemap"
 task :sitemap do
@@ -85,7 +98,7 @@ def make_toc
       toc << { :id => h_tag['id'], :title => title, :file => f,
        :type => type, :section_name => section, :section_id => section_id,
        :recipe_id => recipe_id, :time => commit_time(f),
-       :target_path => "output/#{section_id}/#{h_tag['id']}/index.html" }
+       :target_path => "#{WEB_OUT}/#{section_id}/#{h_tag['id']}/index.html" }
     end  
   end    
   toc
@@ -100,14 +113,14 @@ task :html => SOURCE_HTML do |t|
     doc = Hpricot(source)
 
     if (entry[:type] == :section) || (entry[:id] == 'introduction')
-        page = template('templates/chapter.html', 
+        page = template('chapter.html', 
           {:title => entry[:id] == 'introduction' ? 'Preliminaries' : entry[:title],
            :recipes => toc.select do |e| 
             (e[:section_id] == entry[:section_id]) &&
             (e[:type] == :recipe)
          end   
         })
-      path = "output/#{entry[:section_id]}/index.html"
+      path = "#{WEB_OUT}/#{entry[:section_id]}/index.html"
       mkdir_p File.dirname(path)
       File.open(path,'w'){|f| f.puts page}
     end  
@@ -140,73 +153,91 @@ task :html => SOURCE_HTML do |t|
         |e| e[:type] == :recipe}.first
       prv = idx == 0 ? toc[-1] : toc[0..(idx - 1)].select{
         |e| e[:type] == :recipe}[-1]
-      page = template('templates/recipe.html', 
+      page = template('recipe.html', 
         {:body => doc.to_s, :title => entry[:title], :id => entry[:id], 
          :section_id => entry[:section_id], :section => entry[:section_name], 
          :next_e => nxt, :prev_e => prv})
        #FIXME: Use :target_path instead: 
-       path = "output/#{entry[:section_id]}/#{entry[:id]}/index.html"
+       path = "#{WEB_OUT}/#{entry[:section_id]}/#{entry[:id]}/index.html"
        mkdir_p File.dirname(path) 
        File.open(path,'w') {|file| file.puts page}
        entry[:body] = doc.to_s
     end    
   end  
-  page = template('templates/toc.html', 
-    {:toc => toc.dup.reject{|e| e[:type] == :subsection}})
-  mkdir_p 'output/toc'
-  File.open('output/toc/index.html','w') {|file| file.puts page}
+  page = template('toc.html', 
+    {:toc => toc.dup.reject{|e| e[:type] == :subsection},
+     :title => 'Table of Contents'})
+  mkdir_p "#{WEB_OUT}/toc"
+  File.open("#{WEB_OUT}/toc/index.html",'w') {|file| file.puts page}
   recipes_by_time = toc.reject{|e| e[:type] == :subsection}.
                         sort_by{|e| e[:time]}.reverse
-  page = template('templates/atom.atom', 
+  page = template('atom.atom', 
     {:toc => recipes_by_time, :updated => recipes_by_time.first[:time]})
-  File.open('output/index.atom','w') {|file| file.puts page}
+  File.open("#{WEB_OUT}/index.atom",'w') {|file| file.puts page}
 end
 
-directory 'output/css'
+directory "#{WEB_OUT}/css"
 desc "Generate the website"
-task :www => ['output/vim-recipes.pdf',:html, 'output/css'] do
-  FileList['www/*', 'www/.[a-z]*'].each {|f| cp f, 'output/'}
-  File.open('output/css/style.css','w') do |merged|
+multitask :www => ["#{WEB_OUT}/vim-recipes.pdf",:html, "#{WEB_OUT}/css", :offline] do
+  FileList['www/*', 'www/.[a-z]*'].each {|f| cp f, WEB_OUT}
+  File.open("#{WEB_OUT}/css/style.css",'w') do |merged|
     ['main','web'].each do |name| 
-      merged.print File.open('templates/' + name + '.css').read
+      merged.print File.open(File.join(TEMPLATES_DIR, name + '.css')).read
     end  
   end  
-  cp_r 'js', 'output/'
+  cp_r 'js', WEB_OUT
 end  
 
 desc "Upload the website"
 task :upload => [:www, :sitemap] do
   rm OUTPUT_HTML
-  sh "rsync -vaz output/ vim.runpaint.org:/home/public/"
+  sh "rsync -vaz #{WEB_OUT}/ vim.runpaint.org:/home/public/"
   Rake::Task['sitemap_notify'].invoke
   sh 'git push'
 end
 
 desc "Generate the .deb"
-task :deb => [:www] do
-  deb_dir = 'deb/usr/share/doc/vimrecipes'
-  html_dir = deb_dir + '/html'
-  mkdir_p html_dir
-  cp 'output/toc/index.html', html_dir
-  #sh "gzip -c output/vim-recipes.pdf >#{deb_dir}/vim-recipes.pdf.gz"
-  FileList['output/*/','output/*.png'].each {|d| cp_r d, html_dir}
-  FileList["#{html_dir}/*.html", "#{html_dir}/*/*.html", 
-           "#{html_dir}/*/*/*.html"].each do |file|
-    prefix = '../' * (file.count('/') - html_dir.count('/') - 1)
-    doc = Hpricot(File.open(file).read)
-    doc.search('link[@rel=alternate]').remove
-    doc.search('form, script, noscript').remove
-    if doc.at('#disqus_thread')
-      doc.at('#disqus_thread').after('<script src="/js/footnotes.js">')
-    end
-    %w{href src}.each do |attr|
-      doc.search("*[@#{attr}]").each do |tag|
-          next unless tag[attr].start_with? '/'
-          tag[attr] = prefix + tag[attr][1..-1]
-          tag[attr] += 'index.html' if tag[attr].end_with? '/'
-          tag[attr] = tag[attr].sub('/toc','') || tag[attr]
+task :deb => [:offline_html] do
+  dir = 'deb/usr/share/doc/vimrecipes/html'
+  mkdir_p dir
+  cp_r OFFLINE_OUT, dir
+end 
+
+desc "Generate the offline HTML"
+task :offline_html => [:html] do
+  cp_r WEB_OUT, OFFLINE_OUT
+  chdir OFFLINE_OUT do
+    mv "toc/index.html", 'index.html'
+    rmdir 'toc'
+    rm 'index.atom'
+    FileList["*.html", "*/*.html", "*/*/*.html"].each do |file|
+      prefix = '../' * (file.count('/') + 1 - OFFLINE_OUT.count('/'))
+      doc = Hpricot(File.open(file).read)
+      doc.search('link[@rel=alternate]').remove
+      doc.search('form, script, noscript').remove
+      if doc.at('#disqus_thread')
+        doc.at('#disqus_thread').after('<script src="/js/footnotes.js">')
       end
-    end
-    File.open(file,'w').puts doc
+      %w{href src}.each do |attr|
+        doc.search("*[@#{attr}]").each do |tag|
+            next unless tag[attr].start_with? '/'
+            tag[attr] = prefix + tag[attr][1..-1]
+            tag[attr] += 'index.html' if tag[attr].end_with? '/'
+            tag[attr] = tag[attr].sub('/toc','') || tag[attr]
+        end
+      end
+      File.open(file,'w').puts doc
+    end  
+  end    
+end
+
+desc "Create offline archive"
+task :offline => [:pdf, :offline_html] do
+  cp File.join(WEB_OUT,'vim-recipes.pdf'), OFFLINE_OUT
+  chdir 'output' do  
+    cp_r("offline", 'vim-recipes')
+    sh "tar cjf vim-recipes.tar.bz2 vim-recipes" 
+    sh "zip -qr vim-recipes.zip vim-recipes"
+    mv(FileList["vim-recipes.*"],'www/')
   end  
 end
