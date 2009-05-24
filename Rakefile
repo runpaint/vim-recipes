@@ -52,8 +52,13 @@ task :sitemap_notify do
 end
 
 def commit_time(file)
-  Time.at(`git log -r --name-only --no-color --pretty=raw -z #{file}`.
+  begin
+    Time.at(`git log -r --name-only --no-color --pretty=raw -z #{file}`.
        to_a.grep(/^committer/).last.match(/ (\d+) /)[1].to_i)
+  rescue
+    $stderr.puts "Couldn't get commit time for #{file}"
+    Time.now
+  end 
 end
 
 def make_toc
