@@ -16,6 +16,8 @@ clean: unpatch
 build: build-stamp
 build-stamp: patch
 	dh_testdir
+	
+	rake deb
 
 	touch build-stamp
 
