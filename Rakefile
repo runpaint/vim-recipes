@@ -1,5 +1,4 @@
 require 'rake/clean'
-require 'rubygems'
 require 'hpricot'
 require 'erb'
 
