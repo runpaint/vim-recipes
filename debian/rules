@@ -8,7 +8,7 @@ clean:
 	dh_testdir
 	dh_testroot
 	rm -f build-stamp
-
+	rake clobber
 	dh_clean
 
 build: build-stamp
