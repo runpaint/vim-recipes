@@ -66,7 +66,7 @@ end
 
 def commit_time(file)
   begin
-    Time.at(`git log -r --name-only --no-color --pretty=raw -z #{file}`.
+    Time.at(`git log -r --name-only --no-color --pretty=raw -z #{file}`.split(/\n/).
        to_a.grep(/^committer/).last.match(/ (\d+) /)[1].to_i)
   rescue
     $stderr.puts "Couldn't get commit time for #{file}"
@@ -190,7 +190,6 @@ end
 
 desc "Upload the website"
 task :upload => [:www, :sitemap] do
-  rm OUTPUT_HTML
   sh "rsync -vaz #{WEB_OUT}/ vim.runpaint.org:/home/public/"
   Rake::Task['sitemap_notify'].invoke
   sh 'git push'
