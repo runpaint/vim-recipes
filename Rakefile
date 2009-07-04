@@ -2,6 +2,10 @@ require 'rake/clean'
 require 'hpricot'
 require 'erb'
 
+class OpenStruct
+  def bind; binding; end
+end
+
 WEB_OUT = 'output/www'
 OFFLINE_OUT = 'output/offline'
 SOURCE_HTML = FileList['text/**/*.html']
@@ -14,13 +18,9 @@ TEMPLATES_DIR = 'templates/'
 TEMPLATE_WRAPPER = 'page.html'
 TEMPLATE_NO_WRAP = [TEMPLATE_WRAPPER, 'atom.atom']
 
-def bind(obj)
-  obj.send(:binding)
-end  
-
 def template(filename,hash)
   content = ERB.new(File.open(File.join(TEMPLATES_DIR,filename)).read).
-    result(bind(OpenStruct.new(hash)))
+    result(OpenStruct.new(hash).bind)
   return content if TEMPLATE_NO_WRAP.include? filename
   template(TEMPLATE_WRAPPER, {:content => content}.merge(hash))  
 end
