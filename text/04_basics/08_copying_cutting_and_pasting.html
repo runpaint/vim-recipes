@@ -41,7 +41,7 @@ system clipboard.</p>
 
 <h4>Discussion</h4>
 
-<p>The solution aboves uses the concept of a single clipboard, much like some
+<p>The solution above uses the concept of a single clipboard, much like some
 operating systems do. Vim can work this way, as you can see, but also supports
 'named registers'. These are, effectively, multiple, independent clipboards.
 <span class="fn">Registers are actually far more powerful than this;
@@ -59,10 +59,10 @@ the <tt>:registers</tt> command.</p>
 <p>When pasting text from external applications into a Vim instance Vim may
 clobber the text by attempting to be too clever. This happens when it cannot
 distinguish between entered text and pasted text. The most common symptom is
-that the pasted text is indented bizarely.</p>
+that the pasted text is indented bizarrely.</p>
 
 <p>To fix this, consider using <tt>:set paste</tt> before you paste, then
 <tt>:set nopaste</tt> afterwards. Alternatively, use <tt>:set
   pastetoggle=<var>key</var></tt> to map a key to toggle paste mode. With this
-steup on Linux, for example, users could paste with
+setup on Linux, for example, users could paste with
 <kbd><kbd>F11</kbd>+<kbd>Shift</kbd>-<kbd>Ins</kbd>+<kbd>F11</kbd></kbd>.</p>
