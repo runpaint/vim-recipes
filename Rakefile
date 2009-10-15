@@ -189,7 +189,7 @@ multitask :www => ["#{WEB_OUT}/vim-recipes.pdf",:html, "#{WEB_OUT}/css", :offlin
 end  
 
 desc "Upload the website"
-task :upload => [:www, :sitemap] do
+task :upload => [:clobber, :www, :sitemap] do
   sh "rsync -vaz #{WEB_OUT}/ vim.runpaint.org:/home/public/"
   Rake::Task['sitemap_notify'].invoke
   sh 'git push'
