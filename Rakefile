@@ -192,10 +192,10 @@ desc "Gzip the website"
 task gzip: :www do
   Dir.chdir(WEB_OUT) do
     FileList['*', '**/*', '**/**/*'].each do |f|
-      if File.file?(f) && !f.end_with?('.gz')
+      if File.file?(f) && ['html','css','js'].include?(f[-3..-1])
         new_f = "#{f}.en"      
         mv f, new_f
-        system("gzip --best -c #{new_f} > #{new_f}.gz") or raise "Couldn't gzip #{new_f}: #$!"
+        sh("gzip --best -c #{new_f} > #{new_f}.gz") or raise "Couldn't gzip #{new_f}: #$!"
       end
     end
   end
