@@ -85,7 +85,7 @@
   <directory 
     path="output/www/" 
     url="http://vim.runpaint.org/" 
-    default_file="index.html" 
+    default_file="index.html.en" 
     remove_empty_directories="true"/>
 
   <!-- ********************************************************
@@ -129,4 +129,10 @@
 
   <!-- Exclude output/all.html  -->
   <filter action="drop" type="wildcard" pattern="*/all.html" />
+
+  <!-- Exclude *.gz files  -->
+  <filter action="drop" type="wildcard" pattern="*.gz" />
+
+  <!-- Exclude *.en files  -->
+  <filter action="drop" type="wildcard" pattern="*.en" />
 </site>
