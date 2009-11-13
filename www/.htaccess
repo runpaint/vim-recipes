@@ -1,3 +1,4 @@
+AddDefaultCharset UTF-8
 Options +MultiViews
 AddEncoding x-gzip .gz
 DirectoryIndex index
