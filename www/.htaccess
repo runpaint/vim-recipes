@@ -1,2 +1,5 @@
+Options +MultiViews
+AddEncoding x-gzip .gz
+DirectoryIndex index
 # See commit 1cf0c51fc339c8f755ec3afa234f2e88bfdafdc1
 RedirectPermanent /searching/searching-vim-documentation/ http://vim.runpaint.org/basics/help/

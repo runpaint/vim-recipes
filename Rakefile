@@ -188,9 +188,22 @@ multitask :www => ["#{WEB_OUT}/vim-recipes.pdf",:html, "#{WEB_OUT}/css", :offlin
   cp_r 'js', WEB_OUT
 end  
 
+desc "Gzip the website"
+task gzip: :www do
+  Dir.chdir(WEB_OUT) do
+    FileList['*', '**/*', '**/**/*'].each do |f|
+      if File.file?(f) && !f.end_with?('.gz')
+        new_f = "#{f}.en"      
+        mv f, new_f
+        system("gzip --best -c #{new_f} > #{new_f}.gz") or raise "Couldn't gzip #{new_f}: #$!"
+      end
+    end
+  end
+end
+
 desc "Upload the website"
-task :upload => [:clobber, :www, :sitemap] do
-  sh "rsync -vaz #{WEB_OUT}/ vim.runpaint.org:/home/public/"
+task :upload => [:clobber, :www, :gzip, :sitemap] do
+  sh "rsync --delete -vaz #{WEB_OUT}/ vim.runpaint.org:/home/public/"
   Rake::Task['sitemap_notify'].invoke
   sh 'git push'
 end
