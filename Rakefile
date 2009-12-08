@@ -46,7 +46,7 @@ file OUTPUT_HTML => SOURCE_HTML do |t|
 end
 
 file PDF => [OUTPUT_HTML,WEB_OUT] do |t|
-  system("prince #{t.prerequisites.first} #{t.name}")
+  sh "prince #{t.prerequisites.first} #{t.name}"
 end
 
 desc "Generate the PDF"
