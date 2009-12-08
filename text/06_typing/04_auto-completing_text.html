@@ -18,7 +18,8 @@ list from which to choose from.</p>
 <p>Another source of words is a dictionary. Get one, using the sidebar for
 reference, then point Vim to it with <tt>:set
 dictionary=<var>file</var></tt>. Then add the dictionary to list of places
-Vim looks for words: <tt>:set complete+=k</tt>.</p>
+Vim looks for words: <tt>:set complete+=k</tt>. The <tt>'complete'</tt>
+options controls where Vim looks for possible matches.</p>
 
 <blockquote class="callout">
   
@@ -80,8 +81,9 @@ command, to enable <i>Omni-Completion</i> using the best available method:
     \   endif
 endif</code></pre>
 
-<p>To use Omni-Completion hit <kbd><kbd>Ctrl</kbd>+<kbd>o</kbd></kbd> to be
-presented with a list of choices for the text behind the cursor.</p>
+<p>To use Omni-Completion hit <kbd><kbd>Ctrl</kbd>Ctrl</kbd>+<kbd>x</kbd>
+<kbd>Ctrl</kbd>+<kbd>o</kbd></kbd> to be presented with a list of choices for
+the text behind the cursor.</p>
 
 <p>Apart from programming languages, Omni-Completion also works for HTML and
 CSS.  For example, you can type <kbd>&lt;p cl</kbd>,

@@ -20,9 +20,9 @@ indentation. </p>
 indent or <kbd>&lt;</kbd> to unindent. </p>
 
 <p>If you're in <i>Insert</i> or <i>Replace</i> mode you can use
-<kbd><kbd>&lt;Ctl&gt;</kbd>-<kbd>&lt;Shift&gt;</kbd>-<kbd>t</kbd></kbd> to
+<kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>&lt;Shift&gt;</kbd>-<kbd>t</kbd></kbd> to
 indent (mnemonic: <b>t</b>ab), and
-<kbd><kbd>&lt;Ctl&gt;</kbd>-<kbd>&lt;Shift&gt;</kbd>-<kbd>d</kbd></kbd> to
+<kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>&lt;Shift&gt;</kbd>-<kbd>d</kbd></kbd> to
 unident (mnemonic: <b>d</b>e-tab/indent).</p>
 
 <p>More powerful are <a href="#selecting-text-with-motions">motions</a>
@@ -54,9 +54,10 @@ There are two main schools of thought:</p>
   shiftwidth=8</tt>, and <tt>:set noexpandtab</tt>. Tabs are now eight
   columns wide; each indentation level is a single tab.</li>
   <li>Convert tabs to spaces - Each press of the tab key should insert a certain
-  number of spaces.  The settings you need are <tt>:set tabstop=4</tt>,
+  number of spaces.  The settings you need are <tt>:set tabstop=8</tt>,
   <tt>:set shiftwidth=4</tt>, and <tt>:set expandtab</tt>. Tabs are now
-  replaced with 4 spaces.</li>
+  replaced with 4 spaces.  Real tabs are displayed 8 character wide, spaced
+  tabs 4 characters wide.</li>
 </ul>
 
 <p><tt>shiftwidth</tt> controls how many spaces are inserted when using the
