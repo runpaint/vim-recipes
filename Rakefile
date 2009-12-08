@@ -16,7 +16,7 @@ PDF = "#{WEB_OUT}/vim-recipes.pdf"
 CLOBBER.include('output','deb')
 TEMPLATES_DIR = 'templates/'
 TEMPLATE_WRAPPER = 'page.html'
-TEMPLATE_NO_WRAP = [TEMPLATE_WRAPPER, 'atom.atom']
+TEMPLATE_NO_WRAP = [TEMPLATE_WRAPPER, 'atom.atom', 'comment.html']
 
 def template(filename,hash)
   content = ERB.new(File.open(File.join(TEMPLATES_DIR,filename)).read).
@@ -107,6 +107,12 @@ end
 desc "Generate the HTML version"
 task :html => SOURCE_HTML do |t|
   toc = make_toc()
+  require 'open-uri'
+  require 'json'
+  api_key = File.read(File.expand_path("~/disqus-api-key")).chomp
+  disqus = JSON.parse(open(
+    "http://disqus.com/api/get_forum_posts/?api_version=1.1&user_api_key=#{api_key}&forum_id=127380&limit=99999"
+  ).read)['message']
   toc.each_with_index do |entry,idx|
     next if entry[:type] == :subsection
     source = File.open(entry[:file]).read
@@ -153,10 +159,36 @@ task :html => SOURCE_HTML do |t|
         |e| e[:type] == :recipe}.first
       prv = idx == 0 ? toc[-1] : toc[0..(idx - 1)].select{
         |e| e[:type] == :recipe}[-1]
+      url = "http://vim.runpaint.org/#{entry[:section_id]}/#{entry[:id]}/"
+      comments = disqus.select do |m|
+        m['thread']['url'] == url
+      end.map do |m|
+        author = m.key?('author') ? m['author'] : m['anonymous_author']
+        name = %w{display_name username name}.
+          select{|k| author.key?(k) && author[k] != ''}.
+          map{|k| author[k]}.first
+        url = if author.key?('url') && author['url'] != ''
+                author['url']
+              elsif author.key?('username')
+                "http://disqus.com/#{author['username']}"
+              else
+                '#'
+              end
+        text = m['message'].gsub(/</,"&lt;").
+                            gsub(/>/,"&gt;").
+                            gsub(/&lt;(\/?(a|b|i|h\d|code|pre|blockquote))&gt;/i,'<\1>').
+                            gsub(/\r\n\r/,'<p>')
+        avatar = author.key?('avatar') ? author['avatar']['small'] : "http://media.disqus.com/images/noavatar32.png"
+        template('comment.html', {
+          :comment => text, :url => url, 
+          :author => name, :avatar => avatar, :date => m['created_at'] 
+        })
+      end
+      comments = comments.empty? ? '' : "<h2>Comments</h2>#{comments.join}"
       page = template('recipe.html', 
         {:body => doc.to_s, :title => entry[:title], :id => entry[:id], 
          :section_id => entry[:section_id], :section => entry[:section_name], 
-         :next_e => nxt, :prev_e => prv})
+         :next_e => nxt, :prev_e => prv, :comments => comments})
        #FIXME: Use :target_path instead: 
        path = "#{WEB_OUT}/#{entry[:section_id]}/#{entry[:id]}/index.html"
        mkdir_p File.dirname(path) 
@@ -203,7 +235,7 @@ end
 
 desc "Upload the website"
 task :upload => [:clobber, :www, :gzip, :sitemap] do
-  sh "rsync --delete -vaz #{WEB_OUT}/ vim.runpaint.org:/home/public/"
+  sh "rsync --delete -vaz #{WEB_OUT}/ vr:/home/public/"
   Rake::Task['sitemap_notify'].invoke
   sh 'git push'
 end

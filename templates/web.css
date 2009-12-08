@@ -72,3 +72,8 @@ p {margin: 1em 0}
   text-size: larger;
   font-weight: bold;
 }  
+div.comments > h2 { text-align: center }
+div.comments img { float: left; margin-right: 2%; border: none; }
+div.comments article { display: block; clear: both; margin-left: 5%; }
+div.comments article > p { border-left: 1px dashed black; padding-left: 1% }
+div.comments > p:last-child { text-align: center }
