@@ -211,7 +211,7 @@ end
 directory "#{WEB_OUT}/css"
 desc "Generate the website"
 multitask :www => ["#{WEB_OUT}/vim-recipes.pdf",:html, "#{WEB_OUT}/css", :offline] do
-  FileList['www/*', 'www/.[a-z]*'].each {|f| cp f, WEB_OUT}
+  FileList['www/*', 'www/.[a-z]*', 'google*'].each {|f| cp f, WEB_OUT}
   File.open("#{WEB_OUT}/css/style.css",'w') do |merged|
     ['main','web'].each do |name| 
       merged.print File.open(File.join(TEMPLATES_DIR, name + '.css')).read
