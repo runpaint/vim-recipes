@@ -51,7 +51,7 @@ span.fn a:link {
 }
 
 @media screen, handheld {
-  html { margin: 1em; font: 14px "Gill Sans", sans-serif; }
+  html { margin: 1em; font: 14px "Gill Sans", "Gill Sans MT", "DejaVu Sans", sans-serif; }
   h1 { margin-bottom: 0.5em }
   div.frontcover, div.backcover, div.halftitlepage, div.titlepage, div.imprint, 
   div.dedication, div.foreword, div.toc, div.index { display: none }

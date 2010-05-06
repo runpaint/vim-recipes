@@ -287,3 +287,6 @@ a{text-decoration:none}
 a:hover{color: steelblue; border-bottom:1px solid}
 a:link,.w a{border-bottom:1px dotted}
 a:visited{color:darkorchid}
+h5,h6,blockquote { 
+  font-family: "Gill Sans", "Gill Sans MT Pro", "DejaVu Sans", sans-serif;
+}
