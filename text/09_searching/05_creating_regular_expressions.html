@@ -46,9 +46,9 @@ specified. For example, <tt>/[^cs]ow/</tt> matches any character that isn't a
 
 <p>Another useful concept of regexps is repetition. If you wanted to match strings
 containing consecutive <tt>"<i>o</i>"</tt>s followed by an
-<tt>"<i>"i"</i></tt>, like <tt>"<i>cooing</i>"</tt> and
+<tt>"<i>i</i></tt>, like <tt>"<i>cooing</i>"</tt> and
 <tt>"<i>tattooist</i>"</tt>, you could use <tt>/ooi/</tt>. If you wanted to
-abstract this pattern, however, to match one or more <tt>"<i>o</i>"</tt>}s
+abstract this pattern, however, to match one or more <tt>"<i>o</i>"</tt>s
 followed by an <tt>"<i>i</i>"</tt>, you'd have a problem.</p>
 
 <p>The solution is to suffix the part of the pattern that can be repeated with
@@ -58,15 +58,15 @@ For example, the <tt>"<i>+</i>"</tt> metacharacter requires that what precedes
 it<span class="fn">In fact, it requires that the <i>atom</i> that precedes it
   occurs one or more times, but this recipe is already too complex. If you
   want this level of detail see <tt>:help pattern</tt> or a regular expression
-  book.</span> occurs either one or more times. For example, <tt>/o\+i/</tt>,
+  book.</span> occurs either one or more times. For example, <tt>/o\+i/</tt>
 matches one or more <tt>"<i>o</i>"</tt>s followed by an <tt>"<i>i</i>"</tt>:
-<tt><i>"abattoir</i>"</tt>, <tt>"<i>cooing</i>"</tt>, and
+<tt>"<i>abattoir</i>"</tt>, <tt>"<i>cooing</i>"</tt>, and
 <tt>"<i>oii</i>"</tt>.</p>
 
 <p>The <tt>"<i>*</i>"</tt> metacharacter represents any number of occurrences
 of the preceding character, so <tt>/o*i/</tt> matches
 <tt>"<i>zucchini</i>"</tt>, <tt>"<i>boating</i>"</tt>, and
-<tt>"<i>zooimg</i>"</tt>. This time the <tt>"<i>o</i>"</tt> is made optional.
+<tt>"<i>zooming</i>"</tt>. This time the <tt>"<i>o</i>"</tt> is made optional.
 (Given that it starts the pattern it's actually unnecessary; <tt>/i/</tt> will
 match everything that it matches).</p>
 
@@ -74,7 +74,7 @@ match everything that it matches).</p>
 <tt>"<i>a</i>"</tt>, <tt>"<i>b</i>"</tt>, or <tt>"<i>c</i>"</tt> followed by
 any number of <tt>"<i>t</i>"</tt>s, followed by at least one
 <tt>"<i>o</i>"</tt>, followed by an <tt>"<i>i</i>"</tt>. The following words
-satisfy the pattern: <tt>"<i>"tattooing</i>"</tt>, <tt>"<i>coins</i>"</tt>,
+satisfy the pattern: <tt>"<i>tattooing</i>"</tt>, <tt>"<i>coins</i>"</tt>,
 and <tt>"<i>limboing</i>"</tt>.  It may not be intuitive that
 <tt>"<i>tattooing</i>"</tt> would match, so let's walk through it: The
 <tt>"<i>a</i>"</tt> satisfies <tt>/[a-c]/</tt>, the following two
@@ -94,14 +94,14 @@ pattern has now been exhausted, the rest of the string is ignored.</p>
 matches 0 or 1 times) with <tt>\=</tt>. You can generalise this with the
 <tt>\{<var>min</var>,<var>max</var>\}</tt> notation which matches at least
 <var>min</var> times, but no more than <var>max</var> times. For example,
-<tt>/[^a-c][a-c]\{2,4\}/</tt> matches <tt>"<i>yachts</i>"</tt>
-(<tt>"<i>yac</i>"</tt>), and <tt>"<i>blabbed</i>"</tt>
-(<tt>"<i>labb</i>"</tt>), but doesn't match <tt>"<i>cabbage</i>"</tt>.</p>
+<tt>/[^a-c][a-c]\{2,4\}[hero]/</tt> matches <tt>"<i>yachts</i>"</tt>
+(<tt>"<i>yach</i>"</tt>), and <tt>"<i>blabbed</i>"</tt>
+(<tt>"<i>labbe</i>"</tt>), but doesn't match <tt>"<i>cabbage</i>"</tt>.</p>
 
 <p>Like character ranges, alternation allows you to specify a list of
 alternatives that can match at a given point.  Whereas character ranges
 specify sets of characters, alternation is used for sets of strings. For
-example, <tt>/\(ing|ed\)/</tt> matches the string <tt>"<i>ing</i>"</tt> or the
+example, <tt>/ing\|ed/</tt> matches the string <tt>"<i>ing</i>"</tt> or the
 string <tt>"<i>ed</i>"</tt>, e.g.  <tt>"<i>simpered</i>"</tt>, and
 <tt>"<i>attacking</i>"</tt>. If you used a character range here, e.g.
 <tt>/[inged]/</tt>, the pattern would match any string that contained an
@@ -113,16 +113,18 @@ strings the alternation approach does, but also many, many more.</p>
 string.  That is to say, before Vim gives up on a match it will try applying
 the pattern at every point in the text. You can change this behaviour by using
 anchors: <tt>^</tt> matches the start of a line, while <tt>$</tt> matches the
-end.  So, <tt>/^\s\=\uo/</tt> matches a line that begins with optional white
-space, which is followed by an uppercase letter, which is followed by an
-<tt>"<i>o</i>"</tt>. The following strings will all match: <tt>"<i> Popes are
+end.  So, <tt>/^\s\=\uo/</tt> matches a line that begins with an optional
+white space character, which is followed by an uppercase letter, which is
+followed by an <tt>"<i>o</i>"</tt>. The following strings will all match:
+<tt>"<i> Popes are
     religious</i>"</tt>, <tt>"<i>Roman</i>"</tt>, and <tt>"<i>Soviet
     Union</i>"</tt>.</p>
 
 <p>You can combine the two anchors to require that the whole line matches the
-pattern. For example, <tt>/\^uo\(v|ma\).\+[rnt]\$/</tt> will match
-<tt>"<i>November</i>"</tt> and <tt>"<i>Soviet</i>"</tt>, but will reject
-<tt>"<i>Soviet Union</i>"</tt> or <tt>"<i>During November</i>"</tt>.</p>
+pattern. For example, <tt>/^\uo\%(v|ma\).\+[rnt]\$/</tt> will match
+<tt>"<i>Tomahawk thrown</i>"</tt>, <tt>"<i>November</i>"</tt> and
+<tt>"<i>Soviet</i>"</tt>, but will reject <tt>"<i>Soviet Union</i>"</tt> or
+<tt>"<i>During November</i>"</tt>.</p>
 
 <h4>Discussion</h4>
 
