@@ -13,19 +13,19 @@ to see the differences between their version and yours.</p>
 a file.</p>
 
 <p>To diff from the command line invoke Vim as <tt>vimdiff</tt>, e.g.
-<tt>vimdiff -o <var>file1</var> <var>file2</var></tt>. To diff from within Vim
+<tt>:vimdiff -o <var>file1</var> <var>file2</var></tt>. To diff from within Vim
 use <tt>:diffsplit <var>file</var></tt>.</p>
 
 <p>The screen is split horizontally, and each file is shown in its own window.
-The differences between them are highlighted. Lines that exist in one buffer
-but not in By default, a line that exists in one file but not in another is
-coloured blue; the line in the other buffer that should have held this line is
-coloured green, and is called a 'filler' line. When a line exists in both
-buffers it is coloured purple. If characters inside the line differ they are
-highlighted in red. Identical lines have no highlighting.  Identical runs of
-lines are <a href="#navigating-folds">folded</a>.</p>
+The differences between them are highlighted. By default, a line that exists
+in one file but not in another are coloured blue; the line in the other buffer
+that should have held this line is coloured green, and is called a
+<i>filler</i> line. When a line exists in both buffers it is coloured purple.
+If characters inside the line differ they are highlighted in red. Identical
+lines have no highlighting.  Identical runs of lines are <a
+  href="#navigating-folds">folded</a>.</p>
 
-<p>To split the screen vertically use <tt>vimdif <var>file1</var>
+<p>To split the screen vertically use <tt>:vimdiff <var>file1</var>
   <var>file2</var></tt> or <tt>:vert diffsplit <var>file1</var>
   <var>file2</var></tt>.</p>
 
@@ -37,7 +37,7 @@ they're invaluable when collaborating on a file with somebody else. For
 example, you write a file named <tt>grant-proposal.txt</tt>, then e-mail it to
 somebody else for input. They make their changes and e-mail it back. You now
 have two files: <tt>grant-proposal.txt</tt> and
-<tt>grant-proposal.changes.txt</tt>.  You use <tt>vimdiff grant-proposal.txt
+<tt>grant-proposal.changes.txt</tt>.  You use <tt>:vimdiff grant-proposal.txt
   grant-proposal.changes.txt</tt> to see your collaborator's suggestions.</p>
 
 <p>It's important to note, though, that diff only works with plain text files.
