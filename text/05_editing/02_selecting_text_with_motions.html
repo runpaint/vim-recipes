@@ -182,3 +182,10 @@ the available commands follow:</p>
 <p>So, to delete a paragraph, position your cursor anywhere inside it then hit
 <kbd>dap</kbd>. <em>D</em>elete <em>a</em> <em>p</em>aragraph - it even sounds
 sensible<span class="fn">No, this is not a bug.</span>.</p>
+
+<p>A motion can also be a regular expression, in which case it describes the
+text matched: extending from the current cursor position to the penultimate
+character matched by the pattern. The syntax is
+<kbd>/<var>pattern</var></kbd>: a solidus followed by a regular
+expression. For example, <kbd>d/\d</kbd> deletes from the current character to
+the first digit, excluding the digit itself.
